@@ -1,0 +1,21 @@
+{
+  "counts": {
+    "bit_flip_rejections": 585728,
+    "nonfinite": 256,
+    "overflow": 28672,
+    "valid": 36608
+  },
+  "elapsed_seconds": 7.631270995363593,
+  "encodings": 65536,
+  "production_model_verified": false,
+  "regression_groups": [
+    "ordered_statistics_and_block_boundaries",
+    "malformed_empty_oversized_and_failure_atomic_statistics",
+    "scalar_multidimensional_empty_truncated_trailing_and_deterministic_receipts",
+    "interrupted_processing_no_success_receipt",
+    "non_nearest_floating_environment_rejected"
+  ],
+  "statistics": "exact V3 equality including ordered binary64 sums",
+  "status": "PASS_SYNTHETIC_ONLY",
+  "ubsan": "exhaustive valid and invalid encodings passed"
+}

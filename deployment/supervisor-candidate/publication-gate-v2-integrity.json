@@ -1,0 +1,58 @@
+{
+  "accepted_V3_files_and_stat_metadata_unchanged": 93,
+  "all_development_runs_process_accounting": {
+    "publication-gate-v2-initial": {
+      "harness_sessions": 27,
+      "unresolved": [],
+      "wait_confirmed_processes": 185
+    },
+    "publication-gate-v2-release": {
+      "harness_sessions": 27,
+      "unresolved": [],
+      "wait_confirmed_processes": 187
+    },
+    "publication-gate-v2-validation": {
+      "harness_sessions": 2,
+      "unresolved": [],
+      "wait_confirmed_processes": 108
+    }
+  },
+  "all_development_runs_unique_reaped": 480,
+  "conversion_helpers_other_than_coordinator_unchanged": true,
+  "full_weight_hashes_recomputed": false,
+  "model_inventory_and_stat_entries_unchanged": 34,
+  "model_manifest_sha256": "d34c6389c0ca68df59e11f2a18f3616e7b335066fd8c493acf46044551e1daee",
+  "native_binaries_unchanged": true,
+  "native_fault_scenarios_passed": 23,
+  "preexisting_deployment_files_unchanged": 206,
+  "previous_candidate_archive_files_verified": 291,
+  "production_weight_payloads_read": false,
+  "status": "PASS",
+  "temporary_directories_empty": true,
+  "tests_passed": 136,
+  "unchanged_Native_block_method": true,
+  "unchanged_native_acquisition_authentication_verification_and_numerical_files": [
+    "supervisor.c",
+    "worker.c",
+    "convert.c",
+    "verify.c",
+    "prototype.h",
+    "protocol.h",
+    "harness.c",
+    "bootstrap.py",
+    "candidate.py",
+    "coordinator.py",
+    "run_validation.py",
+    "build.py",
+    "benchmark.py",
+    "audit_io.py",
+    "verify_fp16.py",
+    "worker",
+    "supervisor",
+    "harness",
+    "kernel",
+    "exhaustive"
+  ],
+  "unresolved_processes": [],
+  "wait_confirmed_processes": 187
+}

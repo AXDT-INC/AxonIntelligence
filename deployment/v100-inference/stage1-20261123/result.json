@@ -1,0 +1,20 @@
+{
+  "image": "sha256:4d21bd834057bb3877072ae4653aa10ab5d1697c3b4fa17b41f01f791f9a8382",
+  "tag": "axonai-v100-smoke:torch2.13-cu126-r1",
+  "stage1": "passed",
+  "stage2": "awaiting_project_owned_reservation",
+  "allocation_snapshot_utc": "2026-11-23T06:05:51Z",
+  "required_host_indices": [
+    0,
+    1
+  ],
+  "project_session": null,
+  "v100_inference_executed": false,
+  "v100_measurements": null,
+  "artifacts_sha256": {
+    "build.log": "d9d70e622965438d45a3bf6946aeaa5aed49a831ab5395d8eebf205118d9d86a",
+    "image-cpu-tests.log": "b7c09861ec9bae3b7379aebaa05f7da92d8d0daff78e73f733e07529abf251b0",
+    "host-tests.log": "c1a4cd828752572d9baa065ced3b2a0dc8754bd38b9f24eae0b11dd6a2fb1e62",
+    "pre-stage2-check.log": "bdb3e24849e7ad6e9f9d9e8f3200d01e9e130b7c03aa0d0365aefeba02942b4d"
+  }
+}

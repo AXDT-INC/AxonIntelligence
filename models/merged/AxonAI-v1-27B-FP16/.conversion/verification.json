@@ -1,0 +1,10 @@
+{
+  "converted": 851,
+  "elements": 26895998464,
+  "method": "Exhaustive BF16 lookup using Python struct IEEE binary16, bitwise payload comparison",
+  "shard_conversion_seconds": 336.481,
+  "shards": 14,
+  "source_manifest_sha256": "d34c6389c0ca68df59e11f2a18f3616e7b335066fd8c493acf46044551e1daee",
+  "status": "passed",
+  "weight_bytes": 53791996928
+}

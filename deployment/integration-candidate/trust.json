@@ -1,0 +1,26 @@
+{
+  "abi": 1,
+  "compiler": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0",
+  "compiler_sha256": "821af3c74506283c179ca413bb33e6b528805a4dd8a5c09df125e5ad560a9e89",
+  "executable_sha256": "9bbc54ddb818736714d36c1bc5d8f7eb44596c66e41207851dbbfd2657260de6",
+  "flags": [
+    "-pipe",
+    "-std=c11",
+    "-O2",
+    "-mno-f16c",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fexcess-precision=standard",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wl,-z,now,-z,relro"
+  ],
+  "repeat_build_identical": true,
+  "sources": {
+    "convert.c": "3288dc9a1a2d679898ed03b1b07891938fd6715300b55a8a338d2b609aa31ddc",
+    "prototype.h": "a4b5e010f30f563f860da27befd918757beaeff59ebf64945de87a10eb53cb6a",
+    "verify.c": "b9b3b1965da26aa6966f75fcbee04029c7f76b4603a51cf7fa5a56be8d7a0c09",
+    "worker.c": "f87a4d836f4248a85fbf9d5266135c456a8333e61f029b21675820d98602f086"
+  }
+}

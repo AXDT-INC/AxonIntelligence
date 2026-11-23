@@ -1,0 +1,320 @@
+{
+  "container": "axgt-session-575",
+  "start_utc": "2026-11-23T07:13:38Z",
+  "end_utc": "2026-11-23T07:15:45Z",
+  "exit_code": 0,
+  "model_source": "/data/axonai/models/merged/AxonAI-v1-27B-FP16/",
+  "session_model": "/opt/axonai-smoke-ZPZEq5aL/model",
+  "session_python": "/tmp/axonai-v100-ZPZEq5aL/runtime/usr/local/bin/python3.12",
+  "manifest_sha256": "c3a6cb1deb5123cc35ccc9c07de36545f82b91a317f97971b6bd56b3403f2e06",
+  "load_seconds": 101.5524938069284,
+  "gpus": [
+    {
+      "host_index": 1,
+      "uuid": "GPU-85a39500-3cd6-4604-7ff4-4c07d48fb086",
+      "baseline_mib": 117,
+      "nvml_sampled_peak_mib": 26292,
+      "torch_peak_allocated_bytes": 27020284928,
+      "torch_peak_reserved_bytes": 27044872192
+    },
+    {
+      "host_index": 2,
+      "uuid": "GPU-60515032-f798-5aaa-d1e4-acf58ea8bfa8",
+      "baseline_mib": 1,
+      "nvml_sampled_peak_mib": 26176,
+      "torch_peak_allocated_bytes": 27023097344,
+      "torch_peak_reserved_bytes": 27044872192
+    }
+  ],
+  "results": {
+    "historical_replay": false,
+    "passed": 7,
+    "results": {
+      "citation": true,
+      "insufficient": true,
+      "ordering": true,
+      "ratio": true,
+      "replicates": true,
+      "sum": true,
+      "units": true
+    },
+    "suite": "inherited prospective controls",
+    "total": 7
+  },
+  "all_generated_logits_finite": true,
+  "seven_prompt_tokens_including_eos": 64,
+  "seven_prompt_generation_seconds": 11.940433915704489,
+  "seven_prompt_tokens_per_s": 5.359939215929573,
+  "seven_prompt_median_ttft_s": 0.7566722016781569,
+  "cases": [
+    {
+      "all_raw_logits_finite": true,
+      "cached_decode_steps": 3,
+      "case": "initial_decode",
+      "continuation": "1, 2",
+      "first_token_s": 3.1327552758157253,
+      "generated_ids": [
+        16,
+        11,
+        220,
+        17
+      ],
+      "input_tokens": 46,
+      "peak": [
+        {
+          "allocated_bytes": 27017442304,
+          "free_bytes_at_sample": 6503399424,
+          "reserved_bytes": 27044872192
+        },
+        {
+          "allocated_bytes": 27016979968,
+          "free_bytes_at_sample": 6627459072,
+          "reserved_bytes": 27042775040
+        }
+      ],
+      "seconds": 3.9585664365440607,
+      "tokens_per_s": 1.0104668101748753
+    },
+    {
+      "all_raw_logits_finite": true,
+      "cached_decode_steps": 10,
+      "case": "sum",
+      "continuation": "{\"status\":\"ok\",\"sum\":12}",
+      "first_token_s": 0.7597009539604187,
+      "generated_ids": [
+        4754,
+        2738,
+        3147,
+        547,
+        2129,
+        1200,
+        763,
+        16,
+        17,
+        92,
+        248046
+      ],
+      "input_tokens": 54,
+      "peak": [
+        {
+          "allocated_bytes": 27020025344,
+          "free_bytes_at_sample": 6503399424,
+          "reserved_bytes": 27044872192
+        },
+        {
+          "allocated_bytes": 27022290944,
+          "free_bytes_at_sample": 6625361920,
+          "reserved_bytes": 27044872192
+        }
+      ],
+      "seconds": 1.9831979386508465,
+      "tokens_per_s": 5.54659713265092
+    },
+    {
+      "all_raw_logits_finite": true,
+      "cached_decode_steps": 6,
+      "case": "ratio",
+      "continuation": "{\"ratio\": 3}",
+      "first_token_s": 0.7471141684800386,
+      "generated_ids": [
+        4754,
+        43844,
+        763,
+        220,
+        18,
+        92,
+        248046
+      ],
+      "input_tokens": 52,
+      "peak": [
+        {
+          "allocated_bytes": 27019162112,
+          "free_bytes_at_sample": 6503399424,
+          "reserved_bytes": 27044872192
+        },
+        {
+          "allocated_bytes": 27022062592,
+          "free_bytes_at_sample": 6625361920,
+          "reserved_bytes": 27044872192
+        }
+      ],
+      "seconds": 1.4739837516099215,
+      "tokens_per_s": 4.749034711104805
+    },
+    {
+      "all_raw_logits_finite": true,
+      "cached_decode_steps": 8,
+      "case": "units",
+      "continuation": "{\"mg\": 250}",
+      "first_token_s": 0.7605042550712824,
+      "generated_ids": [
+        4754,
+        11958,
+        763,
+        220,
+        17,
+        20,
+        15,
+        92,
+        248046
+      ],
+      "input_tokens": 56,
+      "peak": [
+        {
+          "allocated_bytes": 27020127744,
+          "free_bytes_at_sample": 6503399424,
+          "reserved_bytes": 27044872192
+        },
+        {
+          "allocated_bytes": 27022581760,
+          "free_bytes_at_sample": 6625361920,
+          "reserved_bytes": 27044872192
+        }
+      ],
+      "seconds": 1.7693709749728441,
+      "tokens_per_s": 5.086553429044539
+    },
+    {
+      "all_raw_logits_finite": true,
+      "cached_decode_steps": 1,
+      "case": "replicates",
+      "continuation": "1",
+      "first_token_s": 0.7566722016781569,
+      "generated_ids": [
+        16,
+        248046
+      ],
+      "input_tokens": 59,
+      "peak": [
+        {
+          "allocated_bytes": 27020284928,
+          "free_bytes_at_sample": 6503399424,
+          "reserved_bytes": 27044872192
+        },
+        {
+          "allocated_bytes": 27023097344,
+          "free_bytes_at_sample": 6625361920,
+          "reserved_bytes": 27044872192
+        }
+      ],
+      "seconds": 0.8833368569612503,
+      "tokens_per_s": 2.264141911705304
+    },
+    {
+      "all_raw_logits_finite": true,
+      "cached_decode_steps": 1,
+      "case": "insufficient",
+      "continuation": "No",
+      "first_token_s": 0.3855900838971138,
+      "generated_ids": [
+        2665,
+        248046
+      ],
+      "input_tokens": 56,
+      "peak": [
+        {
+          "allocated_bytes": 27020127744,
+          "free_bytes_at_sample": 6503399424,
+          "reserved_bytes": 27044872192
+        },
+        {
+          "allocated_bytes": 27022954496,
+          "free_bytes_at_sample": 6625361920,
+          "reserved_bytes": 27044872192
+        }
+      ],
+      "seconds": 0.5093176886439323,
+      "tokens_per_s": 3.926822187002844
+    },
+    {
+      "all_raw_logits_finite": true,
+      "cached_decode_steps": 14,
+      "case": "citation",
+      "continuation": "{\"watts\": 4, \"source\": \"N2\"}",
+      "first_token_s": 0.7403177730739117,
+      "generated_ids": [
+        4754,
+        86,
+        20343,
+        763,
+        220,
+        19,
+        11,
+        328,
+        2348,
+        763,
+        328,
+        45,
+        17,
+        8934,
+        248046
+      ],
+      "input_tokens": 57,
+      "peak": [
+        {
+          "allocated_bytes": 27020180480,
+          "free_bytes_at_sample": 6503399424,
+          "reserved_bytes": 27044872192
+        },
+        {
+          "allocated_bytes": 27022984704,
+          "free_bytes_at_sample": 6625361920,
+          "reserved_bytes": 27044872192
+        }
+      ],
+      "seconds": 2.4528736770153046,
+      "tokens_per_s": 6.115276192393339
+    },
+    {
+      "all_raw_logits_finite": true,
+      "cached_decode_steps": 17,
+      "case": "ordering",
+      "continuation": "[0.02, 0.12, 1.2]",
+      "first_token_s": 0.819853987544775,
+      "generated_ids": [
+        58,
+        15,
+        13,
+        15,
+        17,
+        11,
+        220,
+        15,
+        13,
+        16,
+        17,
+        11,
+        220,
+        16,
+        13,
+        17,
+        60,
+        248046
+      ],
+      "input_tokens": 64,
+      "peak": [
+        {
+          "allocated_bytes": 27020018176,
+          "free_bytes_at_sample": 6503399424,
+          "reserved_bytes": 27044872192
+        },
+        {
+          "allocated_bytes": 27022808064,
+          "free_bytes_at_sample": 6625361920,
+          "reserved_bytes": 27044872192
+        }
+      ],
+      "seconds": 2.8683530278503895,
+      "tokens_per_s": 6.275378178776557
+    }
+  ],
+  "after_exit": {
+    "compute_processes": [],
+    "board_mib": [
+      117,
+      1
+    ]
+  },
+  "initial_error": "Default loader reached the 72 GiB virtual address limit while mmap-ing 3,897,624,904 bytes for shard 2.",
+  "correction": "Session-local runner selected safetensors pread for CPU tensor reads. Pinned package payloads and FP16 model data were preserved."
+}

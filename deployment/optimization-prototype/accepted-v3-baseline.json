@@ -1,0 +1,653 @@
+{
+  ".dockerignore": {
+    "bytes": 173,
+    "ctime_ns": 1794891692652308577,
+    "inode": 139853876,
+    "mtime_ns": 1794891692652308577,
+    "sha256": "1295d71ca4fd03eac04b59506a793494813ed7c5182d21e8f57733294f06ef05"
+  },
+  "CHANGES_V2.json": {
+    "bytes": 1647,
+    "ctime_ns": 1794894941131703084,
+    "inode": 139853925,
+    "mtime_ns": 1794894941131703084,
+    "sha256": "08753c5fbb984afc16c3eddd46b24399d87a702451b4a75570a983dd621d5495"
+  },
+  "DEPENDENCIES.md": {
+    "bytes": 4467,
+    "ctime_ns": 1794892124426454300,
+    "inode": 139853882,
+    "mtime_ns": 1794892124426454300,
+    "sha256": "8b2cc23e9b5b2086017cbcb3f821974b6bab670e03989fd5e744ced33cf6dc4e"
+  },
+  "Dockerfile.cpu": {
+    "bytes": 455,
+    "ctime_ns": 1794891808878737335,
+    "inode": 139853874,
+    "mtime_ns": 1794891808878737335,
+    "sha256": "8298b86f277c4b474e89e48809ccc60cc40a5e11998bef612575b5e5501f9053"
+  },
+  "Dockerfile.v100": {
+    "bytes": 687,
+    "ctime_ns": 1794892124418454409,
+    "inode": 139853875,
+    "mtime_ns": 1794892124418454409,
+    "sha256": "aa058b975706122781aa4b3b98c61d6d0f71146f27f5e171cae6f31e897009dd"
+  },
+  "INVENTORY.md": {
+    "bytes": 3290,
+    "ctime_ns": 1794896273394096107,
+    "inode": 139853885,
+    "mtime_ns": 1794896273394096107,
+    "sha256": "d0dd1cc719c8832d12196b32a23994b503ea71a424069e9e999d1a6850df05d2"
+  },
+  "LIFECYCLE_V3.md": {
+    "bytes": 1546,
+    "ctime_ns": 1794896273390096165,
+    "inode": 139853964,
+    "mtime_ns": 1794896273390096165,
+    "sha256": "3abb0a0bf411859dc38d2267134264ab77c32ed29ec8d078fd0406b49342119a"
+  },
+  "PACKAGE_SHA256.json": {
+    "bytes": 16060,
+    "ctime_ns": 1794896273394096107,
+    "inode": 139853888,
+    "mtime_ns": 1794896273394096107,
+    "sha256": "f5a7ea92ddc232762dfddc19afc51d90457a2aad2d7932d294ee419cc02d8d2b"
+  },
+  "README.md": {
+    "bytes": 15966,
+    "ctime_ns": 1794894735610593148,
+    "inode": 139853881,
+    "mtime_ns": 1794894735610593148,
+    "sha256": "0aebdf2b01cff496742e6ea4d1ccf3e57dc33f9ded14f063cc6b6b75a2757343"
+  },
+  "RECEIPT_LIFECYCLE_V2.md": {
+    "bytes": 6144,
+    "ctime_ns": 1794894884388490817,
+    "inode": 139853923,
+    "mtime_ns": 1794894884388490817,
+    "sha256": "2cedd3d5c9f02f2c8c1172d972053401a594652c6debaac3a223dfbde3fb2a6f"
+  },
+  "audit-history/v1/.dockerignore": {
+    "bytes": 173,
+    "ctime_ns": 1794894540933449513,
+    "inode": 139853904,
+    "mtime_ns": 1794891692652308577,
+    "sha256": "1295d71ca4fd03eac04b59506a793494813ed7c5182d21e8f57733294f06ef05"
+  },
+  "audit-history/v1/DEPENDENCIES.md": {
+    "bytes": 4467,
+    "ctime_ns": 1794894540937449452,
+    "inode": 139853910,
+    "mtime_ns": 1794892124426454300,
+    "sha256": "8b2cc23e9b5b2086017cbcb3f821974b6bab670e03989fd5e744ced33cf6dc4e"
+  },
+  "audit-history/v1/Dockerfile.cpu": {
+    "bytes": 455,
+    "ctime_ns": 1794894540937449452,
+    "inode": 139853909,
+    "mtime_ns": 1794891808878737335,
+    "sha256": "8298b86f277c4b474e89e48809ccc60cc40a5e11998bef612575b5e5501f9053"
+  },
+  "audit-history/v1/Dockerfile.v100": {
+    "bytes": 687,
+    "ctime_ns": 1794894540933449513,
+    "inode": 139853901,
+    "mtime_ns": 1794892124418454409,
+    "sha256": "aa058b975706122781aa4b3b98c61d6d0f71146f27f5e171cae6f31e897009dd"
+  },
+  "audit-history/v1/INVENTORY.md": {
+    "bytes": 2662,
+    "ctime_ns": 1794894540937449452,
+    "inode": 139853912,
+    "mtime_ns": 1794892425653386909,
+    "sha256": "5b3d76201c5cd4c1213f664c7e2a92fac6f99d74984bab0d3b66662497dfa8e3"
+  },
+  "audit-history/v1/PACKAGE_SHA256.json": {
+    "bytes": 3827,
+    "ctime_ns": 1794894540933449513,
+    "inode": 139853898,
+    "mtime_ns": 1794892425657386887,
+    "sha256": "babe0169df0feb779722249f7d38db9b51f8062734da4541c5ca0b8bbca5c308"
+  },
+  "audit-history/v1/README.md": {
+    "bytes": 15714,
+    "ctime_ns": 1794894540933449513,
+    "inode": 139853903,
+    "mtime_ns": 1794892124426454300,
+    "sha256": "0fa992b0fbdf74d15422c0d9f9b759e44390377d111d363da118c6b0d565f552"
+  },
+  "audit-history/v1/audit_io.py": {
+    "bytes": 12005,
+    "ctime_ns": 1794894540933449513,
+    "inode": 139853908,
+    "mtime_ns": 1794891941240943323,
+    "sha256": "a92ad868ef7347ee11caf4dd843658d24b2b70d1b9525f1f7f307a747252c9d3"
+  },
+  "audit-history/v1/audit_wheelhouse.py": {
+    "bytes": 6686,
+    "ctime_ns": 1794894540933449513,
+    "inode": 139853895,
+    "mtime_ns": 1794891808886737227,
+    "sha256": "3120a7b0f9a7cfef863a9988fdbea7945a4cdf40b833c1fbff969d34962d503c"
+  },
+  "audit-history/v1/compose.yaml": {
+    "bytes": 3869,
+    "ctime_ns": 1794894540933449513,
+    "inode": 139853902,
+    "mtime_ns": 1794891692648308631,
+    "sha256": "c114f0491b5a3af2352979e18ec429ae4a2d72f5974bf3680b2fe2e31fc2ee4a"
+  },
+  "audit-history/v1/convert_fp16.py": {
+    "bytes": 8508,
+    "ctime_ns": 1794894540933449513,
+    "inode": 139853899,
+    "mtime_ns": 1794892124418454409,
+    "sha256": "35a6833449a7818d20da454dd4cdd7faa3c04c772e0dac287a293eddcc8eb741"
+  },
+  "audit-history/v1/dependency-audit.json": {
+    "bytes": 8003,
+    "ctime_ns": 1794894540933449513,
+    "inode": 139853892,
+    "mtime_ns": 1794892211726235837,
+    "sha256": "418fb94774db1f702e094c4715a2bf9c1520788f3753756917ad8393b72de8df"
+  },
+  "audit-history/v1/draft-validation.json": {
+    "bytes": 276,
+    "ctime_ns": 1794894540933449513,
+    "inode": 139853900,
+    "mtime_ns": 1794892273850067289,
+    "sha256": "1742bdb35d78713bd660572a5b688fb60e08dd724e23d112cb07b2f310e19201"
+  },
+  "audit-history/v1/future_inference.py": {
+    "bytes": 7181,
+    "ctime_ns": 1794894540933449513,
+    "inode": 139853893,
+    "mtime_ns": 1794891692644308685,
+    "sha256": "97977db2aff2c47590ca0579c15d786b410c8e7472673ba752a4c6c7e535bd83"
+  },
+  "audit-history/v1/requirements.candidate.txt": {
+    "bytes": 269,
+    "ctime_ns": 1794894540933449513,
+    "inode": 139853894,
+    "mtime_ns": 1794891692640308739,
+    "sha256": "6ce13879ce497b60563a142bc6330712c49eed662ae200c046490889c60c184a"
+  },
+  "audit-history/v1/run_tests.py": {
+    "bytes": 2196,
+    "ctime_ns": 1794894540937449452,
+    "inode": 139853911,
+    "mtime_ns": 1794891880277770146,
+    "sha256": "b4f641542021101731e7249c4c2cab55e41c45edaa4695dc1eb96bccfc89f8fd"
+  },
+  "audit-history/v1/runtime-policy.json": {
+    "bytes": 701,
+    "ctime_ns": 1794894540933449513,
+    "inode": 139853896,
+    "mtime_ns": 1794891692644308685,
+    "sha256": "120e3b4cfa35e313c7a7986aba44a7f9c35c9627517790b15c8d99e983027f9e"
+  },
+  "audit-history/v1/source-integrity.json": {
+    "bytes": 7170,
+    "ctime_ns": 1794894540933449513,
+    "inode": 139853907,
+    "mtime_ns": 1794892211726235837,
+    "sha256": "1fee5ec2ad4199a2749fd9ac8e46044fb83f6cea29cdddb2bd3ac073fb0fbfd2"
+  },
+  "audit-history/v1/test-results.json": {
+    "bytes": 4080,
+    "ctime_ns": 1794894540933449513,
+    "inode": 139853906,
+    "mtime_ns": 1794892381237621229,
+    "sha256": "c22b8035d39728430d1f900d53ae897663966326742b7eefa4594e90bef34935"
+  },
+  "audit-history/v1/tests/test_conversion.py": {
+    "bytes": 19470,
+    "ctime_ns": 1794894540937449452,
+    "inode": 139853914,
+    "mtime_ns": 1794892379985627441,
+    "sha256": "44aa75d57d1929a46fab01a1d462d5071d662d86b80bca13892ac441a5fd145d"
+  },
+  "audit-history/v1/tests/test_package.py": {
+    "bytes": 5488,
+    "ctime_ns": 1794894540937449452,
+    "inode": 139853915,
+    "mtime_ns": 1794891880277770146,
+    "sha256": "f75643c11440c0d019b683fb6f90bb6a309e21d36c88eeccef2277accbfd30ac"
+  },
+  "audit-history/v1/validate_draft.py": {
+    "bytes": 3007,
+    "ctime_ns": 1794894540933449513,
+    "inode": 139853897,
+    "mtime_ns": 1794891808886737227,
+    "sha256": "84a12b700d170cefa8275231521f876d8b6804e59b32ac45da96f711964ca477"
+  },
+  "audit-history/v1/verify_fp16.py": {
+    "bytes": 9214,
+    "ctime_ns": 1794894540933449513,
+    "inode": 139853905,
+    "mtime_ns": 1794891808878737335,
+    "sha256": "ba018dc605b95310548a551d3f3ead5a134abde6305acba9fd1d0f042bd176fe"
+  },
+  "audit-history/v2/.dockerignore": {
+    "bytes": 173,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853945,
+    "mtime_ns": 1794891692652308577,
+    "sha256": "1295d71ca4fd03eac04b59506a793494813ed7c5182d21e8f57733294f06ef05"
+  },
+  "audit-history/v2/CHANGES_V2.json": {
+    "bytes": 1647,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853931,
+    "mtime_ns": 1794894941131703084,
+    "sha256": "08753c5fbb984afc16c3eddd46b24399d87a702451b4a75570a983dd621d5495"
+  },
+  "audit-history/v2/DEPENDENCIES.md": {
+    "bytes": 4467,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853953,
+    "mtime_ns": 1794892124426454300,
+    "sha256": "8b2cc23e9b5b2086017cbcb3f821974b6bab670e03989fd5e744ced33cf6dc4e"
+  },
+  "audit-history/v2/Dockerfile.cpu": {
+    "bytes": 455,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853952,
+    "mtime_ns": 1794891808878737335,
+    "sha256": "8298b86f277c4b474e89e48809ccc60cc40a5e11998bef612575b5e5501f9053"
+  },
+  "audit-history/v2/Dockerfile.v100": {
+    "bytes": 687,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853942,
+    "mtime_ns": 1794892124418454409,
+    "sha256": "aa058b975706122781aa4b3b98c61d6d0f71146f27f5e171cae6f31e897009dd"
+  },
+  "audit-history/v2/INVENTORY.md": {
+    "bytes": 2113,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853956,
+    "mtime_ns": 1794894941131703084,
+    "sha256": "cae6af2190f740fde1e1f609f7e2c07f71412c98e05127bf1492496f232a6066"
+  },
+  "audit-history/v2/PACKAGE_SHA256.json": {
+    "bytes": 9589,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853937,
+    "mtime_ns": 1794894941131703084,
+    "sha256": "9d3f60a05658abaa095ece84df75e4bff9ccc1a409a725997e1ded3c2f1f1f20"
+  },
+  "audit-history/v2/README.md": {
+    "bytes": 15966,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853944,
+    "mtime_ns": 1794894735610593148,
+    "sha256": "0aebdf2b01cff496742e6ea4d1ccf3e57dc33f9ded14f063cc6b6b75a2757343"
+  },
+  "audit-history/v2/RECEIPT_LIFECYCLE_V2.md": {
+    "bytes": 6144,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853948,
+    "mtime_ns": 1794894884388490817,
+    "sha256": "2cedd3d5c9f02f2c8c1172d972053401a594652c6debaac3a223dfbde3fb2a6f"
+  },
+  "audit-history/v2/audit_io.py": {
+    "bytes": 15205,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853951,
+    "mtime_ns": 1794894884380490928,
+    "sha256": "f41aba84bbc588abc01447a18d5139d9cf570a53b3aa60ababdae68f638d74ee"
+  },
+  "audit-history/v2/audit_wheelhouse.py": {
+    "bytes": 6686,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853932,
+    "mtime_ns": 1794891808886737227,
+    "sha256": "3120a7b0f9a7cfef863a9988fdbea7945a4cdf40b833c1fbff969d34962d503c"
+  },
+  "audit-history/v2/benchmark-v2.json": {
+    "bytes": 876,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853941,
+    "mtime_ns": 1794894699143118007,
+    "sha256": "3572ef02864721a3b5f0cc57fdf471c0baf1afda225891fee6a467f40a061634"
+  },
+  "audit-history/v2/benchmark_synthetic.py": {
+    "bytes": 2010,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853954,
+    "mtime_ns": 1794894694559184281,
+    "sha256": "7664a85c76d05d77548f5176090892603874f802805f7f6c1b6de788b1f23a7d"
+  },
+  "audit-history/v2/compose.yaml": {
+    "bytes": 4092,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853943,
+    "mtime_ns": 1794894735610593148,
+    "sha256": "96ec832c3c80dfdf5e4a1bf8d7289886775cbfa91ebe14df94e9283c49586763"
+  },
+  "audit-history/v2/convert_fp16.py": {
+    "bytes": 9668,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853939,
+    "mtime_ns": 1794894643483927541,
+    "sha256": "0466cb20ca40df627c1fb64fa9458ea87ce4d9f4d47aa62053dbad7c8437ec2b"
+  },
+  "audit-history/v2/dependency-audit.json": {
+    "bytes": 8003,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853928,
+    "mtime_ns": 1794892211726235837,
+    "sha256": "418fb94774db1f702e094c4715a2bf9c1520788f3753756917ad8393b72de8df"
+  },
+  "audit-history/v2/draft-validation.json": {
+    "bytes": 356,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853940,
+    "mtime_ns": 1794894941127703139,
+    "sha256": "c3ccfb998e47e0329c22e5c19c641efb2b525e2e1287be5b612883b1ba5301b1"
+  },
+  "audit-history/v2/future_inference.py": {
+    "bytes": 7181,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853929,
+    "mtime_ns": 1794891692644308685,
+    "sha256": "97977db2aff2c47590ca0579c15d786b410c8e7472673ba752a4c6c7e535bd83"
+  },
+  "audit-history/v2/interoperability-v2.json": {
+    "bytes": 328,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853927,
+    "mtime_ns": 1794894789701821987,
+    "sha256": "5b4a42c91c226be098d88d439f92c7a72dd1c3f55f96bd4626cd77794ba13f8b"
+  },
+  "audit-history/v2/requirements.candidate.txt": {
+    "bytes": 269,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853930,
+    "mtime_ns": 1794891692640308739,
+    "sha256": "6ce13879ce497b60563a142bc6330712c49eed662ae200c046490889c60c184a"
+  },
+  "audit-history/v2/run_tests.py": {
+    "bytes": 2196,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853955,
+    "mtime_ns": 1794891880277770146,
+    "sha256": "b4f641542021101731e7249c4c2cab55e41c45edaa4695dc1eb96bccfc89f8fd"
+  },
+  "audit-history/v2/runtime-policy.json": {
+    "bytes": 701,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853934,
+    "mtime_ns": 1794891692644308685,
+    "sha256": "120e3b4cfa35e313c7a7986aba44a7f9c35c9627517790b15c8d99e983027f9e"
+  },
+  "audit-history/v2/source-integrity-v2.json": {
+    "bytes": 258,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853938,
+    "mtime_ns": 1794894789725821647,
+    "sha256": "46b734d470a7db2ce6f7f481839c245d41fa4674b4f1fc17d7756cfacfeb52d2"
+  },
+  "audit-history/v2/source-integrity.json": {
+    "bytes": 7170,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853950,
+    "mtime_ns": 1794892211726235837,
+    "sha256": "1fee5ec2ad4199a2749fd9ac8e46044fb83f6cea29cdddb2bd3ac073fb0fbfd2"
+  },
+  "audit-history/v2/test-results-v2-final.json": {
+    "bytes": 5058,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853949,
+    "mtime_ns": 1794894737030572795,
+    "sha256": "0cff4e9565d4b943363114f4c794980c01e25936a49c01cbcb4d5f2afb314646"
+  },
+  "audit-history/v2/test-results-v2-review.json": {
+    "bytes": 5058,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853935,
+    "mtime_ns": 1794894885732472078,
+    "sha256": "0cff4e9565d4b943363114f4c794980c01e25936a49c01cbcb4d5f2afb314646"
+  },
+  "audit-history/v2/test-results-v2.json": {
+    "bytes": 10493,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853933,
+    "mtime_ns": 1794894647023875731,
+    "sha256": "972a7c8d28575f0e88b7a4305659084824d4be53f0228b4562d5dfe4cab203ca"
+  },
+  "audit-history/v2/test-results.json": {
+    "bytes": 4080,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853947,
+    "mtime_ns": 1794892381237621229,
+    "sha256": "c22b8035d39728430d1f900d53ae897663966326742b7eefa4594e90bef34935"
+  },
+  "audit-history/v2/tests/test_conversion.py": {
+    "bytes": 19470,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853958,
+    "mtime_ns": 1794892379985627441,
+    "sha256": "44aa75d57d1929a46fab01a1d462d5071d662d86b80bca13892ac441a5fd145d"
+  },
+  "audit-history/v2/tests/test_lifecycle.py": {
+    "bytes": 7738,
+    "ctime_ns": 1794896212358963979,
+    "inode": 139853960,
+    "mtime_ns": 1794894694555184339,
+    "sha256": "1effe2fc2adf7b0dfdfee4d7e2b766395b727b8d2701118813855ed1545c00ce"
+  },
+  "audit-history/v2/tests/test_package.py": {
+    "bytes": 5488,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853959,
+    "mtime_ns": 1794891880277770146,
+    "sha256": "f75643c11440c0d019b683fb6f90bb6a309e21d36c88eeccef2277accbfd30ac"
+  },
+  "audit-history/v2/validate_draft.py": {
+    "bytes": 3056,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853936,
+    "mtime_ns": 1794894735610593148,
+    "sha256": "1c177a966c595be2566f7183f1495ae3c53cae8bbb0348fd6b598ffb00d26d39"
+  },
+  "audit-history/v2/verify_fp16.py": {
+    "bytes": 9665,
+    "ctime_ns": 1794896212354964030,
+    "inode": 139853946,
+    "mtime_ns": 1794894643483927541,
+    "sha256": "9f60c0d0fc9d6c1a5a8886c0842d87cd4870400ac5c615a2ce63fa412d319ad0"
+  },
+  "audit_io.py": {
+    "bytes": 15205,
+    "ctime_ns": 1794894884380490928,
+    "inode": 139853866,
+    "mtime_ns": 1794894884380490928,
+    "sha256": "f41aba84bbc588abc01447a18d5139d9cf570a53b3aa60ababdae68f638d74ee"
+  },
+  "audit_wheelhouse.py": {
+    "bytes": 6686,
+    "ctime_ns": 1794891808886737227,
+    "inode": 139853877,
+    "mtime_ns": 1794891808886737227,
+    "sha256": "3120a7b0f9a7cfef863a9988fdbea7945a4cdf40b833c1fbff969d34962d503c"
+  },
+  "benchmark-v2.json": {
+    "bytes": 876,
+    "ctime_ns": 1794894699143118007,
+    "inode": 139853919,
+    "mtime_ns": 1794894699143118007,
+    "sha256": "3572ef02864721a3b5f0cc57fdf471c0baf1afda225891fee6a467f40a061634"
+  },
+  "benchmark_synthetic.py": {
+    "bytes": 2010,
+    "ctime_ns": 1794894694559184281,
+    "inode": 139853918,
+    "mtime_ns": 1794894694559184281,
+    "sha256": "7664a85c76d05d77548f5176090892603874f802805f7f6c1b6de788b1f23a7d"
+  },
+  "compose.yaml": {
+    "bytes": 4092,
+    "ctime_ns": 1794894735610593148,
+    "inode": 139853873,
+    "mtime_ns": 1794894735610593148,
+    "sha256": "96ec832c3c80dfdf5e4a1bf8d7289886775cbfa91ebe14df94e9283c49586763"
+  },
+  "convert_fp16.py": {
+    "bytes": 11829,
+    "ctime_ns": 1794896244398522282,
+    "inode": 139853867,
+    "mtime_ns": 1794896244398522282,
+    "sha256": "ade1b661d4477e540b2f828824cea4251c0aa69d8a3e48d1640f4255233523d7"
+  },
+  "dependency-audit.json": {
+    "bytes": 8003,
+    "ctime_ns": 1794892211726235837,
+    "inode": 139853883,
+    "mtime_ns": 1794892211726235837,
+    "sha256": "418fb94774db1f702e094c4715a2bf9c1520788f3753756917ad8393b72de8df"
+  },
+  "draft-validation.json": {
+    "bytes": 356,
+    "ctime_ns": 1794894941127703139,
+    "inode": 139853886,
+    "mtime_ns": 1794894941127703139,
+    "sha256": "c3ccfb998e47e0329c22e5c19c641efb2b525e2e1287be5b612883b1ba5301b1"
+  },
+  "future_inference.py": {
+    "bytes": 7181,
+    "ctime_ns": 1794891692644308685,
+    "inode": 139853872,
+    "mtime_ns": 1794891692644308685,
+    "sha256": "97977db2aff2c47590ca0579c15d786b410c8e7472673ba752a4c6c7e535bd83"
+  },
+  "interoperability-v2.json": {
+    "bytes": 328,
+    "ctime_ns": 1794894789701821987,
+    "inode": 139853921,
+    "mtime_ns": 1794894789701821987,
+    "sha256": "5b4a42c91c226be098d88d439f92c7a72dd1c3f55f96bd4626cd77794ba13f8b"
+  },
+  "requirements.candidate.txt": {
+    "bytes": 269,
+    "ctime_ns": 1794891692640308739,
+    "inode": 139853870,
+    "mtime_ns": 1794891692640308739,
+    "sha256": "6ce13879ce497b60563a142bc6330712c49eed662ae200c046490889c60c184a"
+  },
+  "run_tests.py": {
+    "bytes": 2196,
+    "ctime_ns": 1794891880277770146,
+    "inode": 139853880,
+    "mtime_ns": 1794891880277770146,
+    "sha256": "b4f641542021101731e7249c4c2cab55e41c45edaa4695dc1eb96bccfc89f8fd"
+  },
+  "runtime-policy.json": {
+    "bytes": 701,
+    "ctime_ns": 1794891692644308685,
+    "inode": 139853871,
+    "mtime_ns": 1794891692644308685,
+    "sha256": "120e3b4cfa35e313c7a7986aba44a7f9c35c9627517790b15c8d99e983027f9e"
+  },
+  "source-integrity-v2.json": {
+    "bytes": 258,
+    "ctime_ns": 1794894789725821647,
+    "inode": 139853922,
+    "mtime_ns": 1794894789725821647,
+    "sha256": "46b734d470a7db2ce6f7f481839c245d41fa4674b4f1fc17d7756cfacfeb52d2"
+  },
+  "source-integrity.json": {
+    "bytes": 7170,
+    "ctime_ns": 1794892211726235837,
+    "inode": 139853884,
+    "mtime_ns": 1794892211726235837,
+    "sha256": "1fee5ec2ad4199a2749fd9ac8e46044fb83f6cea29cdddb2bd3ac073fb0fbfd2"
+  },
+  "test-results-v2-final.json": {
+    "bytes": 5058,
+    "ctime_ns": 1794894737030572795,
+    "inode": 139853920,
+    "mtime_ns": 1794894737030572795,
+    "sha256": "0cff4e9565d4b943363114f4c794980c01e25936a49c01cbcb4d5f2afb314646"
+  },
+  "test-results-v2-review.json": {
+    "bytes": 5058,
+    "ctime_ns": 1794894885732472078,
+    "inode": 139853924,
+    "mtime_ns": 1794894885732472078,
+    "sha256": "0cff4e9565d4b943363114f4c794980c01e25936a49c01cbcb4d5f2afb314646"
+  },
+  "test-results-v2.json": {
+    "bytes": 10493,
+    "ctime_ns": 1794894647023875731,
+    "inode": 139853917,
+    "mtime_ns": 1794894647023875731,
+    "sha256": "972a7c8d28575f0e88b7a4305659084824d4be53f0228b4562d5dfe4cab203ca"
+  },
+  "test-results-v3-final.json": {
+    "bytes": 5377,
+    "ctime_ns": 1794896245754502290,
+    "inode": 139853963,
+    "mtime_ns": 1794896245754502290,
+    "sha256": "2c3469899d761ab38b15fc1d2314f655163a01f379d9e67f3130d867ffb278c4"
+  },
+  "test-results-v3.json": {
+    "bytes": 5377,
+    "ctime_ns": 1794896213738946217,
+    "inode": 139853962,
+    "mtime_ns": 1794896213738946217,
+    "sha256": "2c3469899d761ab38b15fc1d2314f655163a01f379d9e67f3130d867ffb278c4"
+  },
+  "test-results.json": {
+    "bytes": 4080,
+    "ctime_ns": 1794892425633387020,
+    "inode": 139853887,
+    "mtime_ns": 1794892381237621229,
+    "sha256": "c22b8035d39728430d1f900d53ae897663966326742b7eefa4594e90bef34935"
+  },
+  "tests/test_cli_cleanup.py": {
+    "bytes": 2697,
+    "ctime_ns": 1794896212362963927,
+    "inode": 139853961,
+    "mtime_ns": 1794896212362963927,
+    "sha256": "b24d5e0a15b6815bd50ec78a4cb69cd9b529523d4b20528984040bff52617f88"
+  },
+  "tests/test_conversion.py": {
+    "bytes": 19470,
+    "ctime_ns": 1794892379985627441,
+    "inode": 139853869,
+    "mtime_ns": 1794892379985627441,
+    "sha256": "44aa75d57d1929a46fab01a1d462d5071d662d86b80bca13892ac441a5fd145d"
+  },
+  "tests/test_lifecycle.py": {
+    "bytes": 7738,
+    "ctime_ns": 1794894694555184339,
+    "inode": 139853916,
+    "mtime_ns": 1794894694555184339,
+    "sha256": "1effe2fc2adf7b0dfdfee4d7e2b766395b727b8d2701118813855ed1545c00ce"
+  },
+  "tests/test_package.py": {
+    "bytes": 5488,
+    "ctime_ns": 1794891880277770146,
+    "inode": 139853879,
+    "mtime_ns": 1794891880277770146,
+    "sha256": "f75643c11440c0d019b683fb6f90bb6a309e21d36c88eeccef2277accbfd30ac"
+  },
+  "validate_draft.py": {
+    "bytes": 3056,
+    "ctime_ns": 1794894735610593148,
+    "inode": 139853878,
+    "mtime_ns": 1794894735610593148,
+    "sha256": "1c177a966c595be2566f7183f1495ae3c53cae8bbb0348fd6b598ffb00d26d39"
+  },
+  "verify_fp16.py": {
+    "bytes": 9665,
+    "ctime_ns": 1794894643483927541,
+    "inode": 139853868,
+    "mtime_ns": 1794894643483927541,
+    "sha256": "9f60c0d0fc9d6c1a5a8886c0842d87cd4870400ac5c615a2ce63fa412d319ad0"
+  }
+}

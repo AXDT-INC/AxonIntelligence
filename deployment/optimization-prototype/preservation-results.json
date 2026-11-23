@@ -1,0 +1,15 @@
+{
+  "boundary_deviation": "A validation draft was accidentally created in deployment root; detected by inventory check and moved into prototype as validation-draft-not-executed.txt. Original files were never changed; original inventory restored.",
+  "checks": [
+    "sha256",
+    "bytes",
+    "inode",
+    "mtime_ns",
+    "ctime_ns",
+    "complete original file inventory"
+  ],
+  "model_integrity_rehashed": false,
+  "production_weight_payloads_read": false,
+  "status": "PASS",
+  "unchanged_files": 93
+}

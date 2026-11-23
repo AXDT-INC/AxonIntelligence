@@ -1,0 +1,18 @@
+{
+  "cuda_runtime": "13.2",
+  "note": "Exact installed versions recorded; this package does not bundle dependency wheels or guarantee their availability from another server package index.",
+  "peft_required_for_inference": false,
+  "peft_used_only_to_create_package": true,
+  "platform": "Linux-6.8.0-139-generic-x86_64-with-glibc2.39",
+  "python": "3.12.3 (main, Jul 15 2026, 23:46:41) [GCC 13.3.0]",
+  "versions": {
+    "accelerate": "1.14.0",
+    "huggingface-hub": "1.30.0",
+    "numpy": "2.5.2",
+    "peft": "0.20.0",
+    "safetensors": "0.8.0",
+    "tokenizers": "0.23.2",
+    "torch": "2.13.0+cu132",
+    "transformers": "5.16.1"
+  }
+}

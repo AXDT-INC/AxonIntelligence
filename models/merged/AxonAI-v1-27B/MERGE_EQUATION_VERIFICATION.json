@@ -1,0 +1,23 @@
+{
+  "all_adapter_tensors_consumed": 992,
+  "all_output_tensors_verified": 851,
+  "base_only_tensors_not_exported": 348,
+  "elapsed_seconds": 47.40660565905273,
+  "equation": "BF16(FP32(BF16(base tensor as loaded)) + 2.0*(FP32(B) @ FP32(A))) for all 496 adapted weights; exact loaded-base equality for remaining 355 tensors",
+  "excluded_key_prefix_counts": {
+    "fc": 1,
+    "layers": 11,
+    "norm": 1,
+    "pre_fc_norm_embedding": 1,
+    "pre_fc_norm_hidden": 1,
+    "visual": 333
+  },
+  "inference_bitwise_equivalence_claimed": false,
+  "peak_rss_kib": 106898068,
+  "source_dtype_counts": {
+    "torch.bfloat16": 851
+  },
+  "status": "PASS",
+  "unadapted_tensors_match_loaded_base": 355,
+  "updated_tensors_exactly_match_fp32_merge_then_bf16": 496
+}

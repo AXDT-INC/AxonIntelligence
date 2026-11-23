@@ -1,0 +1,12 @@
+# INACTIVE CANDIDATE; not buildable until the offline lock/wheelhouse and base
+# digest have been resolved and reviewed. There is deliberately no requirements.lock.
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+COPY wheelhouse/ /wheelhouse/
+COPY requirements.lock /build/requirements.lock
+RUN python -m pip install --no-index --no-cache-dir --only-binary=:all: --require-hashes --find-links=/wheelhouse -r /build/requirements.lock
+WORKDIR /package
+COPY audit_io.py future_inference.py runtime-policy.json /package/
+ENV PYTHONDONTWRITEBYTECODE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TORCH_COMPILE_DISABLE=1 TORCHDYNAMO_DISABLE=1
+USER 1000:1000
+CMD ["python", "-B", "/package/future_inference.py"]

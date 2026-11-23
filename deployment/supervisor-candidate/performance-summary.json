@@ -1,0 +1,89 @@
+{
+  "actual_combined_peak_rss": "Not directly measured; lies between sampled maximum and conservative sum of component peaks for this run.",
+  "affinity": "one available CPU",
+  "cleanup_ms": [
+    0.321120023727417,
+    0.3796052187681198,
+    0.4449188709259033
+  ],
+  "combined_rss_sample_kib": 48260,
+  "ipc_and_wrapper_comparison": {
+    "conversion_seconds": {
+      "difference_seconds": 0.003125113881406785,
+      "fraction_of_supervised": 0.19549459892139195,
+      "standalone_seconds": 0.012860565,
+      "supervised_seconds": 0.015985678881406784
+    },
+    "verification_seconds": {
+      "difference_seconds": 0.002559224043754577,
+      "fraction_of_supervised": 0.16073513631436756,
+      "standalone_seconds": 0.013362771,
+      "supervised_seconds": 0.015921995043754578
+    }
+  },
+  "nice": 19,
+  "payload_bytes_per_trial": 1048576,
+  "projected_speedup": 39.127138530915566,
+  "projection_limitations": [
+    "Warm synthetic cache, 1 MiB trials, not a production completion guarantee.",
+    "Includes synthetic file I/O, hashing, staging, fsync and internal verification. Excludes external receipt publication and failure recovery.",
+    "Kernel and IPC timings are separate measurements: difference includes scheduling, copies, framing, Python validation and measurement noise.",
+    "No host-wide cache flushing; no cold production disk measurement.",
+    "Current synthetic limits intentionally prohibit full-model execution."
+  ],
+  "projection_minutes": {
+    "native": 76.42870180657101,
+    "reference": 2990.4364033237407
+  },
+  "rows": [
+    {
+      "MiB_s_median": 0.4325569746873329,
+      "MiB_s_range": [
+        0.4291620141286447,
+        0.4334924196215223
+      ],
+      "cpu_percent_median": 99.48695656117702,
+      "engine": "reference",
+      "phase": "convert_internal_verify"
+    },
+    {
+      "MiB_s_median": 0.8433487144449604,
+      "MiB_s_range": [
+        0.8338784984476796,
+        0.8476338460663395
+      ],
+      "cpu_percent_median": 99.5223835426587,
+      "engine": "reference",
+      "phase": "independent_verify"
+    },
+    {
+      "MiB_s_median": 16.983192403264898,
+      "MiB_s_range": [
+        16.47144170047013,
+        17.125631623622724
+      ],
+      "cpu_percent_median": 87.37451670868542,
+      "engine": "native",
+      "phase": "convert_internal_verify"
+    },
+    {
+      "MiB_s_median": 32.77778291982898,
+      "MiB_s_range": [
+        31.516990539048404,
+        34.212758169288215
+      ],
+      "cpu_percent_median": 98.44670186202963,
+      "engine": "native",
+      "phase": "independent_verify"
+    }
+  ],
+  "status": "PASS",
+  "sum_individual_peak_rss_kib_upper_bound": 66836,
+  "trials": 3,
+  "whole_normal_session_seconds": 0.08746733330190182,
+  "worker_startup_ms": [
+    0.6082560867071152,
+    0.6343070417642593,
+    0.6519835442304611
+  ]
+}

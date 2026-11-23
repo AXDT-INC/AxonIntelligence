@@ -1,0 +1,64 @@
+{
+  "adapter_license": null,
+  "attribution_source_count": 4230,
+  "base_license": "Apache-2.0",
+  "base_license_evidence": {
+    "bytes": 11544,
+    "path": "/data/axonai/models/base/Qwen3.8-27B/LICENSE",
+    "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a"
+  },
+  "base_repository": "Qwen/Qwen3.8-27B",
+  "base_revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+  "base_weights_redistributed": false,
+  "determinations_required": [
+    {
+      "owner": "Project owner / intended publisher",
+      "question": "Confirm authority to license this adapter, exact publisher identity, repo ID and selected adapter license."
+    },
+    {
+      "owner": "Release rights reviewer",
+      "question": "Determine adapter-only distribution obligations from actual training provenance and prior exceptions; internal-use acceptance creates no third-party permission. Bind written determination to exact release manifest."
+    },
+    {
+      "owner": "Release maintainer",
+      "question": "Confirm pinned upstream Apache license and any NOTICE, retain attribution and modification notices, review draft source metadata and required article attribution."
+    },
+    {
+      "owner": "Project owner",
+      "question": "Authorize exact-hash upload separately, public or private. No upload is authorized now."
+    }
+  ],
+  "external_sources": [
+    {
+      "finding": "Pinned upstream page labels the base Apache-2.0; matches local license type.",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B/blob/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/LICENSE"
+    },
+    {
+      "finding": "Distribution conditions include retaining license/notices and marking changes as applicable; no trademark endorsement grant.",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    },
+    {
+      "finding": "CC BY attribution includes credit, license link and modification indication; applicability to proposed adapter release requires release-specific determination.",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "finding": "Model card is README.md with structured metadata and limitations.",
+      "url": "https://huggingface.co/docs/hub/model-cards"
+    }
+  ],
+  "future_dataset_repair_required_for_current_release": false,
+  "internal_acceptance_is_distribution_clearance": false,
+  "internal_rights_receipt": {
+    "bytes": 1512,
+    "path": "/data/axonai/engineering-maintenance/project-owner-governance-v1-20261029/RIGHTS_DETERMINATION.v2.json",
+    "sha256": "5e0633f583f7d67e3509020d847e9f78ce3764bbe9f31e4be0bca78dcbda2e39"
+  },
+  "internal_training_authorization": "Established; not reopened",
+  "legal_clearance_claimed": false,
+  "private_staging_upload_approved": false,
+  "proposed_adapter_license": "Apache-2.0 only if publisher and release-rights review approve",
+  "public_distribution_approved": false,
+  "reviewed_utc": "2026-11-03T03:46:13.965984+00:00",
+  "status": "RELEASE_SPECIFIC_REVIEW_PENDING_NO_UPLOAD",
+  "training_records_or_article_excerpts_in_public_package": false
+}

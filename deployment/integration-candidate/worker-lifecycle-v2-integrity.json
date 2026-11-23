@@ -1,0 +1,31 @@
+{
+  "accepted_v3_files_and_metadata_unchanged": 93,
+  "conversion_and_cli_only_reporting_additions": true,
+  "modified_prior_files_excluding_manifest": [
+    "README.md",
+    "candidate.py",
+    "convert_fp16.py",
+    "native_engine.py",
+    "verify_fp16.py"
+  ],
+  "original_model_inventory_and_stat_metadata_unchanged": 34,
+  "preceding_candidate_archive_files_verified": 39,
+  "preexisting_files_outside_candidate_unchanged": 112,
+  "production_weight_payloads_read": false,
+  "reference_numerical_routines_unchanged": true,
+  "status": "PASS",
+  "successful_ipc_algorithm_unchanged": true,
+  "temporary_fixture_and_build_directories_empty": true,
+  "tests_passed": 133,
+  "tracked_children_reaped": 93,
+  "unchanged_implementation_files": [
+    "audit_io.py",
+    "worker",
+    "worker.c",
+    "convert.c",
+    "verify.c",
+    "prototype.h",
+    "trust.json",
+    "build.py"
+  ]
+}

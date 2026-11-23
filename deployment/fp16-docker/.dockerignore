@@ -1,0 +1,9 @@
+*
+!Dockerfile
+!wheels.lock
+!check_cpu.py
+!convert.py
+!verify.py
+!files.py
+!selftest.py
+!entry.sh

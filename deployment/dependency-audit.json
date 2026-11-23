@@ -1,0 +1,372 @@
+{
+  "advisory_transitive_checklist_not_an_exhaustive_or_confirmed_closure": [
+    {
+      "distribution": "anyio",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "certifi",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "charset-normalizer",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "click",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "filelock",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "fsspec",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "h11",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "hf-xet",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "httpcore",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "httpx",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "idna",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "jinja2",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "markdown-it-py",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "markupsafe",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "mdurl",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "mpmath",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "networkx",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "numpy",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "nvidia-cublas-cu12",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "nvidia-cuda-cupti-cu12",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "nvidia-cuda-nvrtc-cu12",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "nvidia-cuda-runtime-cu12",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "nvidia-cudnn-cu12",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "nvidia-cufft-cu12",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "nvidia-cufile-cu12",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "nvidia-curand-cu12",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "nvidia-cusolver-cu12",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "nvidia-cusparse-cu12",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "nvidia-cusparselt-cu12",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "nvidia-nccl-cu12",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "nvidia-nvjitlink-cu12",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "nvidia-nvtx-cu12",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "packaging",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "psutil",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "pygments",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "pyyaml",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "regex",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "requests",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "rich",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "setuptools",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "shellingham",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "sniffio",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "sympy",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "tqdm",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "triton",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "typer",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "typer-slim",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "typing-extensions",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    },
+    {
+      "distribution": "urllib3",
+      "required": null,
+      "sha256": null,
+      "verified": false,
+      "version": null
+    }
+  ],
+  "base_image_digest": null,
+  "complete_transitive_closure_known": false,
+  "direct_candidate_requirements": {
+    "accelerate": "1.14.0",
+    "huggingface-hub": "1.30.0",
+    "python": "3.12; patch/build unresolved",
+    "safetensors": "0.8.0",
+    "tokenizers": "0.23.2",
+    "torch": "2.13.0+cu126",
+    "transformers": "5.16.1"
+  },
+  "next_evidence_required": "Actual wheel METADATA/bytes and approved base-image digest; recursively audit all Requires-Dist markers/extras before claiming completeness.",
+  "reproducible_dependency_lock_created": false,
+  "runtime_tested": false,
+  "status": "UNRESOLVED_NO_NETWORK_OR_WHEEL_ARTIFACTS",
+  "system_dependencies_unresolved": [
+    "Python base image and exact CPython patch",
+    "glibc",
+    "libstdc++",
+    "libgcc",
+    "CUDA component ABI and versions",
+    "sm_70 kernel coverage",
+    "host driver interoperability"
+  ],
+  "wheel_artifact_hashes_resolved": false
+}

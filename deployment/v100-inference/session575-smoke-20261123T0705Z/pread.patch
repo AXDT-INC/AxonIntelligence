@@ -1,0 +1,24 @@
+--- attempt1.py
++++ attempt2.py
+@@ -116,9 +116,18 @@
+     torch.manual_seed(42)
+     tokenizer = AutoTokenizer.from_pretrained(root, local_files_only=True, trust_remote_code=False)
+     start = time.perf_counter()
+-    model, info = AutoModelForCausalLM.from_pretrained(
+-        root, local_files_only=True, trust_remote_code=False, dtype=torch.float16,
+-        device_map=device_map, attn_implementation="sdpa", use_kernels=False, output_loading_info=True)
++    from unittest.mock import patch
++    from safetensors import safe_open
++
++    def open_checkpoint(filename, *args, **kwargs):
++        if kwargs.get("device", "cpu") == "cpu":
++            kwargs["backend"] = "pread"
++        return safe_open(filename, *args, **kwargs)
++
++    with patch("transformers.modeling_utils.safe_open", open_checkpoint):
++        model, info = AutoModelForCausalLM.from_pretrained(
++            root, local_files_only=True, trust_remote_code=False, dtype=torch.float16,
++            device_map=device_map, attn_implementation="sdpa", use_kernels=False, output_loading_info=True)
+     require(not any(info.get(k) for k in ("missing_keys", "unexpected_keys", "mismatched_keys",
+                                           "error_msgs", "conversion_errors")), f"Weight load report: {info}")
+     model.eval().requires_grad_(False)

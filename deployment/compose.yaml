@@ -1,0 +1,132 @@
+name: axonai-v1
+
+x-base: &base
+  user: "1000:1000"
+  read_only: true
+  privileged: false
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  network_mode: none
+  restart: "no"
+  pull_policy: never
+  pids_limit: 128
+  working_dir: /package
+  tmpfs:
+    - /tmp:rw,noexec,nosuid,size=64m,uid=1000,gid=1000
+  environment: &offline
+    PYTHONDONTWRITEBYTECODE: "1"
+    HF_HUB_OFFLINE: "1"
+    TRANSFORMERS_OFFLINE: "1"
+    NVIDIA_VISIBLE_DEVICES: void
+    CUDA_VISIBLE_DEVICES: ""
+    TORCH_COMPILE_DISABLE: "1"
+    TORCHDYNAMO_DISABLE: "1"
+
+x-package: &package
+  type: bind
+  source: /data/axonai/deployment
+  target: /package
+  read_only: true
+  bind: {create_host_path: false}
+
+x-source: &source
+  type: bind
+  source: /data/axonai/models/merged/AxonAI-v1-27B
+  target: /data/axonai/models/merged/AxonAI-v1-27B
+  read_only: true
+  bind: {create_host_path: false}
+
+services:
+  convert:
+    <<: *base
+    profiles: [cpu-conversion-authorized]
+    runtime: runc
+    image: "${AXONAI_CPU_IMAGE:-axonai-v1-cpu:UNBUILT}"
+    cpus: 2
+    mem_limit: 1g
+    command: [python, -B, /package/convert_fp16.py, --artifact-name, "${AXONAI_ARTIFACT_NAME:-UNAUTHORIZED}", "${AXONAI_CPU_AUTHORIZATION:---authorization-not-granted}", --receipt, /data/axonai/receipts/conversion.json]
+    volumes:
+      - *package
+      - *source
+      - type: bind
+        source: /data/axonai/models/converted
+        target: /data/axonai/models/converted
+        read_only: false
+        bind: {create_host_path: false}
+      - type: bind
+        source: /data/axonai/receipts
+        target: /data/axonai/receipts
+        read_only: false
+        bind: {create_host_path: false}
+
+  verify:
+    <<: *base
+    profiles: [cpu-verification-authorized]
+    runtime: runc
+    image: "${AXONAI_CPU_IMAGE:-axonai-v1-cpu:UNBUILT}"
+    cpus: 2
+    mem_limit: 1g
+    command: [python, -B, /package/verify_fp16.py, --artifact-name, "${AXONAI_ARTIFACT_NAME:-UNAUTHORIZED}", --receipt, /data/axonai/receipts/verification.json]
+    volumes:
+      - *package
+      - *source
+      - type: bind
+        source: /data/axonai/models/converted
+        target: /data/axonai/models/converted
+        read_only: true
+        bind: {create_host_path: false}
+      - type: bind
+        source: /data/axonai/receipts
+        target: /data/axonai/receipts
+        read_only: false
+        bind: {create_host_path: false}
+
+  inference:
+    <<: *base
+    profiles: [gpu-inference-separately-authorized]
+    runtime: nvidia
+    image: "${AXONAI_V100_IMAGE:-axonai-v1-v100:UNBUILT}"
+    cpus: 8
+    mem_limit: 96g
+    shm_size: 1g
+    environment:
+      <<: *offline
+      NVIDIA_VISIBLE_DEVICES: "${AXONAI_GPU_UUID_0:-NOT_RESERVED},${AXONAI_GPU_UUID_1:-NOT_RESERVED}"
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
+      CUDA_VISIBLE_DEVICES: "0,1"
+      AXONAI_RUNTIME_IMAGE_DIGEST: "${AXONAI_RUNTIME_IMAGE_DIGEST:-UNVERIFIED}"
+      HF_HOME: /tmp/hf
+    command: [python, -B, /package/future_inference.py, "${AXONAI_GPU_AUTHORIZATION:---authorization-not-granted}"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["${AXONAI_GPU_UUID_0:-NOT_RESERVED}", "${AXONAI_GPU_UUID_1:-NOT_RESERVED}"]
+              capabilities: [gpu]
+    volumes:
+      - *package
+      - type: bind
+        source: "/data/axonai/models/converted/${AXONAI_ARTIFACT_NAME:-UNAUTHORIZED}"
+        target: /model
+        read_only: true
+        bind: {create_host_path: false}
+      - type: bind
+        source: /data/axonai/deployment/authorization
+        target: /authorization
+        read_only: true
+        bind: {create_host_path: false}
+
+  api:
+    <<: *base
+    profiles: [future-api-not-implemented]
+    runtime: runc
+    image: "${AXONAI_CPU_IMAGE:-axonai-v1-cpu:UNBUILT}"
+    command: [python, -c, "raise SystemExit('API is not implemented or authorized')"]
+
+  rag:
+    <<: *base
+    profiles: [future-rag-not-implemented]
+    runtime: runc
+    image: "${AXONAI_CPU_IMAGE:-axonai-v1-cpu:UNBUILT}"
+    command: [python, -c, "raise SystemExit('RAG is not implemented or authorized')"]

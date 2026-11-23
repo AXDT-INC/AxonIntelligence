@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "baseline_files_unchanged": 112,
+  "accepted_v3_files_metadata_unchanged": 93,
+  "original_prototype_unchanged": true,
+  "numerical_c_sources_unchanged": true,
+  "reference_numerical_bodies_unchanged": true,
+  "audit_io_byte_identical": true,
+  "promotion_and_cli_ast_identical": true,
+  "temporary_fixture_directory_empty": true,
+  "production_weight_payloads_read": false
+}

@@ -1,0 +1,7 @@
+{
+  "status": "PASS_MANIFEST_AND_UNCHANGED_STAT_METADATA",
+  "manifest_sha256": "d34c6389c0ca68df59e11f2a18f3616e7b335066fd8c493acf46044551e1daee",
+  "weight_payloads_read": false,
+  "full_weight_hashes_recomputed": false,
+  "source_files_modified": false
+}

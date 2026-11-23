@@ -1,0 +1,22 @@
+{
+  "accepted_v3_files_and_stat_metadata_unchanged": 93,
+  "copies_identical_to_prior_integration": {
+    "audit_io.py": true,
+    "convert.c": true,
+    "convert_fp16.py": true,
+    "prototype.h": true,
+    "verify.c": true,
+    "verify_fp16.py": true
+  },
+  "final_created_pids": 137,
+  "final_wait_confirmed_pids": 164,
+  "known_test_pids_still_present": [],
+  "model_inventory_and_stat_entries_unchanged": 34,
+  "post_GO_seccomp_function_unchanged": true,
+  "preexisting_deployment_files_unchanged": 206,
+  "production_weight_hashes_recomputed": false,
+  "production_weight_payloads_read": false,
+  "source_manifest_sha256": "d34c6389c0ca68df59e11f2a18f3616e7b335066fd8c493acf46044551e1daee",
+  "status": "PASS",
+  "temporary_directories_empty": true
+}

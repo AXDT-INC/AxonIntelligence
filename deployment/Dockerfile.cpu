@@ -1,0 +1,9 @@
+# INACTIVE SOURCE. BASE_IMAGE must be an independently resolved Python 3.12
+# Linux x86_64 image reference pinned by sha256 digest. No default is provided.
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+ENV PYTHONDONTWRITEBYTECODE=1 NVIDIA_VISIBLE_DEVICES=void CUDA_VISIBLE_DEVICES=""
+WORKDIR /package
+COPY audit_io.py convert_fp16.py verify_fp16.py /package/
+USER 1000:1000
+CMD ["python", "-B", "-c", "raise SystemExit('Explicit CPU action authorization required')"]

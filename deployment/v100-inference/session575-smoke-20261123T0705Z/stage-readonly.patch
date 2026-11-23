@@ -1,0 +1,27 @@
+--- infer.py
++++ infer_session.py
+@@ -66,7 +66,23 @@
+ 
+ 
+ def run(root, reserved):
+-    require(bool(os.statvfs(root).f_flag & os.ST_RDONLY), "Model mount must be read-only")
++    if not os.statvfs(root).f_flag & os.ST_RDONLY:
++        import stat
++        require(root == Path("/opt/axonai-smoke-ZPZEq5aL/model") and os.geteuid() == 1000,
++                "Expected private staged session model")
++        status = Path("/proc/self/status").read_text().splitlines()
++        require(any(line.startswith("NoNewPrivs:") and line.split()[1] == "1" for line in status)
++                and any(line.startswith("CapEff:") and int(line.split()[1], 16) == 0 for line in status),
++                "Expected unprivileged worker")
++        for parent in (root, *root.parents):
++            mode = parent.lstat()
++            require(stat.S_ISDIR(mode.st_mode) and mode.st_uid == 0 and not os.access(parent, os.W_OK),
++                    f"Writable or untrusted staging directory: {parent}")
++        for path in root.iterdir():
++            mode = path.lstat()
++            require(stat.S_ISREG(mode.st_mode) and mode.st_uid == 0 and mode.st_nlink == 1
++                    and not mode.st_mode & 0o222 and not os.access(path, os.W_OK),
++                    f"Writable or untrusted staged file: {path}")
+     require(os.environ.get("CUDA_VISIBLE_DEVICES") == ",".join(reserved) ==
+             os.environ.get("NVIDIA_VISIBLE_DEVICES"), "Reservation visibility mismatch")
+     exposed = subprocess.check_output(

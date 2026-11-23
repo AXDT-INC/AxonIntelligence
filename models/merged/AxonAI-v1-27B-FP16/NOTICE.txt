@@ -1,0 +1,8 @@
+AxonAI-v1 merged research model, local modification dated November 9, 2026.
+Base attribution: Qwen team, pinned Qwen/Qwen3.8-27B revision 1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0. See the retained upstream model card and Apache-2.0 licence.
+Modification: the AxonAI-v1 biomedical LoRA adapter was merged into the base text model using FP32 arithmetic and serialized as BF16. This is a text-only export; the original base vision components are not included. Tokenizer/configuration are locally self-contained.
+AxonAI-v1 adapter authorship/organization attribution and inherited source attribution records are retained in PROVENANCE.json and SOURCE_ATTRIBUTIONS.inherited-draft.json. The source register is inherited evidence, not a new legal approval or a grant to distribute source articles.
+No Qwen, source-author or scientific-reviewer endorsement is implied. Original base and adapter were not modified. No experimental v1.1 weights were used.
+The included base Apache-2.0 licence does not select or settle a licence for the combined derivative. The prior adapter/public-release licence determination remains pending; internal packaging does not authorize publication. See RELEASE_RIGHTS_STATUS.inherited.json.
+
+The text loader exports 851 tensors. It omits 333 upstream vision tensors and 15 auxiliary MTP tensors that were also unused by the baseline AutoModelForCausalLM inference path. This is not a full multimodal or MTP-capable export.

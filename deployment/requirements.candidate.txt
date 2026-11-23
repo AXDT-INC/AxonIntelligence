@@ -1,0 +1,8 @@
+# CANDIDATE ONLY: no artifact hashes; NOT an executable reproducible lock.
+# Python 3.12; Linux x86_64. Resolve only the cu126 Torch distribution.
+torch==2.13.0+cu126
+transformers==5.16.1
+accelerate==1.14.0
+safetensors==0.8.0
+tokenizers==0.23.2
+huggingface-hub==1.30.0

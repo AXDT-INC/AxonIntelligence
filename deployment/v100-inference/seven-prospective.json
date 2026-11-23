@@ -1,0 +1,9 @@
+[
+ {"id":"sum","prompt":"Return only JSON with status ok and sum equal to 5 plus 7.","criteria":{"json":{"status":"ok","sum":12}}},
+ {"id":"ratio","prompt":"Return only JSON with ratio equal to 9 divided by 3.","criteria":{"json":{"ratio":3}}},
+ {"id":"units","prompt":"Express 0.25 grams in milligrams. Return only JSON with key mg.","criteria":{"json":{"mg":250}}},
+ {"id":"replicates","prompt":"Three readings come from the same specimen. How many independent specimens were measured? Answer with a single integer.","criteria":{"exact":"1"}},
+ {"id":"insufficient","prompt":"The supplied record lists volume only. Can the temperature be determined? Answer yes or no.","criteria":{"exact_casefold":"no"}},
+ {"id":"citation","prompt":"Record N2 says the lamp drew 4 watts. Return JSON with keys watts and source.","criteria":{"json":{"watts":4,"source":"N2"}}},
+ {"id":"ordering","prompt":"Sort 0.12, 1.2, and 0.02 ascending. Output only a JSON array.","criteria":{"json":[0.02,0.12,1.2]}}
+]
