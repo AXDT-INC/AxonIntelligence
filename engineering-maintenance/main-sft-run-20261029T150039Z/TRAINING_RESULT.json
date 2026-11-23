@@ -1,0 +1,25 @@
+{
+  "bindings": {
+    "config_sha256": "43c6d60ee6805aa1b046b0828a51efffb3ea9d8543276deafa3a1141c06d3ef8",
+    "evaluation_waiver_sha256": "548564741451d0cfa5c8a858a8319b2675b7ec71208422aa4f9b00bea7daa8fb",
+    "identity_sha256": "b1c54e3d4e00511ed0d8995cb91cc3a22dbce84be97ddb37607fd0071ccb59b8",
+    "train_sha256": "641b43e32f3d69fa6fbf74754772e976777a26383c27de2692b90670c5dc5d07",
+    "validation_sha256": null,
+    "worker_sha256": "ea099d077551ec0baade8b93db65ec3f384757806f00819d2beb165d8c8df7d6"
+  },
+  "final_checkpoint": "/data/axonai/engineering-maintenance/main-sft-run-20261029T150039Z/checkpoints/checkpoint-668",
+  "global_step": 668,
+  "metrics": {
+    "epoch": 2.0,
+    "train_loss": 1.154888519180749,
+    "train_runtime": 36072.0044,
+    "train_samples_per_second": 0.592,
+    "train_steps_per_second": 0.019
+  },
+  "mode": "main",
+  "resumed_from": null,
+  "stop_requested": false,
+  "success": true,
+  "time": "2026-10-30T01:06:02.440633+00:00",
+  "world_size": 8
+}

@@ -1,0 +1,11 @@
+{
+  "AUTHORIZATION.json": "a3abf473c45c5d46d2bc5e8695e96399864332fb959f9ca2bafe1f5b131a722a",
+  "PREFLIGHT.json": "4ab76199b9785f751c01ba54cb78aba4da355e979192f273298980c95e6636cd",
+  "VALIDATION_PROMPTS.json": "932c88ba252710a40998accd1be0ef5a0d502d67743f94c814f43dd8166e5ef9",
+  "merge_cpu.py": "af6b3c9e7171eb632c3ce703daa6fda403ea4420d9a9a4f6cea9a9958990ec03",
+  "validate_gpu.py": "421225ede7762c0698f9a02dfbdde2d3ed626bda3e4b4190df9e0068699a9852",
+  "verify_weights.py": "9b12b1ca8586bf00e31d99698addd86f03616f0ab0d94aceeb4aff353c02e99f",
+  "campaign.py": "26de67e341fe690fe5634a35616c5a10dd885c7e854766a22c28af24a737007e",
+  "runtime_safeguards.py": "aa3449525a2165e179287207c10d355dbddc389f250fb91b20dd27154d2e737d",
+  "CPU_TESTS.log": "a4f8f127f60c09ddd1d62df1d86f2a2671fc3cdbd3c99715c3122ace11dac818"
+}

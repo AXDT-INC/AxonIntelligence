@@ -1,0 +1,19 @@
+{
+  "change": "Bind approved decoder wrap target for PEFT FSDP1; preserve model and hyperparameters",
+  "files": {
+    "config.fsdp1.json": "43c6d60ee6805aa1b046b0828a51efffb3ea9d8543276deafa3a1141c06d3ef8",
+    "contract.json": "9dab4e46d97eb5e9ab9f8cdf2d514def4b9cb39719b3487e131dc114b492d702",
+    "guard.py": "81b03384aa06b5b3510f36a237bcdccd414444944446a2d73ab027b32ed58607",
+    "launcher.py": "193135568f92ad54208e45a6c6e7c65c54e884b320819d450573b1356fad42eb",
+    "schedule.py": "c53ec803699a79a6a80e1b34ea46fac7c4172e50f348a763d057a7cac53afff3",
+    "shared_engine.py": "8b7abdaa0b6cf96a65db98fe051d81c7ca6562ae0706642d4eff0a6f69c4b0fc",
+    "supervisor.py": "42ebe82b1ea92c7c33d38ee28c33e2bdec0d2979304b780d69bf94394ab44a29",
+    "train.py": "ea099d077551ec0baade8b93db65ec3f384757806f00819d2beb165d8c8df7d6"
+  },
+  "previous_snapshot": {
+    "path": "/data/axonai/engineering-maintenance/fsdp1-main-execution-snapshot-v3-20261029/SNAPSHOT.json",
+    "sha256": "5b664964f5598c0dce3c43ecb67f0fc73eda93c851a2bb3cdf0998bd0c205c9c"
+  },
+  "schema": "axonai.immutable-main-snapshot.v4",
+  "training_config_changed": false
+}

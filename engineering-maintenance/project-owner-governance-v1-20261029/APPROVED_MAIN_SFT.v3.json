@@ -1,0 +1,45 @@
+{
+  "active": true,
+  "approved_utc": "2026-10-29T15:02:15.966002+00:00",
+  "authority": "Current explicit project-owner instruction; launch contingent on final checks",
+  "checkpoint_policy": "250 steps, 15-minute callback, final; sharded model/optimizer/scheduler/per-rank RNG completion receipts",
+  "config_sha256": "43c6d60ee6805aa1b046b0828a51efffb3ea9d8543276deafa3a1141c06d3ef8",
+  "continuation_basis": {
+    "path": "/data/axonai/engineering-maintenance/project-owner-governance-v1-20261029/STARTUP_FAILURE_AND_CORRECTION.v2.json",
+    "sha256": "7d7490dfeed05e2b6826e6542212fc35fdacf08d2213af6cb396dde117230fe8"
+  },
+  "cpu_tests": {
+    "path": "/data/axonai/engineering-maintenance/project-owner-governance-v1-20261029/CPU_TEST_RESULTS.v3.json",
+    "sha256": "7c823ad34752de8e3ebd1c46ad256b08b9f160780a55bcc2dc5d38adaf93245a"
+  },
+  "dataset_sha256": "b0810d15a4aa2968b03690a63a6d38d0ba9f9a9162acd357d08f77dbe772c8a4",
+  "epochs": 2,
+  "gpu_type": "NVIDIA L40S",
+  "independent_legal_clearance": false,
+  "mode": "MAIN_SFT",
+  "model_revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+  "optimizer_steps": 668,
+  "output": "/data/axonai/engineering-maintenance/main-sft-run-20261029T150039Z",
+  "owner_declaration": {
+    "path": "/data/axonai/engineering-maintenance/project-owner-governance-v1-20261029/OWNER_DECLARATION.v1.json",
+    "sha256": "7bf642bf5468084290989d2ea4a76f3204b3afeb3009c54daebad2971e8baaeb"
+  },
+  "prior_attempt_runtime_seconds": 60.014282,
+  "publication_authorized": false,
+  "retry_policy": "No automatic retry or implicit resume",
+  "rights_determination": {
+    "path": "/data/axonai/engineering-maintenance/project-owner-governance-v1-20261029/RIGHTS_DETERMINATION.v2.json",
+    "sha256": "5e0633f583f7d67e3509020d847e9f78ce3764bbe9f31e4be0bca78dcbda2e39"
+  },
+  "runtime_limit_seconds": 86400,
+  "schema": "axonai.main-sft-authorization.v2",
+  "snapshot_manifest": {
+    "path": "/data/axonai/engineering-maintenance/fsdp1-main-execution-snapshot-v4-20261029/SNAPSHOT.json",
+    "sha256": "5cce07110d230da8fcb84b8823459d5b7d89d3d597398395b2acbc5addb4a93d"
+  },
+  "status": "APPROVED_MAIN_SFT",
+  "training_jsonl_sha256": "641b43e32f3d69fa6fbf74754772e976777a26383c27de2692b90670c5dc5d07",
+  "warmup_steps": 21,
+  "worker_sha256": "ea099d077551ec0baade8b93db65ec3f384757806f00819d2beb165d8c8df7d6",
+  "world_size": 8
+}

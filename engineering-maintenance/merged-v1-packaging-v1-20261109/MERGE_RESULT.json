@@ -1,0 +1,25 @@
+{
+  "adapter_tensors_exact": 992,
+  "base_load_seconds": 1.430819857865572,
+  "config_class": "Qwen3_5TextConfig",
+  "fp32_arithmetic_spot_checks": 3,
+  "merge_and_conversion_seconds": 90.31256889738142,
+  "merged_modules": 496,
+  "model_class": "Qwen3_5ForCausalLM",
+  "optimizer_created": false,
+  "original_parameter_dtype_counts": {
+    "torch.bfloat16": 851
+  },
+  "output_parameter_dtype_counts": {
+    "torch.bfloat16": 851
+  },
+  "parameter_count": 26895998464,
+  "peak_rss_kib": 115369668,
+  "precision_limitation": "BF16 output rounds W+scaled(B@A) once. Separate adapter GEMMs and dtype conversions can yield different outputs; no bitwise equivalence assumed.",
+  "procedure": "CPU BF16 load preserving loader FP32 exceptions; promote to FP32; attach exact FP32 v1 LoRA; PEFT safe_merge; restore original per-parameter dtypes once; safe sharded serialization",
+  "safe_merge": true,
+  "save_seconds": 11.409996723756194,
+  "status": "PASS",
+  "text_only": true,
+  "total_seconds": 103.15338633488864
+}

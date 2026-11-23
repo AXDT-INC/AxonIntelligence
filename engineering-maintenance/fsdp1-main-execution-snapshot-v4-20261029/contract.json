@@ -1,0 +1,84 @@
+{
+  "bindings": {
+    "acceptance": {
+      "path": "/data/axonai/engineering-maintenance/v1-freeze-activation-v1-20281029/PROJECT_AUTHORITY_APPROVAL.md",
+      "sha256": "adeaedae6d91db81496590fcf41028e14f0bbac4191c1c69472eebdab02aeccb"
+    },
+    "amendment": {
+      "path": "/data/axonai/engineering-maintenance/project-owner-governance-v1-20261029/GOVERNANCE_AMENDMENT.v1.json",
+      "sha256": "5e61e92e902d93b2e3386a81e75a1862aa0ad52a953d5ce4c83acf70ed7bf46a"
+    },
+    "attribution": {
+      "path": "/data/axonai/engineering-maintenance/pmc-final-authorization-v1-20281029/ATTRIBUTION_REGISTER.json",
+      "sha256": "60cea2af24eb626debe2e5815375b588eade61183c51e09d69770b7253be1761"
+    },
+    "dataset": {
+      "path": "/data/axonai/engineering-maintenance/frozen-v1-training-extraction-v1-20281029/train-10684.jsonl",
+      "sha256": "641b43e32f3d69fa6fbf74754772e976777a26383c27de2692b90670c5dc5d07"
+    },
+    "declaration": {
+      "path": "/data/axonai/engineering-maintenance/project-owner-governance-v1-20261029/OWNER_DECLARATION.v1.json",
+      "sha256": "7bf642bf5468084290989d2ea4a76f3204b3afeb3009c54daebad2971e8baaeb"
+    },
+    "eligibility_matrix": {
+      "path": "/data/axonai/engineering-maintenance/pmc-exception-review-v1-20281029/PMC_ELIGIBILITY_MATRIX.jsonl",
+      "sha256": "b7697dc1768cca93701fa9666ca9a8d4de347d52960e734dc447eb55f5b29d33"
+    },
+    "evaluation_seal": {
+      "path": "/data/axonai/engineering-maintenance/independent-eval-cohort-v1-20281029/EVALUATION_SEAL_ACTIVATION_RECEIPT.json",
+      "sha256": "124790c856c2f79279331017f59131b21feba8ee199eb1cf3a4d38bcca2f713e"
+    },
+    "exceptions": {
+      "path": "/data/axonai/engineering-maintenance/pmc-exception-review-v1-20281029/EXCEPTIONS.json",
+      "sha256": "e88ad9ee9ccdfb9ee226e33e1237952576080ee361a6c2ba245d934b58e81b3f"
+    },
+    "extraction": {
+      "path": "/data/axonai/engineering-maintenance/frozen-v1-training-extraction-v1-20281029/EXTRACTION_RECEIPT.json",
+      "sha256": "c16e15e0bb1228c4f4b29ab8e0f64339c71b7a8807247dc1db3ec3d947c62b4a"
+    },
+    "freeze": {
+      "path": "/data/axonai/engineering-maintenance/v1-freeze-activation-v1-20281029/DATASET_FREEZE_RECEIPT.json",
+      "sha256": "b344880e5c57cb9824d9233d2613e03842fb37c0dfb8adf8bd5f7f707133ce40"
+    },
+    "investigation": {
+      "path": "/data/axonai/engineering-maintenance/rights-signoff-authority-v1-20261029/AUTHORITY_FINDINGS.v1.json",
+      "sha256": "d6ba389bf9ced36447ab71599e69afad2a665c63944038938520e9b188e4aa7f"
+    },
+    "manifest": {
+      "path": "/data/axonai/engineering-maintenance/v1-revised-scope-package-v1-20281029/V1_PROPOSED_MANIFEST.json",
+      "sha256": "b0810d15a4aa2968b03690a63a6d38d0ba9f9a9162acd357d08f77dbe772c8a4"
+    },
+    "model_integrity": {
+      "path": "/data/axonai/engineering-maintenance/project-owner-governance-v1-20261029/MODEL_FINAL_INTEGRITY.v1.json",
+      "sha256": "780bec1be150269366d0a2ee91b1d12145b1ec8c8e0c61a38f0b05d9327ccfa8"
+    },
+    "prior_startup_failure": {
+      "path": "/data/axonai/engineering-maintenance/project-owner-governance-v1-20261029/STARTUP_FAILURE_AND_CORRECTION.v2.json",
+      "sha256": "7d7490dfeed05e2b6826e6542212fc35fdacf08d2213af6cb396dde117230fe8"
+    },
+    "reconciliation": {
+      "path": "/data/axonai/engineering-maintenance/project-owner-governance-v1-20261029/COHORT_RECONCILIATION.v1.json",
+      "sha256": "96ec18ccbb7255377b857297b97acc8dc0e1598c888eeb395041b0422c90dd49"
+    },
+    "rights": {
+      "path": "/data/axonai/engineering-maintenance/project-owner-governance-v1-20261029/RIGHTS_DETERMINATION.v2.json",
+      "sha256": "5e0633f583f7d67e3509020d847e9f78ce3764bbe9f31e4be0bca78dcbda2e39"
+    },
+    "waiver": {
+      "path": "/data/axonai/engineering-maintenance/authoritative-training-architecture-v1-20281029/INTERNAL_EVALUATION_WAIVER.v1.json",
+      "sha256": "548564741451d0cfa5c8a858a8319b2675b7ec71208422aa4f9b00bea7daa8fb"
+    }
+  },
+  "requirements": {
+    "architecture": "FSDP1/PEFT LoRA",
+    "detached_tmux": true,
+    "device": "NVIDIA L40S",
+    "epochs": 2,
+    "evaluation": "recorded waiver; no validation claims",
+    "gpus": 8,
+    "main_steps": 668,
+    "runtime_seconds": 86400,
+    "warmup_steps": 21
+  },
+  "schema": "axonai.main-execution-contract.v2"
+}

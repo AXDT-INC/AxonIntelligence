@@ -43,6 +43,9 @@ checkpoint-*/
 weights/
 adapters/
 final_adapter/
+!/engineering-maintenance/main-sft-run-20261029T150039Z/final_adapter/
+/engineering-maintenance/main-sft-run-20261029T150039Z/final_adapter/*
+!/engineering-maintenance/main-sft-run-20261029T150039Z/final_adapter/adapter_config.json
 *.safetensors
 *.bin
 *.pt
@@ -58,6 +61,7 @@ final_adapter/
 *.arrow
 *.parquet
 *.jsonl
+!/engineering-maintenance/main-sft-run-20261029T150039Z/lifecycle.jsonl
 *.tfrecord*
 *.whl
 *.tar
@@ -81,6 +85,7 @@ final_adapter/
 !/models/merged/*/DEPENDENCIES.json
 !/models/merged/*/MERGE_EQUATION_VERIFICATION.json
 !/models/merged/*/PROVENANCE.json
+!/models/merged/AxonAI-v1-27B/SOURCE_ATTRIBUTIONS.inherited-draft.json
 !/models/merged/*/RELEASE_RIGHTS_STATUS.inherited.json
 !/models/merged/*/SHA256_MANIFEST.json
 !/models/merged/*/VALIDATION_SUMMARY.json
