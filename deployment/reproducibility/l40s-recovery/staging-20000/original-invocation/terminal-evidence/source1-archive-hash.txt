@@ -1,0 +1,9 @@
+
+=== VERIFY MANIFEST COUNT ===
+1 /data/axonai/datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/slot06926-source-freeze-20261009T044828Z/frozen-06926-replacement-source.jsonl
+
+=== OUTPUT FILES ===
+aebfe44772bf22a74a8b913590a8138ff96de973565c71b3e38143bb7fb2a955  /tmp/axonai-slot06926-source-freeze-20261009T044828Z.tar.gz
+a032f10af2662dfb84dccde646d50acdeb163df4dda4a2dd3594099d8a5dada6  /tmp/axonai-slot06926-source-freeze-20261009T044828Z.txt
+
+=== FILES TO SHARE ===

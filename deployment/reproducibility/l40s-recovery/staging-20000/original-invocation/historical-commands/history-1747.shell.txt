@@ -1,0 +1,100 @@
+python3 - <<'PY'
+from pathlib import Path
+from hashlib import sha256
+
+src = Path("/tmp/axonai_stage_final_20000_v1.py")
+dst = Path("/tmp/axonai_stage_final_20000_v11.py")
+
+old_sha = "d62503eddd025bec1caf64b48a5e780509b0d007b8fe16446aa7ac515b8212d2"
+new_sha = "cbbb8750b0d21d129899578cfbf61ce7b1a8af665f2761277e70c55b3a9b36f9"
+
+assert sha256(src.read_bytes()).hexdigest() == old_sha
+
+text = src.read_text()
+
+start = text.index("def near_duplicates(")
+end = text.index("\n\ndef main():", start)
+
+replacement = '''def near_duplicates(qs, ids, max_candidates=250000):
+    """Exact v1 lexical candidates, partitioned by right-hand record index.
+
+    Every eligible candidate pair belongs to exactly one of 64 disjoint
+    shards. Unlike v1, memory usage is bounded by shard size rather than
+    total candidate volume; NO candidate or similarity threshold is discarded.
+    High-frequency generic shingles (>120) are excluded exactly as in v1.
+    Not an exhaustive semantic paraphrase detector.
+    """
+    need(len(qs)==len(ids), "Question/ID list length mismatch")
+    shingles=[get_shingles(x) for x in qs]
+    inverted=collections.defaultdict(list)
+    for i,items in enumerate(shingles):
+        for item in items:
+            inverted[item].append(i)
+    eligible=[postings for postings in inverted.values() if len(postings)<=120]
+    skipped_generic=len(inverted)-len(eligible)
+    del inverted
+
+    hits=[]
+    total_pairs=0
+    peak_shard=0
+    shard_count=64
+    for shard in range(shard_count):
+        possible=collections.Counter()
+        for postings in eligible:
+            for n,right in enumerate(postings):
+                # Shards are disjoint: each (left,right) occurs in one shard.
+                if right % shard_count != shard:
+                    continue
+                for left in postings[:n]:
+                    possible[(left,right)]+=1
+        need(len(possible)<=max_candidates,
+             f"Near-duplicate shard {shard+1}/{shard_count} is too large "
+             f"({len(possible)}); lower shard index-range size")
+        total_pairs+=len(possible)
+        peak_shard=max(peak_shard,len(possible))
+        for (left,right),inter in possible.items():
+            total=len(shingles[left])+len(shingles[right])
+            if total and 2*inter/total<0.48:
+                continue
+            ratio=difflib.SequenceMatcher(
+                None,qs[left],qs[right],autojunk=False).ratio()
+            if ratio>=0.90:
+                hits.append({"id_1":ids[left],"id_2":ids[right],
+                             "ratio":round(ratio,6),
+                             "question_1":qs[left][:1000],
+                             "question_2":qs[right][:1000]})
+        if shard % 8==7:
+            print(f"NEAR_SCREEN progress={shard+1}/{shard_count} "
+                  f"candidate_pairs={total_pairs} "
+                  f"flagged={len(hits)}",flush=True)
+        del possible
+    hits.sort(key=lambda x:(-x["ratio"],x["id_1"],x["id_2"]))
+    return hits,{
+        "method":"v1 shingle candidate screen + SequenceMatcher 0.90; exact 64-way partition",
+        "pairs_considered":total_pairs,
+        "shards":shard_count,
+        "peak_shard_candidates":peak_shard,
+        "skipped_generic_shingles":skipped_generic,
+        "is_exhaustive_semantic_paraphrase_check":False
+    }
+'''
+
+updated = text[:start] + replacement + text[end:]
+
+updated = updated.replace(
+    'VERSION = "axonai-v1-final-20000-staging-audit-v1"',
+    'VERSION = "axonai-v1-final-20000-staging-audit-v1.1"',
+    1
+)
+
+assert sha256(updated.encode()).hexdigest() == new_sha
+
+compile(updated, str(dst), "exec")
+dst.write_text(updated)
+
+assert sha256(dst.read_bytes()).hexdigest() == new_sha
+
+print("V1.1 INSTALLATION PASS")
+print("Corrected program:", dst)
+print("SHA256:", new_sha)
+PY

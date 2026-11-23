@@ -1,0 +1,163 @@
+nvidia@TRY-72305-gpu01:/data/axonai$ (
+    set -o pipefail
+
+    cd /data/axonai || exit 1
+    source .venv/bin/activate || exit 1
+
+    PROGRAM="/tmp/axonai_stage_final_20000_v11.py"
+
+    ROOT="/data/axonai/datasets/axonai-v1"
+
+    BATCH001="$ROOT/sft/train/repaired/batch001-repaired-20261002T141416Z/batch001-5800-repaired.jsonl"
+    PMC="$ROOT/sft/train/pmc-batch002-7000.jsonl"
+    PRODUCTION="$ROOT/generated/20k-completion-production/run-v1/accepted-canonical.jsonl"
+
+    RECOVERED="/tmp/axonai-reconcile-28-20261008T155441Z.tar.gz"
+    PLAN="/tmp/axonai-duplicate-replacement-plan-20261008T163702Z.tar.gz"
+    PREVIOUS11="/tmp/axonai-duplicate12-generation-20261009T042944Z.tar.gz"
+    SINGLE="/tmp/axonai-slot06926-generation-20261009T045823Z.tar.gz"
+
+    SOURCE12="/tmp/axonai-duplicate12-source-freeze-20261009T042202Z.tar.gz"
+    SOURCE1="/tmp/axonai-slot06926-source-freeze-20261009T044828Z.tar.gz"
+
+    STAMP="$(date -u +%Y%m%dT%H%M%SZ)"
+
+    RECOVERY="$ROOT/generated/20k-completion-production/run-v1/recovery"
+
+    OUT="$RECOVERY/final-20000-staging-v11-${STAMP}"
+    ARCHIVE="/tmp/axonai-final-20000-staging-v11-${STAMP}.tar.gz"
+    LOG="/tmp/axonai-final-20000-staging-v11-${STAMP}.txt"
+
+    printf '%s\n' \
+      'cbbb8750b0d21d129899578cfbf61ce7b1a8af665f2761277e70c55b3a9b36f9  /tmp/axonai_stage_final_20000_v11.py' \
+      | sha256sum -c - || exit 1
+
+    python3 -m py_compile "$PROGRAM" || exit 1
+
+    echo "=== FINAL 20000 STAGING AUDIT V1.1 ==="
+
+    PYTHONUNBUFFERED=1 python3 "$PROGRAM" \
+      --batch001 "$BATCH001" \
+      --pmc "$PMC" \
+      --production "$PRODUCTION" \
+      --recovered28-archive "$RECOVERED" \
+      --supersession-plan "$PLAN" \
+      --previous11-archive "$PREVIOUS11" \
+)   echo "$OUT/axonai-v1-20000-STAGING-NOT-FROZEN.jsonl"" -ne 0 ]; then
+/tmp/axonai_stage_final_20000_v11.py: OK
+=== FINAL 20000 STAGING AUDIT V1.1 ===
+RECOVERIES_OK: exactly 28 inclusive historical + 11 preserved + 1 new; 12 supersession identities pinned
+STRUCTURAL_PASS: 20000 unique IDs and normalized questions; train split, verified, canonical
+Starting conservative near-duplicate question screening (not semantic exhaustive)...
+NEAR_SCREEN progress=8/64 candidate_pairs=107813 flagged=7
+NEAR_SCREEN progress=16/64 candidate_pairs=213083 flagged=10
+NEAR_SCREEN progress=24/64 candidate_pairs=323991 flagged=16
+NEAR_SCREEN progress=32/64 candidate_pairs=436084 flagged=23
+NEAR_SCREEN progress=40/64 candidate_pairs=543635 flagged=32
+NEAR_SCREEN progress=48/64 candidate_pairs=651693 flagged=35
+NEAR_SCREEN progress=56/64 candidate_pairs=758406 flagged=37
+NEAR_SCREEN progress=64/64 candidate_pairs=871180 flagged=42
+{
+  "version": "axonai-v1-final-20000-staging-audit-v1.1",
+  "status": "STAGING_COMPLETE_REVIEW_REQUIRED",
+  "records": 20000,
+  "unique_record_ids": 20000,
+  "unique_normalized_questions": 20000,
+  "origin_counts": {
+    "batch001": 5800,
+    "pmc": 7000,
+    "production": 7160,
+    "historical_recoveries_28": 28,
+    "duplicate_replacements_12": 12
+  },
+  "superseded_production_records_excluded": 12,
+  "historic_recovery_archive_included_once": true,
+  "duplicate_replacements_from_old_archive": 11,
+  "single_slot_replacement_from_new_archive": 1,
+  "domain_task_quotas_preserved": true,
+  "domain_counts": {
+    "bioinformatics": 4200,
+    "scientific_computing": 3300,
+    "research_methodology": 3500,
+    "literature_reasoning": 2500,
+    "biomedical": 6500
+  },
+  "licence_value_counts": {
+    "None": 4870,
+    "CC-BY-4.0": 3407,
+    "LicenseRef-Biopython-Agreement": 136,
+    "CC-BY": 10527,
+    "CC0": 157,
+    "MIT": 806,
+    "MPL-2.0": 34,
+    "Apache-2.0": 63
+  },
+  "source_issuer_counts": {
+    "galaxy-training-network": 5131,
+    "biopython": 352,
+    "snakemake": 143,
+    "nextflow": 722,
+    "turing-way": 2174,
+    "PubMed Central": 10684,
+    "AXDT-INC/AxonOS": 794
+  },
+  "max_units_per_origin": {
+    "batch001|scientific-chunk-00004259": 2,
+    "batch001|scientific-chunk-00003590": 2,
+    "batch001|scientific-chunk-00009682": 2,
+    "batch001|scientific-chunk-00002967": 2,
+    "batch001|scientific-chunk-00007980": 2,
+    "batch001|scientific-chunk-00006599": 2,
+    "batch001|scientific-chunk-00006454": 2,
+    "batch001|scientific-chunk-00008296": 2,
+    "batch001|scientific-chunk-00007987": 2,
+    "batch001|scientific-chunk-00007978": 2
+  },
+  "near_duplicate_pairs_flagged": 42,
+  "near_duplicate_method": {
+    "method": "v1 shingle candidate screen + SequenceMatcher 0.90; exact 64-way partition",
+    "pairs_considered": 871180,
+    "shards": 64,
+    "peak_shard_candidates": 15233,
+    "skipped_generic_shingles": 115,
+    "is_exhaustive_semantic_paraphrase_check": false,
+    "run": true
+  },
+  "provenance_missing_unit_records": [],
+  "original_training_files_modified": false,
+  "original_production_sqlite_modified": false,
+  "ready_for_training": false,
+  "next_gate": "INDEPENDENT_FINAL_HARD_AUDIT_AND_EXPLICIT_VERSIONED_FREEZE",
+  "cautions": [
+    "This is a versioned staging corpus, NOT a model-training release.",
+    "The 2/unit and 12/document concentration caps were approved per generation batch; global concentrations require disclosure.",
+    "This lexical near-duplicate screen is not an exhaustive semantic paraphrase search.",
+    "Licences and provenance must be audited against primary sources prior to distribution.",
+    "Final model-appropriate token length audit and representative difficult-case QA remain to be completed."
+  ],
+  "staged_dataset_sha256": "24889f6495d4e9e5015f7a63352fba470b9913fcb1dbeebc7d84c0eb0546b5fd"
+}
+STAGING_DIR: /data/axonai/datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/final-20000-staging-v11-20261009T051315Z
+
+Audit exit code: 0
+Log exit code: 0
+
+=== VERIFY OUTPUT CHECKSUMS ===
+axonai-v1-20000-STAGING-NOT-FROZEN.jsonl: OK
+input-sha256.json: OK
+near-question-review.json: OK
+staging-audit-report.json: OK
+superseded-production-record-ids.json: OK
+
+=== VERIFY DATASET COUNT ===
+20000 /data/axonai/datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/final-20000-staging-v11-20261009T051315Z/axonai-v1-20000-STAGING-NOT-FROZEN.jsonl
+
+=== CREATE AUDIT ARCHIVE ===
+1f85bc28c6de6dbf18129faa1194a57cddd9ae104f2fb8652f16617a45d836bf  /tmp/axonai-final-20000-staging-v11-20261009T051315Z.tar.gz
+
+=== FILES TO SHARE ===
+/tmp/axonai-final-20000-staging-v11-20261009T051315Z.tar.gz
+/tmp/axonai-final-20000-staging-v11-20261009T051315Z.txt
+
+=== STAGED DATASET ===
+/data/axonai/datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/final-20000-staging-v11-20261009T051315Z/axonai-v1-20000-STAGING-NOT-FROZEN.jsonl

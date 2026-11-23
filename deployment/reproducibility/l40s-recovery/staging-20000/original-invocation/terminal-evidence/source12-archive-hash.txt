@@ -1,0 +1,10 @@
+pmc-article-rights.json: OK
+slot-reconciliation.jsonl: OK
+
+=== OUTPUT FILES ===
+-rw-rw-r-- 1 nvidia nvidia  27K Oct  9 04:22 /tmp/axonai-duplicate12-source-freeze-20261009T042202Z.tar.gz
+-rw-rw-r-- 1 nvidia nvidia 3.0K Oct  9 04:22 /tmp/axonai-duplicate12-source-freeze-20261009T042202Z.txt
+7a99de30ab0a60f73d9c80e954e0021f568e0048d919c8c9c0f460e5655a1fd5  /tmp/axonai-duplicate12-source-freeze-20261009T042202Z.tar.gz
+cc2ea2ced38cf06f973ebc6056ef1d4512d93ae6558050402585336fbb4f952b  /tmp/axonai-duplicate12-source-freeze-20261009T042202Z.txt
+
+=== FILES TO SHARE ===

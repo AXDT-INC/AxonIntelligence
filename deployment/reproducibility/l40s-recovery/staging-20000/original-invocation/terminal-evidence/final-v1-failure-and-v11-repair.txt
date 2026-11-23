@@ -1,0 +1,77 @@
+
+    printf '%s\n' \
+      'd62503eddd025bec1caf64b48a5e780509b0d007b8fe16446aa7ac515b8212d2  /tmp/axonai_stage_final_20000_v1.py' \
+      | sha256sum -c - || exit 1
+
+)   echo "$OUT/axonai-v1-20000-STAGING-NOT-FROZEN.jsonl""d."e 0 ]; then
+=== VERIFY AUDITOR ===
+/tmp/axonai_stage_final_20000_v1.py: OK
+
+=== ASSEMBLE AND AUDIT 20000 ===
+RECOVERIES_OK: exactly 28 inclusive historical + 11 preserved + 1 new; 12 supersession identities pinned
+STRUCTURAL_PASS: 20000 unique IDs and normalized questions; train split, verified, canonical
+Starting conservative near-duplicate question screening (not semantic exhaustive)...
+Traceback (most recent call last):
+  File "/tmp/axonai_stage_final_20000_v1.py", line 359, in <module>
+    main()
+  File "/tmp/axonai_stage_final_20000_v1.py", line 307, in main
+    near_flags,screen_details=near_duplicates(qs_list,ids_list)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/axonai_stage_final_20000_v1.py", line 164, in near_duplicates
+    need(len(possible)<=max_candidates,
+  File "/tmp/axonai_stage_final_20000_v1.py", line 32, in need
+    raise RuntimeError(msg)
+RuntimeError: Near-duplicate candidate volume too large (871180); audit must be partitioned
+
+Audit exit code: 1
+Log exit code: 0
+Audit incomplete. Original records unchanged.
+nvidia@TRY-72305-gpu01:/data/axonai$ python3 - <<'PY'
+from pathlib import Path
+from hashlib import sha256
+
+src = Path("/tmp/axonai_stage_final_20000_v1.py")
+dst = Path("/tmp/axonai_stage_final_20000_v11.py")
+
+old_sha = "d62503eddd025bec1caf64b48a5e780509b0d007b8fe16446aa7ac515b8212d2"
+new_sha = "cbbb8750b0d21d129899578cfbf61ce7b1a8af665f2761277e70c55b3a9b36f9"
+
+assert sha256(src.read_bytes()).hexdigest() == old_sha
+
+text = src.read_text()
+
+start = text.index("def near_duplicates(")
+end = text.index("\n\ndef main():", start)
+
+replacement = '''def near_duplicates(qs, ids, max_candidates=250000):
+    """Exact v1 lexical candidates, partitioned by right-hand record index.
+
+    Every eligible candidate pair belongs to exactly one of 64 disjoint
+    shards. Unlike v1, memory usage is bounded by shard size rather than
+    total candidate volume; NO candidate or similarity threshold is discarded.
+    High-frequency generic shingles (>120) are excluded exactly as in v1.
+    Not an exhaustive semantic paraphrase detector.
+    """
+    need(len(qs)==len(ids), "Question/ID list length mismatch")
+    shingles=[get_shingles(x) for x in qs]
+    inverted=collections.defaultdict(list)
+    for i,items in enumerate(shingles):
+        for item in items:
+            inverted[item].append(i)
+    eligible=[postings for postings in inverted.values() if len(postings)<=120]
+    skipped_generic=len(inverted)-len(eligible)
+    del inverted
+
+    hits=[]
+    total_pairs=0
+    peak_shard=0
+    shard_count=64
+    for shard in range(shard_count):
+        possible=collections.Counter()
+        for postings in eligible:
+            for n,right in enumerate(postings):
+                # Shards are disjoint: each (left,right) occurs in one shard.
+PYint("SHA256:", new_sha)", dst)hexdigest() == new_sha.1"',cher 0.90; exact 64-way partition",
+V1.1 INSTALLATION PASS
+Corrected program: /tmp/axonai_stage_final_20000_v11.py
+SHA256: cbbb8750b0d21d129899578cfbf61ce7b1a8af665f2761277e70c55b3a9b36f9

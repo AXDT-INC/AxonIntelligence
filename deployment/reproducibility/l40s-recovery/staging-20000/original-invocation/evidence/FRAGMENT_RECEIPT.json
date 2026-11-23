@@ -1,0 +1,16 @@
+{
+  "source_history_index": 1747,
+  "source_command_sha256": "b4ff2c48b56098a2e15bda3fe6f7a85c90d27fdddb8286d594c11ceedbc839a2",
+  "method": "ast.literal_eval of original replacement string; no execution; exact value inserted by historical repair",
+  "package_path": "historical-fragments/v11-near_duplicates.py.txt",
+  "sha256": "b6f1a5960696dc7d3e92aff1f86dbadf4eb5662fbf1af541bf1aef2cda319f83",
+  "bytes": 2799,
+  "full_assembler": false,
+  "dependencies_missing_from_fragment": [
+    "get_shingles",
+    "need",
+    "collections",
+    "difflib",
+    "main and other original assembly functions"
+  ]
+}

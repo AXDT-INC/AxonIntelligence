@@ -1,0 +1,137 @@
+[
+  {
+    "history_index": 1718,
+    "timestamp_raw": "#1791474881",
+    "command_utf8_sha256": "026ea5b5d4c95cecc1df828ebf71fba6a58fd23133d341127e9939b9424a9809",
+    "historical_time_utc": "2026-10-08T15:54:41+00:00",
+    "historical_time_Asia_Kolkata": "2026-10-08T21:24:41+05:30",
+    "package_path": "historical-commands/history-1718.shell.txt",
+    "byte_preservation": "Exact UTF-8 command string recovered from Bash history; no trailing newline added"
+  },
+  {
+    "history_index": 1719,
+    "timestamp_raw": "#1791476218",
+    "command_utf8_sha256": "e9edeb9fbcd02a2f1113b930b31d894f44b49dc51b2669ac2a92150320d8be30",
+    "historical_time_utc": "2026-10-08T16:16:58+00:00",
+    "historical_time_Asia_Kolkata": "2026-10-08T21:46:58+05:30",
+    "package_path": "historical-commands/history-1719.shell.txt",
+    "byte_preservation": "Exact UTF-8 command string recovered from Bash history; no trailing newline added"
+  },
+  {
+    "history_index": 1721,
+    "timestamp_raw": "#1791477422",
+    "command_utf8_sha256": "0b0ed245a3bf017ad8ebdd5e9d709533c3eca64a72db23c1545f269ecc8885e8",
+    "historical_time_utc": "2026-10-08T16:37:02+00:00",
+    "historical_time_Asia_Kolkata": "2026-10-08T22:07:02+05:30",
+    "package_path": "historical-commands/history-1721.shell.txt",
+    "byte_preservation": "Exact UTF-8 command string recovered from Bash history; no trailing newline added"
+  },
+  {
+    "history_index": 1733,
+    "timestamp_raw": "#1791515556",
+    "command_utf8_sha256": "2d4709964438b2491a401a1a13dba0bde35a1838d09e7fdd33acee34bb9ced82",
+    "historical_time_utc": "2026-10-09T03:12:36+00:00",
+    "historical_time_Asia_Kolkata": "2026-10-09T08:42:36+05:30",
+    "package_path": "historical-commands/history-1733.shell.txt",
+    "byte_preservation": "Exact UTF-8 command string recovered from Bash history; no trailing newline added"
+  },
+  {
+    "history_index": 1735,
+    "timestamp_raw": "#1791516329",
+    "command_utf8_sha256": "003ad5fda5f7487e89743fc64c23884ec78a55f8c2a739c98ea97006ad1aa9a5",
+    "historical_time_utc": "2026-10-09T03:25:29+00:00",
+    "historical_time_Asia_Kolkata": "2026-10-09T08:55:29+05:30",
+    "package_path": "historical-commands/history-1735.shell.txt",
+    "byte_preservation": "Exact UTF-8 command string recovered from Bash history; no trailing newline added"
+  },
+  {
+    "history_index": 1736,
+    "timestamp_raw": "#1791517106",
+    "command_utf8_sha256": "571c0e8023f089830657f793cc54e58bc941ba8ad235af8f7d75f7ba73083482",
+    "historical_time_utc": "2026-10-09T03:38:26+00:00",
+    "historical_time_Asia_Kolkata": "2026-10-09T09:08:26+05:30",
+    "package_path": "historical-commands/history-1736.shell.txt",
+    "byte_preservation": "Exact UTF-8 command string recovered from Bash history; no trailing newline added"
+  },
+  {
+    "history_index": 1738,
+    "timestamp_raw": "#1791517755",
+    "command_utf8_sha256": "6de7a8c17fb2036d606617a46925fe7f6b29648cf814aaabf282ed9584479214",
+    "historical_time_utc": "2026-10-09T03:49:15+00:00",
+    "historical_time_Asia_Kolkata": "2026-10-09T09:19:15+05:30",
+    "package_path": "historical-commands/history-1738.shell.txt",
+    "byte_preservation": "Exact UTF-8 command string recovered from Bash history; no trailing newline added"
+  },
+  {
+    "history_index": 1741,
+    "timestamp_raw": "#1791519722",
+    "command_utf8_sha256": "79bcbc147f28eac68d6c30e3e35d7e507411d2ed59ff749a2765b952694addc2",
+    "historical_time_utc": "2026-10-09T04:22:02+00:00",
+    "historical_time_Asia_Kolkata": "2026-10-09T09:52:02+05:30",
+    "package_path": "historical-commands/history-1741.shell.txt",
+    "byte_preservation": "Exact UTF-8 command string recovered from Bash history; no trailing newline added"
+  },
+  {
+    "history_index": 1742,
+    "timestamp_raw": "#1791520184",
+    "command_utf8_sha256": "be2dac4c2da1de08432489aba7d1fe7d9e1ba62250acffa313733e58084f6f28",
+    "historical_time_utc": "2026-10-09T04:29:44+00:00",
+    "historical_time_Asia_Kolkata": "2026-10-09T09:59:44+05:30",
+    "package_path": "historical-commands/history-1742.shell.txt",
+    "byte_preservation": "Exact UTF-8 command string recovered from Bash history; no trailing newline added"
+  },
+  {
+    "history_index": 1743,
+    "timestamp_raw": "#1791521003",
+    "command_utf8_sha256": "27d11dbccfdba5c145b4da52adafd176238ea1f500283adcb98693d11d327035",
+    "historical_time_utc": "2026-10-09T04:43:23+00:00",
+    "historical_time_Asia_Kolkata": "2026-10-09T10:13:23+05:30",
+    "package_path": "historical-commands/history-1743.shell.txt",
+    "byte_preservation": "Exact UTF-8 command string recovered from Bash history; no trailing newline added"
+  },
+  {
+    "history_index": 1744,
+    "timestamp_raw": "#1791521308",
+    "command_utf8_sha256": "68e12108cb8ddbd1105ef319292ae6e9665d77bb04921c42f0a3f3bd1e9c923a",
+    "historical_time_utc": "2026-10-09T04:48:28+00:00",
+    "historical_time_Asia_Kolkata": "2026-10-09T10:18:28+05:30",
+    "package_path": "historical-commands/history-1744.shell.txt",
+    "byte_preservation": "Exact UTF-8 command string recovered from Bash history; no trailing newline added"
+  },
+  {
+    "history_index": 1745,
+    "timestamp_raw": "#1791521903",
+    "command_utf8_sha256": "30cebd97f7999fed82b1625c2ef3e3a6ff6b719529256f76b217b3ffa1276825",
+    "historical_time_utc": "2026-10-09T04:58:23+00:00",
+    "historical_time_Asia_Kolkata": "2026-10-09T10:28:23+05:30",
+    "package_path": "historical-commands/history-1745.shell.txt",
+    "byte_preservation": "Exact UTF-8 command string recovered from Bash history; no trailing newline added"
+  },
+  {
+    "history_index": 1746,
+    "timestamp_raw": "#1791522492",
+    "command_utf8_sha256": "81a38d279bd8f5637ea1bb779e4abb560d4ff7dc4ef8744f2122912bb6eb4014",
+    "historical_time_utc": "2026-10-09T05:08:12+00:00",
+    "historical_time_Asia_Kolkata": "2026-10-09T10:38:12+05:30",
+    "package_path": "historical-commands/history-1746.shell.txt",
+    "byte_preservation": "Exact UTF-8 command string recovered from Bash history; no trailing newline added"
+  },
+  {
+    "history_index": 1747,
+    "timestamp_raw": "#1791522771",
+    "command_utf8_sha256": "b4ff2c48b56098a2e15bda3fe6f7a85c90d27fdddb8286d594c11ceedbc839a2",
+    "historical_time_utc": "2026-10-09T05:12:51+00:00",
+    "historical_time_Asia_Kolkata": "2026-10-09T10:42:51+05:30",
+    "package_path": "historical-commands/history-1747.shell.txt",
+    "byte_preservation": "Exact UTF-8 command string recovered from Bash history; no trailing newline added"
+  },
+  {
+    "history_index": 1748,
+    "timestamp_raw": "#1791522795",
+    "command_utf8_sha256": "abf38137b771561941b7a122e063698ae238df51ddae409fe2169d180f17e307",
+    "historical_time_utc": "2026-10-09T05:13:15+00:00",
+    "historical_time_Asia_Kolkata": "2026-10-09T10:43:15+05:30",
+    "package_path": "historical-commands/history-1748.shell.txt",
+    "byte_preservation": "Exact UTF-8 command string recovered from Bash history; no trailing newline added"
+  }
+]

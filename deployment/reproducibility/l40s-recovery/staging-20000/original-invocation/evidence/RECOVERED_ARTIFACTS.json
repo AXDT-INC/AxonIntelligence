@@ -1,0 +1,101 @@
+{
+  "verified_on": "clu1",
+  "verification_date_utc": "2026-11-23",
+  "preservation_directory": "/home/cluadmin/axonai-recovery-review/original-assembly-inputs-20261123",
+  "pin_records_relative_to": "deployment/reproducibility/l40s-recovery/staging-20000",
+  "previous_target_inventory": "deployment/reproducibility/l40s-recovery/staging-20000/original-invocation/evidence/TARGET_ARTIFACTS.json",
+  "method": "SHA-256 of each complete file as received. Each archive also contains a member matching its previously recorded expanded-file digest. Sources were compared with the recorded v1-to-v1.1 repair as text.",
+  "assembly_executed_during_verification": false,
+  "artifacts": [
+    {
+      "artifact": "recovered28_archive",
+      "historical_path": "/tmp/axonai-reconcile-28-20261008T155441Z.tar.gz",
+      "preserved_filename": "axonai-reconcile-28-20261008T155441Z.tar.gz",
+      "bytes": 18466,
+      "sha256": "c479afe31be7c1212e41100fbdc274a4a74c00603c9beb4a553a24a93a7a2f46",
+      "pin_record": "input-sha256.json",
+      "verified_member": {
+        "name": "./provisional-recovered-28.jsonl",
+        "sha256": "0e05760d4c4ffe548d55ff198c7ff27a00ecb1e7c52b46c956fc74989b10654f"
+      }
+    },
+    {
+      "artifact": "supersession_plan",
+      "historical_path": "/tmp/axonai-duplicate-replacement-plan-20261008T163702Z.tar.gz",
+      "preserved_filename": "axonai-duplicate-replacement-plan-20261008T163702Z.tar.gz",
+      "bytes": 5722,
+      "sha256": "b73c01129e0fb30939fca75422ba80925582ff7ce261f9334faba1919c622d5e",
+      "pin_record": "input-sha256.json",
+      "verified_member": {
+        "name": "axonai-12-baseline-duplicate-plan/12-proposed-production-supersessions.jsonl",
+        "sha256": "495a7a415bdb7e4683ef6098ff27fa2bf39b3d867c8fc5840429f9419947b964"
+      }
+    },
+    {
+      "artifact": "previous11_archive",
+      "historical_path": "/tmp/axonai-duplicate12-generation-20261009T042944Z.tar.gz",
+      "preserved_filename": "axonai-duplicate12-generation-20261009T042944Z.tar.gz",
+      "bytes": 15833,
+      "sha256": "3e88d4599b2c5b967d67ebc1bc15d54b8a42bfbc4fc6a9f22bcd389b824c527c",
+      "pin_record": "input-sha256.json",
+      "verified_member": {
+        "name": "./provisional-duplicate-replacements-12.jsonl",
+        "sha256": "0f18830e44a768b000265146e388016b0b60ead40df0b1078af06a096a180472"
+      }
+    },
+    {
+      "artifact": "single_archive",
+      "historical_path": "/tmp/axonai-slot06926-generation-20261009T045823Z.tar.gz",
+      "preserved_filename": "axonai-slot06926-generation-20261009T045823Z.tar.gz",
+      "bytes": 3382,
+      "sha256": "bcc4edb9dd34b0f76545bd0cd190568419faff46d117cbb18d8c59e01d95acee",
+      "pin_record": "input-sha256.json",
+      "verified_member": {
+        "name": "./provisional-single-06926.jsonl",
+        "sha256": "a1531f752b73ca1292443e75260a4226393922c9fc7cba4dd9920c82938c07e1"
+      }
+    },
+    {
+      "artifact": "source12_archive",
+      "historical_path": "/tmp/axonai-duplicate12-source-freeze-20261009T042202Z.tar.gz",
+      "preserved_filename": "axonai-duplicate12-source-freeze-20261009T042202Z.tar.gz",
+      "bytes": 27206,
+      "sha256": "7a99de30ab0a60f73d9c80e954e0021f568e0048d919c8c9c0f460e5655a1fd5",
+      "pin_record": "input-sha256.json",
+      "verified_member": {
+        "name": "axonai-duplicate12-source-freeze/frozen-12-duplicate-replacement-sources.jsonl",
+        "sha256": "504c86a85b3dd047c27faf1c39408c1ae058f0ce24d15d469f2330a8dc3fa4e8"
+      }
+    },
+    {
+      "artifact": "source1_archive",
+      "historical_path": "/tmp/axonai-slot06926-source-freeze-20261009T044828Z.tar.gz",
+      "preserved_filename": "axonai-slot06926-source-freeze-20261009T044828Z.tar.gz",
+      "bytes": 2834,
+      "sha256": "aebfe44772bf22a74a8b913590a8138ff96de973565c71b3e38143bb7fb2a955",
+      "pin_record": "input-sha256.json",
+      "verified_member": {
+        "name": "axonai-slot06926-source-freeze/frozen-06926-replacement-source.jsonl",
+        "sha256": "2bb726b3e2823e03a26df65912f13b1ae3e1ce38dd9146440b11a75c41de1973"
+      }
+    },
+    {
+      "artifact": "final_assembler_v11",
+      "historical_path": "/tmp/axonai_stage_final_20000_v11.py",
+      "preserved_filename": "axonai_stage_final_20000_v11.py",
+      "bytes": 18334,
+      "sha256": "cbbb8750b0d21d129899578cfbf61ce7b1a8af665f2761277e70c55b3a9b36f9",
+      "pin_record": "original-invocation/historical-commands/history-1748.shell.txt",
+      "repository_copy": "deployment/reproducibility/l40s-recovery/staging-20000/original-invocation/source/axonai_stage_final_20000_v11.py"
+    },
+    {
+      "artifact": "parent_assembler_v1",
+      "historical_path": "/tmp/axonai_stage_final_20000_v1.py",
+      "preserved_filename": "axonai_stage_final_20000_v1.py",
+      "bytes": 17204,
+      "sha256": "d62503eddd025bec1caf64b48a5e780509b0d007b8fe16446aa7ac515b8212d2",
+      "pin_record": "original-invocation/historical-commands/history-1746.shell.txt",
+      "repository_copy": "deployment/reproducibility/l40s-recovery/staging-20000/original-invocation/source/axonai_stage_final_20000_v1.py"
+    }
+  ]
+}

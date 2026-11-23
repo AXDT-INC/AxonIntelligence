@@ -1,0 +1,66 @@
+{
+  "capture_command": "tmux capture-pane -p -J -S - -t axonai-7200-recovery:0.0",
+  "source_session": "axonai-7200-recovery",
+  "source_pane_pid": 1205714,
+  "session_created_utc": "2026-10-08T05:20:08Z",
+  "whole_capture_sha256": "b5d837130c78e3b31cf38c6e84e903b1e3564723730b1873cca063b77985b0de",
+  "whole_capture_bytes": 80807,
+  "whole_capture_included": false,
+  "reason": "Only relevant metadata/command sections included; no full historical session dump",
+  "excerpts": [
+    {
+      "package_path": "terminal-evidence/source12-archive-hash.txt",
+      "capture_lines_1based": [
+        965,
+        974
+      ],
+      "sha256": "2458aa79e4e758cb6807681cc4a34ff44d1a01945b06b24ffd2d8012408d2c48",
+      "bytes": 568
+    },
+    {
+      "package_path": "terminal-evidence/previous11-archive-hash.txt",
+      "capture_lines_1based": [
+        1200,
+        1209
+      ],
+      "sha256": "5bfc2aa196df6d485e210656df7602fc68c51784d10640f35d09e693263b9833",
+      "bytes": 446
+    },
+    {
+      "package_path": "terminal-evidence/source1-archive-hash.txt",
+      "capture_lines_1based": [
+        1350,
+        1358
+      ],
+      "sha256": "2209b15be04a46abc556590e48dc891a3a983d0b3c311b05ff8a11116d8bd41b",
+      "bytes": 491
+    },
+    {
+      "package_path": "terminal-evidence/single-archive-hash.txt",
+      "capture_lines_1based": [
+        1501,
+        1509
+      ],
+      "sha256": "dd12fe4448ee6f59cf35cd802a3532bedabc0a94d4ed4d7ffd11a7a751858e5a",
+      "bytes": 336
+    },
+    {
+      "package_path": "terminal-evidence/final-v1-failure-and-v11-repair.txt",
+      "capture_lines_1based": [
+        1550,
+        1626
+      ],
+      "sha256": "1bcddd18b10cc8ef5b9343da673c3c978233d45f6580b59cf02524ad442f5c76",
+      "bytes": 3291
+    },
+    {
+      "package_path": "terminal-evidence/final-v11-launch-and-success.txt",
+      "capture_lines_1based": [
+        1627,
+        1789
+      ],
+      "sha256": "9d95caed88d970409ce57a9373fe1d42ffaae4296fb71204be136a07a700650f",
+      "bytes": 6605
+    }
+  ]
+}

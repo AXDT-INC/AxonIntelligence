@@ -1,0 +1,10 @@
+  "stage": "DUPLICATE12_SOURCE_FROZEN_GENERATION_TWO_STAGE_VERIFICATION",
+  "next_gate": "FINAL_20000_STAGING_WITH_28_RECOVERIES_ONCE_AND_12_SUPERSESSIONS"
+}
+
+=== ARCHIVE RESULTS ===
+3e88d4599b2c5b967d67ebc1bc15d54b8a42bfbc4fc6a9f22bcd389b824c527c  /tmp/axonai-duplicate12-generation-20261009T042944Z.tar.gz
+
+=== FILES TO SHARE ===
+/tmp/axonai-duplicate12-generation-20261009T042944Z.tar.gz
+/data/axonai/logs/axonai-duplicate12-generation-v1.log
