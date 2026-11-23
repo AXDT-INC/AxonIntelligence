@@ -1,0 +1,26 @@
+{
+  "absent_holds": [
+    "axonai20k-3322dc0128c955f84a5cdc2c"
+  ],
+  "approved_proposed_manifest_sha256": "b0810d15a4aa2968b03690a63a6d38d0ba9f9a9162acd357d08f77dbe772c8a4",
+  "candidate_filter_hash_matches": true,
+  "candidate_filter_sha256": "dbaa76ba35448d6ffbc94ace43d4ad7253ac4ed415a78ff76b14abbd86ae75a1",
+  "candidate_records": 19257,
+  "candidate_source_order_exact": true,
+  "eligible_ids_equal_proposed_and_freeze_order": true,
+  "eligible_licenses": {
+    "CC-BY": 10527,
+    "CC0": 157
+  },
+  "exclusion_rule_exact": true,
+  "freeze_file_sha256": "8cfd9297b4b047c2a56b46c5fa6953eeb667d52f335688cefe3280847dd4f550",
+  "frozen_order_exact": true,
+  "frozen_records": 10684,
+  "frozen_serialization_hash_matches": true,
+  "frozen_serialization_sha256": "641b43e32f3d69fa6fbf74754772e976777a26383c27de2692b90670c5dc5d07",
+  "historical_hold_rows_unique": 743,
+  "present_holds": 742,
+  "source_ids_unique": true,
+  "source_records": 20000,
+  "verification": "Read-only streaming hashes and in-memory serialization; no dataset output written"
+}

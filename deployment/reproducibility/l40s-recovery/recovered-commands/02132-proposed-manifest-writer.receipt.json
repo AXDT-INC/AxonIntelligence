@@ -1,0 +1,20 @@
+{
+  "command_path": "recovered-commands/02132-proposed-manifest-writer.sh.txt",
+  "command_sha256": "c49e26c72befafe9260afa77742cc1dc89e33d6dea5a86678609d69e82be4f50",
+  "execution": {
+    "aggregated_output": "V1_PROPOSED_MANIFEST.json b0810d15a4aa2968b03690a63a6d38d0ba9f9a9162acd357d08f77dbe772c8a4\nV1_SCOPE_RECEIPT.json 14194b84f7e08e68c98a9436e03073b9e7f0cec9b529440c88bee806a00dea43\nREADME.md 47634164e56f3fe79de3cc01c4082833b3ecf6cfa0c2f7d14f62aed79af4f564\n",
+    "cwd": "file:///data/axonai",
+    "duration": {
+      "nanos": 38815,
+      "secs": 0
+    },
+    "exit_code": 0,
+    "id": "exec-a1315246-ef67-4102-b29b-614548e3294d",
+    "status": "completed"
+  },
+  "raw_event_sha256": "bb7216573fb961f03ba39b77ac3df0e3bc511a58646f50362edf342ca024eb06",
+  "source_line_1based": 2132,
+  "source_path": "/home/nvidia/.codex/sessions/2026/10/28/rollout-2026-10-28T09-39-06-01a134fa-5949-7dc3-9a77-6f4041a7eb35_01a181e0-a81e-7ce3-9843-2a9c5c3027fc.jsonl",
+  "status": "Historical command recovered verbatim from CommandExecution event; not executed during recovery",
+  "timestamp": "2026-10-29T05:17:06.390Z"
+}

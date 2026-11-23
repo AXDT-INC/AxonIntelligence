@@ -1,0 +1,7 @@
+{
+  "returncode": 0,
+  "stdout": "{\"status\": \"PASS_CPU_PREFLIGHT\", \"cmd\": [\"/data/axonai/.venv/bin/python\", \"-u\", \"-m\", \"torch.distributed.run\", \"--standalone\", \"--nproc_per_node=8\", \"/data/axonai/engineering-maintenance/fsdp1-main-execution-snapshot-v4-20261029/train.py\", \"--run-dir\", \"/data/axonai/engineering-maintenance/main-sft-run-20261029T150039Z\", \"--config\", \"/data/axonai/engineering-maintenance/fsdp1-main-execution-snapshot-v4-20261029/config.fsdp1.json\", \"--train-file\", \"/data/axonai/engineering-maintenance/frozen-v1-training-extraction-v1-20281029/train-10684.jsonl\", \"--evaluation-waiver\", \"/data/axonai/engineering-maintenance/authoritative-training-architecture-v1-20281029/INTERNAL_EVALUATION_WAIVER.v1.json\"], \"runtime_limit_seconds\": 86400}\n",
+  "stderr": "",
+  "approval_sha256": "18c7ca10073e571ddca0c8a9550ba3b71d8af2edcbcc6fb8bfc0d934ee5ad6fa",
+  "snapshot_sha256": "5cce07110d230da8fcb84b8823459d5b7d89d3d597398395b2acbc5addb4a93d"
+}

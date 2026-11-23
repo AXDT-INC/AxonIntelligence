@@ -1,0 +1,20 @@
+{
+  "command_path": "recovered-commands/04592-frozen-jsonl-writer-then-hash-failure.sh.txt",
+  "command_sha256": "4066f4bd76dea31c557097981186d9789848380aa9b63c80d4a613ba888b8108",
+  "execution": {
+    "aggregated_output": "Traceback (most recent call last):\n  File \"<stdin>\", line 18, in <module>\n  File \"<stdin>\", line 16, in h\nUnboundLocalError: cannot access local variable 'b' where it is not associated with a value\n",
+    "cwd": "file:///data/axonai",
+    "duration": {
+      "nanos": 309918892,
+      "secs": 0
+    },
+    "exit_code": 1,
+    "id": "exec-61762321-9f5b-4913-b888-27965eca211e",
+    "status": "failed"
+  },
+  "raw_event_sha256": "57028bf52b3aa8fa75a9c99336aefd21b689131d02a17cdbe452944aa863b9c2",
+  "source_line_1based": 4592,
+  "source_path": "/home/nvidia/.codex/sessions/2026/10/28/rollout-2026-10-28T09-39-06-01a134fa-5949-7dc3-9a77-6f4041a7eb35_01a181e0-a81e-7ce3-9843-2a9c5c3027fc.jsonl",
+  "status": "Historical command recovered verbatim from CommandExecution event; not executed during recovery",
+  "timestamp": "2026-10-29T10:28:43.939Z"
+}

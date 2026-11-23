@@ -1,0 +1,13 @@
+python3 - <<'PY'
+import json,os,hashlib,datetime
+src='engineering-maintenance/eligibility-path-v1-20281029/PROPOSED_ELIGIBLE_SUBSET_MANIFEST.json'
+d=json.load(open(src)); base='engineering-maintenance/v1-revised-scope-package-v1-20281029';os.makedirs(base,exist_ok=True)
+# immutable proposed manifest copy with explicit status
+m={'schema':'axonai-v1-proposed-training-manifest-v1','record_count':d['record_count'],'record_ids':d['record_ids'],'source_candidate_sha256':d['candidate_sha256'],'status':'PROPOSED_NOT_FROZEN','rights_status':'QUALIFIED_APPROVAL_REQUIRED','scientific_status':'UNCHANGED_RECORDS_ONLY; 22 PROPOSALS NOT INTEGRATED','deferred_records':19257-d['record_count']}
+json.dump(m,open(base+'/V1_PROPOSED_MANIFEST.json','w'),indent=2,sort_keys=True);open(base+'/V1_PROPOSED_MANIFEST.json','a').write('\n')
+rep={'status':'REVISED_SCOPE_CONDITIONAL_GO_PENDING_RIGHTS','proposed_v1_records':d['record_count'],'deferred_records':m['deferred_records'],'source_candidate_sha256':d['candidate_sha256'],'rights':{'pmc_article_level_evidence':d['record_count'],'qualified_clearance':0,'remaining':'qualified confirmation of licence scope, attribution, third-party exceptions and internal SFT/evaluation'},'scientific':{'proposals_total':22,'integrated':0,'unchanged_records_allowed_subject_to_review':True},'evaluation':{'sealed':False,'requirements':['independent source family','rights eligibility','semantic/exact contamination checks','predeclared metrics']},'freeze':False,'training_authorized':False,'v2_backlog':['deferred non-PMC records','unknown provenance records','22 proposals','historical holds and evidence']}
+json.dump(rep,open(base+'/V1_SCOPE_RECEIPT.json','w'),indent=2,sort_keys=True);open(base+'/V1_SCOPE_RECEIPT.json','a').write('\n')
+md='''# AxonAI-v1 revised scope path\n\nThe revised project decision permits an initial smaller dataset. The current smallest evidence-supported candidate is **10,684 PMC records** (10,527 CC-BY; 157 CC0), using the existing article-level evidence.\n\nThis is a proposed manifest, not a frozen or rights-cleared dataset. Qualified confirmation is still required for licence scope, attribution, third-party exceptions, and internal SFT/evaluation. The remaining 8,573 isolated-candidate records are deferred to the v2 backlog unless independently cleared.\n\nThe 22 scientific proposals remain unapplied. Evaluation sealing, dataset freeze, and guarded SFT authorization remain separate gates.\n'''
+open(base+'/README.md','w').write(md)
+for fn in ['V1_PROPOSED_MANIFEST.json','V1_SCOPE_RECEIPT.json','README.md']: print(fn,hashlib.sha256(open(base+'/'+fn,'rb').read()).hexdigest())
+PY

@@ -1,0 +1,17 @@
+{
+  "candidate_sha256": "dbaa76ba35448d6ffbc94ace43d4ad7253ac4ed415a78ff76b14abbd86ae75a1",
+  "excluded_records": 743,
+  "exclusion_manifest_sha256": "117f8b6bd78f8273fed7e8451ad0c2b172259e43e0c92137bbc577399f773036",
+  "freeze_authorized": false,
+  "historical_hold_absent_count": 1,
+  "output_records": 19257,
+  "rights_summary": {
+    "other_restrictions": 0,
+    "unresolved_permission": 19257,
+    "verified_permission": 0
+  },
+  "source_manifest_sha256": "24889f6495d4e9e5015f7a63352fba470b9913fcb1dbeebc7d84c0eb0546b5fd",
+  "source_records": 20000,
+  "status": "ISOLATED_CANDIDATE_CONSTRUCTED_NOT_FROZEN",
+  "training_authorized": false
+}

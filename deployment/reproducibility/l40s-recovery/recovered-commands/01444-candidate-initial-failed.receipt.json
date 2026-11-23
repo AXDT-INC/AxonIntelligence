@@ -1,0 +1,20 @@
+{
+  "command_path": "recovered-commands/01444-candidate-initial-failed.sh.txt",
+  "command_sha256": "87e421d737053515b19771cda1cc70dd1e16e68dad2f5e12f268dc308f00c0bb",
+  "execution": {
+    "aggregated_output": "Traceback (most recent call last):\n  File \"<stdin>\", line 9, in <module>\nAssertionError: (20000, 744, 1)\n",
+    "cwd": "file:///data/axonai",
+    "duration": {
+      "nanos": 461227512,
+      "secs": 0
+    },
+    "exit_code": 1,
+    "id": "exec-095a1947-869f-4d5b-815c-a1c254b3c5b4",
+    "status": "failed"
+  },
+  "raw_event_sha256": "3d951ec558f8ec522a7c4bf71b8e008417b521cd031bc75e483a97e37494f281",
+  "source_line_1based": 1444,
+  "source_path": "/home/nvidia/.codex/sessions/2026/10/28/rollout-2026-10-28T09-39-06-01a134fa-5949-7dc3-9a77-6f4041a7eb35_01a181e0-a81e-7ce3-9843-2a9c5c3027fc.jsonl",
+  "status": "Historical command recovered verbatim from CommandExecution event; not executed during recovery",
+  "timestamp": "2026-10-29T04:25:56.912Z"
+}

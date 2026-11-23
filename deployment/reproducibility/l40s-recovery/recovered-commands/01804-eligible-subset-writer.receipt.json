@@ -1,0 +1,20 @@
+{
+  "command_path": "recovered-commands/01804-eligible-subset-writer.sh.txt",
+  "command_sha256": "88288f7493382dcdd9ae6fd8bfbe8476acf55522a0050cc0dc5e32b8fd858735",
+  "execution": {
+    "aggregated_output": "ELIGIBILITY_MATRIX.jsonl 7b60639d563360988e602767a9402990365a4965b921ac7a89f98ed94d873c2f\nPROPOSED_ELIGIBLE_SUBSET_MANIFEST.json f83005eba682d8f3de1656e6b2f4de99c8bf25894193d21b5bcb1014a5bfaab7\nELIGIBILITY_REPORT.json 4e26e393c7c2cb47b8ef9bacfe31098d92dfa0a27903872b5b0e4f729d96b6ca\nELIGIBILITY_REPORT.md 92b807f33f1f019013b15e3e76b34d20b32480d8a535cfc5d6338d46c030e2c9\n",
+    "cwd": "file:///data/axonai",
+    "duration": {
+      "nanos": 177254090,
+      "secs": 0
+    },
+    "exit_code": 0,
+    "id": "exec-1dd5dbfa-9a3a-47dd-ad14-e4dab4fbe19e",
+    "status": "completed"
+  },
+  "raw_event_sha256": "ef975bc568ec91ac690eda6ad083b3d457868e51247284b5e2e44a745bd0c18a",
+  "source_line_1based": 1804,
+  "source_path": "/home/nvidia/.codex/sessions/2026/10/28/rollout-2026-10-28T09-39-06-01a134fa-5949-7dc3-9a77-6f4041a7eb35_01a181e0-a81e-7ce3-9843-2a9c5c3027fc.jsonl",
+  "status": "Historical command recovered verbatim from CommandExecution event; not executed during recovery",
+  "timestamp": "2026-10-29T04:50:15.159Z"
+}

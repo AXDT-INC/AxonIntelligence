@@ -1,0 +1,20 @@
+{
+  "command_path": "recovered-commands/01592-pmc-evidence-writer.sh.txt",
+  "command_sha256": "85de5c6b198bad5723c1e904166ef7db24598e7d13aaaf1ebf8ab61551d71955",
+  "execution": {
+    "aggregated_output": "{'records': 19257, 'pmc_records': 10684, 'article_license_verified_records': 10684, 'unresolved_pmc_records': 0, 'non_pmc_records': 8573, 'training_authorized': 0, 'note': 'Local verified-license manifest evidence reused; this supports licence evidence review, not automatic training clearance.'}\n",
+    "cwd": "file:///data/axonai",
+    "duration": {
+      "nanos": 518589561,
+      "secs": 0
+    },
+    "exit_code": 0,
+    "id": "exec-683a4bf0-d592-4f33-9e6f-ab0340c188e1",
+    "status": "completed"
+  },
+  "raw_event_sha256": "61d6aaf21ca8c61649bd90e550d48975b9376bf18b97cda2984de112a8978342",
+  "source_line_1based": 1592,
+  "source_path": "/home/nvidia/.codex/sessions/2026/10/28/rollout-2026-10-28T09-39-06-01a134fa-5949-7dc3-9a77-6f4041a7eb35_01a181e0-a81e-7ce3-9843-2a9c5c3027fc.jsonl",
+  "status": "Historical command recovered verbatim from CommandExecution event; not executed during recovery",
+  "timestamp": "2026-10-29T04:37:29.160Z"
+}

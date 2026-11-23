@@ -1,0 +1,10 @@
+{
+  "rows": 19257,
+  "source_license_path": "/data/axonai/datasets/axonai-v1/raw/biomedical/pmc-stratified/verified-license.jsonl",
+  "source_license_current_sha256": "c4d9dcb08661b3a4947405e414e340109621cfbecf6889ea76712eea774bf3d7",
+  "historical_matrix_sha256": "e27f76ad925b46c66c1c983119d5de2d7fd1238c3f2de1b876f21f2f58e1eea2",
+  "current_matrix_sha256": "e27f76ad925b46c66c1c983119d5de2d7fd1238c3f2de1b876f21f2f58e1eea2",
+  "in_memory_original_writer_digest": "e27f76ad925b46c66c1c983119d5de2d7fd1238c3f2de1b876f21f2f58e1eea2",
+  "matched": true,
+  "no_dataset_or_matrix_output_written": true
+}

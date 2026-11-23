@@ -1,0 +1,32 @@
+python3 - <<'PY'
+import json,hashlib,datetime,os
+base='engineering-maintenance/eligibility-path-v1-20281029'; os.makedirs(base,exist_ok=True)
+src='engineering-maintenance/pmc-licence-verification-v1-20281029/PMC_EVIDENCE_MATRIX.jsonl'
+rows=[]
+for line in open(src):
+ d=json.loads(line); lic=d.get('license');
+ if d.get('status')=='EVIDENCE_VERIFIED_REVIEW_PENDING' and lic in ('CC-BY','CC0'):
+  cat='EVIDENCE_SUPPORTS_QUALIFIED_APPROVAL'; action='SUBMIT_GROUP_FOR_QUALIFIED_REVIEW'
+ elif lic in ('CC-BY-4.0','MIT','LicenseRef-Biopython-Agreement','Apache-2.0','MPL-2.0'):
+  cat='ADDITIONAL_SOURCE_EVIDENCE_REQUIRED'; action='VERIFY_LICENCE_COVERS_EXTRACTED_TRAINING_CONTENT'
+ elif lic is None:
+  cat='EXCLUDE_PENDING_PERMISSION'; action='HOLD_OR_EXCLUDE_UNTIL_PROVENANCE_AND_PERMISSION'
+ else:
+  cat='QUALIFIED_LEGAL_DETERMINATION_REQUIRED'; action='QUALIFIED_REVIEW'
+ rows.append({'record_id':d['record_id'],'source_evidence_status':d.get('status'),'licence':lic,'licence_evidence':d.get('license_evidence'),'eligibility_category':cat,'advisory_action':action,'training_authorized':False})
+mp=os.path.join(base,'ELIGIBILITY_MATRIX.jsonl')
+with open(mp,'w') as f:
+ for r in rows: f.write(json.dumps(r,sort_keys=True)+'\n')
+# advisory subset: only records with article-level licence evidence, clearly not cleared
+subset=[r['record_id'] for r in rows if r['eligibility_category']=='EVIDENCE_SUPPORTS_QUALIFIED_APPROVAL']
+manifest={'type':'advisory_eligible_subset_manifest','record_count':len(subset),'record_ids':subset,'source_candidate':'isolated-candidate-v1-20281029','candidate_sha256':'dbaa76ba35448d6ffbc94ace43d4ad7253ac4ed415a78ff76b14abbd86ae75a1','status':'NOT_CLEARED_NOT_FROZEN','authorization_required':'qualified rights decision and explicit project authorization'}
+with open(os.path.join(base,'PROPOSED_ELIGIBLE_SUBSET_MANIFEST.json'),'w') as f: json.dump(manifest,f,indent=2,sort_keys=True); f.write('\n')
+from collections import Counter
+c=Counter(r['eligibility_category'] for r in rows)
+report={'generated_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'candidate_sha256':manifest['candidate_sha256'],'records':len(rows),'eligibility_counts':c,'groups':{'PMC_CC_BY':10527,'PMC_CC0':157,'NON_PMC_LICENSE_LABELLED':4420,'NON_PMC_UNLABELLED':4153},'advisory_subset_records':len(subset),'advisory_subset_is_not_clearance':True,'rights_clearance':0,'training_authorized':0,'scientific_approval':0,'freeze_authorized':0,'key_decisions':[{'owner':'qualified_rights_authority','scope':'PMC CC-BY/CC0','records':10684,'question':'Does the verified article-level grant cover internal SFT, adapter evaluation, attribution and third-party exceptions?'},{'owner':'source-owner_or_qualified_rights_authority','scope':'non-PMC labelled','records':4420,'question':'Does each licence cover the extracted training text and intended use?'},{'owner':'source-owner_or_qualified_rights_authority','scope':'non-PMC unlabelled','records':4153,'question':'Establish provenance and permission or keep excluded.'},{'owner':'project_authority','scope':'scientific/evaluation/freeze/SFT','records':19257,'question':'Approve scientific dispositions, evaluation cohort, freeze and training.'}]}
+with open(os.path.join(base,'ELIGIBILITY_REPORT.json'),'w') as f: json.dump(report,f,indent=2,default=lambda x:dict(x)); f.write('\n')
+md=f'''# AxonAI-v1 eligibility path — bounded assessment\n\nCandidate: 19,257 records, SHA-256 `{manifest["candidate_sha256"]}`. This package is advisory and does not clear rights, freeze data, or authorize SFT.\n\n| Category | Records | Action |\n|---|---:|---|\n| EVIDENCE_SUPPORTS_QUALIFIED_APPROVAL | {c["EVIDENCE_SUPPORTS_QUALIFIED_APPROVAL"]} | Submit PMC CC-BY/CC0 groups for qualified determination |\n| ADDITIONAL_SOURCE_EVIDENCE_REQUIRED | {c["ADDITIONAL_SOURCE_EVIDENCE_REQUIRED"]} | Verify non-PMC licence covers extracted content |\n| EXCLUDE_PENDING_PERMISSION | {c["EXCLUDE_PENDING_PERMISSION"]} | Hold/exclude until provenance and permission |\n| QUALIFIED_LEGAL_DETERMINATION_REQUIRED | {c["QUALIFIED_LEGAL_DETERMINATION_REQUIRED"]} | Qualified review |\n\nThe proposed eligible-subset manifest contains the 10,684 PMC records with existing article-level licence evidence. It is not a training-ready subset: qualified review, scientific disposition, evaluation isolation, freeze and explicit SFT authorization remain required.\n\nShortest path: obtain one qualified group determination for PMC CC-BY/CC0; independently resolve non-PMC groups or keep them out; retain 4,153 unlabeled records excluded; then approve evaluation, freeze and SFT.\n'''
+open(os.path.join(base,'ELIGIBILITY_REPORT.md'),'w').write(md)
+for fn in ['ELIGIBILITY_MATRIX.jsonl','PROPOSED_ELIGIBLE_SUBSET_MANIFEST.json','ELIGIBILITY_REPORT.json','ELIGIBILITY_REPORT.md']:
+ h=hashlib.sha256(open(os.path.join(base,fn),'rb').read()).hexdigest(); print(fn,h)
+PY

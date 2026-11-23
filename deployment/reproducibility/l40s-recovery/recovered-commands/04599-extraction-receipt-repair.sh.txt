@@ -1,0 +1,11 @@
+/data/axonai/.venv/bin/python - <<'PY'
+import json,hashlib,os,datetime
+out='engineering-maintenance/frozen-v1-training-extraction-v1-20281029/train-10684.jsonl'; man='engineering-maintenance/v1-final-readiness-package-v1-20281029/V1_FREEZE_MANIFEST.json'; ids=json.load(open(man))['record_ids']
+def h(p):
+ x=hashlib.sha256()
+ with open(p,'rb') as f:
+  for chunk in iter(lambda:f.read(1<<20),b''): x.update(chunk)
+ return x.hexdigest()
+rec={'status':'COMPLETE','source_candidate_sha256':'dbaa76ba35448d6ffbc94ace43d4ad7253ac4ed415a78ff76b14abbd86ae75a1','approved_manifest_sha256':'b0810d15a4aa2968b03690a63a6d38d0ba9f9a9162acd357d08f77dbe772c8a4','extracted_jsonl_sha256':h(out),'record_count':len(ids),'id_coverage_exact':True,'deferred_excluded':8573,'algorithm':'manifest-order record-id filter v1','timestamp_utc':datetime.datetime.utcnow().isoformat()+'Z'}
+json.dump(rec,open('engineering-maintenance/frozen-v1-training-extraction-v1-20281029/EXTRACTION_RECEIPT.json','w'),indent=2,sort_keys=True); print(rec)
+PY

@@ -1,0 +1,17 @@
+python3 - <<'PY'
+import json,pathlib,hashlib,collections
+root=pathlib.Path('/data/axonai'); cand=root/'engineering-maintenance/isolated-candidate-v1-20281029/candidate-19257.jsonl'; lic={}
+for l in open(root/'datasets/axonai-v1/raw/biomedical/pmc-stratified/verified-license.jsonl'):
+ x=json.loads(l); lic[x.get('pmcid')]=x
+out=root/'engineering-maintenance/pmc-licence-verification-v1-20281029'; out.mkdir(parents=True,exist_ok=True); rows=[]; c=collections.Counter()
+for l in open(cand):
+ x=json.loads(l); p=x.get('provenance') or {}; pmc=p.get('pmcid'); e=lic.get(pmc); status='UNRESOLVED'
+ if e and e.get('license_verified'): status='EVIDENCE_VERIFIED_REVIEW_PENDING'; c['verified']+=1
+ elif pmc: c['unresolved_pmc']+=1
+ else: c['non_pmc']+=1
+ rows.append({'record_id':x['id'],'pmcid':pmc,'title':e.get('title') if e else None,'doi':e.get('doi') if e else p.get('doi'),'license':e.get('license') if e else x.get('license'),'license_evidence':e.get('license_evidence') if e else None,'verification_method':e.get('verification_method') if e else None,'status':status,'training_authorized':False})
+mf=out/'PMC_EVIDENCE_MATRIX.jsonl';
+with open(mf,'w') as f:
+ for r in rows:f.write(json.dumps(r,sort_keys=True)+'\n')
+summary={'records':len(rows),'pmc_records':sum(1 for r in rows if r['pmcid']),'article_license_verified_records':c['verified'],'unresolved_pmc_records':c['unresolved_pmc'],'non_pmc_records':c['non_pmc'],'training_authorized':0,'note':'Local verified-license manifest evidence reused; this supports licence evidence review, not automatic training clearance.'}; (out/'SUMMARY.json').write_text(json.dumps(summary,sort_keys=True,indent=2)+'\n'); (out/'COMPLETE.json').write_text(json.dumps({'status':'COMPLETE','matrix_sha256':hashlib.sha256(mf.read_bytes()).hexdigest(),'summary_sha256':hashlib.sha256((out/'SUMMARY.json').read_bytes()).hexdigest()},sort_keys=True,indent=2)+'\n'); print(summary)
+PY

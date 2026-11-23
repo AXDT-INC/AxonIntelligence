@@ -1,0 +1,17 @@
+{
+  "status": "DETACHED_TMUX_LAUNCH_SUBMITTED",
+  "submitted_utc": "2026-10-29T15:02:37.436060+00:00",
+  "argv": [
+    "tmux",
+    "-L",
+    "axonai-main-v2",
+    "new-session",
+    "-d",
+    "-s",
+    "axonai-main-sft-v4",
+    "exec /data/axonai/.venv/bin/python -B -u /data/axonai/engineering-maintenance/fsdp1-main-execution-snapshot-v4-20261029/launcher.py --approval /data/axonai/engineering-maintenance/project-owner-governance-v1-20261029/APPROVED_MAIN_SFT.v3.json --approval-sha256 18c7ca10073e571ddca0c8a9550ba3b71d8af2edcbcc6fb8bfc0d934ee5ad6fa >> /data/axonai/engineering-maintenance/project-owner-governance-v1-20261029/launch-console-v4.log 2>&1"
+  ],
+  "output": "/data/axonai/engineering-maintenance/main-sft-run-20261029T150039Z",
+  "approval_sha256": "18c7ca10073e571ddca0c8a9550ba3b71d8af2edcbcc6fb8bfc0d934ee5ad6fa",
+  "tmux_returncode": 0
+}

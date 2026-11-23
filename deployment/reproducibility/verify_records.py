@@ -77,6 +77,13 @@ def release_records():
     check(conversion["source_manifest_sha256"] == BF16_DIGEST
           and conversion["elements"] == provenance["merge"]["parameter_count"] == 26895998464
           and conversion["status"] == "passed", "Conversion report differs")
+    session_path = (Path(__file__).resolve().parents[1] / "v100-inference"
+                    / "session575-smoke-20261123T0705Z/result.json")
+    session = json.loads(session_path.read_bytes())
+    check(session["manifest_sha256"] == FP16_DIGEST and session["container"] == "axgt-session-575"
+          and session["exit_code"] == 0 and session["all_generated_logits_finite"] is True
+          and session["results"]["passed"] == session["results"]["total"] == 7,
+          "Session 575 evidence differs from the verified FP16 release")
     print("Release metadata verified: 4,230 sources, 10,684 attributed records,"
           " 496 adapted weights, 851 exported tensors and 14 shards per release.")
     return provenance, attribution
@@ -147,6 +154,32 @@ def recovered_sources(root, provenance):
           and extraction["extracted_jsonl_sha256"] == identity["extracted_jsonl_sha256"] == bindings["train_sha256"]
           == approval["training_jsonl_sha256"] == provenance["dataset"]["sha256"], "Training input differs")
     print(f"Verified launch approval, {len(members)} snapshot members, extraction receipt and step-668 result.")
+    dataset_writers(root, extraction)
+
+
+def dataset_writers(root, extraction):
+    recovery = root / "deployment/reproducibility/l40s-recovery"
+    maintenance = root / "engineering-maintenance"
+    candidate = json.loads((maintenance / "isolated-candidate-v1-20281029/CANDIDATE_RECEIPT.json").read_bytes())
+    freeze = json.loads((maintenance / "v1-freeze-activation-v1-20281029/DATASET_FREEZE_RECEIPT.json").read_bytes())
+    report = json.loads((recovery / "dataset-verification.json").read_bytes())
+    check(candidate["candidate_sha256"] == report["candidate_filter_sha256"] == extraction["source_candidate_sha256"]
+          and candidate["output_records"] == report["candidate_records"] == 19257
+          and freeze["manifest_sha256"] == report["approved_proposed_manifest_sha256"] == extraction["approved_manifest_sha256"]
+          and freeze["record_count"] == report["frozen_records"] == extraction["record_count"]
+          and report["frozen_serialization_sha256"] == extraction["extracted_jsonl_sha256"],
+          "L40S dataset digests or counts differ from historical receipts")
+    commands = recovery / "recovered-commands"
+    expected_exit = {1444: 1, 1453: 0, 1592: 0, 1804: 0, 2132: 0, 2186: 0, 2660: 0, 4592: 1, 4599: 0}
+    for line, code in expected_exit.items():
+        receipt, = commands.glob(f"{line:05d}-*.receipt.json")
+        event = json.loads(receipt.read_bytes())
+        command = receipt.with_name(receipt.name.removesuffix(".receipt.json") + ".sh.txt")
+        check(event["command_path"] == command.relative_to(recovery).as_posix()
+              and event["source_line_1based"] == line and event["execution"]["exit_code"] == code,
+              f"Command identity or recorded exit status differs for line {line}")
+        verify_file(command, event["command_sha256"])
+    print("Verified nine historical command bindings and the L40S dataset hashes against training receipts.")
 
 
 def merge_sources(root, provenance, external=None):

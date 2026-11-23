@@ -1,0 +1,12 @@
+{
+  "activated_utc": "2026-10-29T06:20:04.221953+00:00",
+  "deferred_records": 8573,
+  "evaluation_seal_receipt_sha256": "124790c856c2f79279331017f59131b21feba8ee199eb1cf3a4d38bcca2f713e",
+  "legal_opinion": false,
+  "manifest_sha256": "b0810d15a4aa2968b03690a63a6d38d0ba9f9a9162acd357d08f77dbe772c8a4",
+  "record_count": 10684,
+  "rights_basis": "Existing article-level evidence and attribution register; project-author approval; applicable licence conditions preserved",
+  "scientific_proposals_integrated": 0,
+  "scope": "PMC-only CC-BY/CC0 project-author approved internal SFT and adapter evaluation",
+  "status": "DATASET_FROZEN"
+}

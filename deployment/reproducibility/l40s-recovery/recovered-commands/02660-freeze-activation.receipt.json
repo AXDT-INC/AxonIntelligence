@@ -1,0 +1,20 @@
+{
+  "command_path": "recovered-commands/02660-freeze-activation.sh.txt",
+  "command_sha256": "0e9065f262c0d3aaadff3d4da9bdd50fe6e7a1396dce29f45e998f79638fd435",
+  "execution": {
+    "aggregated_output": "DATASET_FREEZE_RECEIPT.json b344880e5c57cb9824d9233d2613e03842fb37c0dfb8adf8bd5f7f707133ce40\nAPPROVED_MAIN_SFT.DRAFT.json 5c7fe3fdced71239226ae27dc8c9bea8b341657a615cf4b01cc78a835c7c8962\nPROJECT_AUTHORITY_APPROVAL.md adeaedae6d91db81496590fcf41028e14f0bbac4191c1c69472eebdab02aeccb\n",
+    "cwd": "file:///data/axonai",
+    "duration": {
+      "nanos": 37319,
+      "secs": 0
+    },
+    "exit_code": 0,
+    "id": "exec-3af82eba-bbf4-46d6-a84f-6240a181a1fc",
+    "status": "completed"
+  },
+  "raw_event_sha256": "bb1bdba281276fca75fb266e1994be0040a7a067bfe772149c123a29925ae910",
+  "source_line_1based": 2660,
+  "source_path": "/home/nvidia/.codex/sessions/2026/10/28/rollout-2026-10-28T09-39-06-01a134fa-5949-7dc3-9a77-6f4041a7eb35_01a181e0-a81e-7ce3-9843-2a9c5c3027fc.jsonl",
+  "status": "Historical command recovered verbatim from CommandExecution event; not executed during recovery",
+  "timestamp": "2026-10-29T06:20:04.251Z"
+}

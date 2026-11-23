@@ -1,0 +1,12 @@
+python3 - <<'PY'
+import json,pathlib,hashlib,time
+root=pathlib.Path('/data/axonai'); src=root/'datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/final-20000-staging-v11-20261009T051315Z/axonai-v1-20000-STAGING-NOT-FROZEN.jsonl'; out=root/'engineering-maintenance/isolated-candidate-v1-20281029'; out.mkdir(parents=True,exist_ok=True)
+expected='24889f6495d4e9e5015f7a63352fba470b9913fcb1dbeebc7d84c0eb0546b5fd'; h=hashlib.sha256(src.read_bytes()).hexdigest(); assert h==expected,(h,expected)
+holds={json.loads(l)['record_id'] for l in open(root/'decision-runs/axonai-v1-freeze-decisions-v1-20261012/licensing/record_decision_index_743.jsonl')}; extra={'axonai20k-4f44ac2cadec44b672698230'}; quarantine=holds|extra; ids=[]; rows=[]
+for l in open(src):
+ if not l.strip(): continue
+ x=json.loads(l); ids.append(x['id']);
+ if x['id'] not in quarantine: rows.append(l)
+assert len(ids)==20000 and len(set(ids))==20000 and len(quarantine)==743 and quarantine<=set(ids), (len(ids),len(quarantine),len(quarantine-set(ids)))
+cand=out/'candidate-19257.jsonl'; cand.write_text(''.join(rows)); ex=out/'exclusion-manifest.json'; ex.write_text(json.dumps({'source_sha256':h,'excluded_count':len(quarantine),'excluded_ids':sorted(quarantine)},sort_keys=True,indent=2)+'\n'); summary={'status':'ISOLATED_CANDIDATE_CONSTRUCTED_NOT_FROZEN','source_manifest_sha256':h,'source_records':20000,'excluded_records':len(quarantine),'output_records':len(rows),'candidate_sha256':hashlib.sha256(cand.read_bytes()).hexdigest(),'exclusion_manifest_sha256':hashlib.sha256(ex.read_bytes()).hexdigest(),'rights_summary':{'verified_permission':0,'unresolved_permission':len(rows),'other_restrictions':0,'note':'absence from hold index is not treated as clearance'},'pymol':{'historical_hold_excluded':'axonai20k-3322dc0128c955f84a5cdc2c','current_pymol_excluded':'axonai20k-934a7b9cf81d86983086d37d','current_pymol_remaining':'axonai20k-4f44ac2cadec44b672698230'},'freeze_authorized':False,'training_authorized':False}; (out/'CANDIDATE_RECEIPT.json').write_text(json.dumps(summary,sort_keys=True,indent=2)+'\n'); (out/'RIGHTS_SUMMARY.md').write_text('# Rights summary\n\nThe isolated 19,257-record artifact has zero records with independently verified training permission in the available evidence. All 19,257 remain unresolved for rights purposes; absence from the 743-hold index was not treated as clearance. One current PyMOL record remains and requires separate review.\n'); print(summary)
+PY

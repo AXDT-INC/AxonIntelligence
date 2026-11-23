@@ -1,0 +1,20 @@
+{
+  "command_path": "recovered-commands/01453-candidate-writer.sh.txt",
+  "command_sha256": "a5b36495b3f6638f93450b3d1972f23ed8031af0799dfaa21ce04e077c8dba59",
+  "execution": {
+    "aggregated_output": "{'status': 'ISOLATED_CANDIDATE_CONSTRUCTED_NOT_FROZEN', 'source_manifest_sha256': '24889f6495d4e9e5015f7a63352fba470b9913fcb1dbeebc7d84c0eb0546b5fd', 'source_records': 20000, 'excluded_records': 743, 'output_records': 19257, 'candidate_sha256': 'dbaa76ba35448d6ffbc94ace43d4ad7253ac4ed415a78ff76b14abbd86ae75a1', 'exclusion_manifest_sha256': '117f8b6bd78f8273fed7e8451ad0c2b172259e43e0c92137bbc577399f773036', 'rights_summary': {'verified_permission': 0, 'unresolved_permission': 19257, 'other_restrictions': 0}, 'historical_hold_absent_count': 1, 'freeze_authorized': False, 'training_authorized': False}\n",
+    "cwd": "file:///data/axonai",
+    "duration": {
+      "nanos": 442826631,
+      "secs": 0
+    },
+    "exit_code": 0,
+    "id": "exec-ff1b834e-a4e6-4148-be49-9d008686f186",
+    "status": "completed"
+  },
+  "raw_event_sha256": "0cbb29ea228037856ef3bb639a04ba689ad39b46471af04a461937fcae9eda85",
+  "source_line_1based": 1453,
+  "source_path": "/home/nvidia/.codex/sessions/2026/10/28/rollout-2026-10-28T09-39-06-01a134fa-5949-7dc3-9a77-6f4041a7eb35_01a181e0-a81e-7ce3-9843-2a9c5c3027fc.jsonl",
+  "status": "Historical command recovered verbatim from CommandExecution event; not executed during recovery",
+  "timestamp": "2026-10-29T04:26:06.495Z"
+}
