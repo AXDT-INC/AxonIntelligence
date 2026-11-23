@@ -1,10 +1,11 @@
 # Reproducing AxonAI-v1 from the training corpus to V100 inference
 
-The original L40S execution records identify both dataset writers. Starting with the pinned 20,000-record staging file, the L40S recovery reproduced the hashes of the 19,257-record candidate and the 10,684-record training JSONL in memory. The training identity binds the latter to the 668-step run. Release and session receipts connect its adapter to the merged BF16 model, the FP16 conversion and successful inference on two V100 GPUs. A complete executable replay starting from raw sources remains open at the assembly of the 20,000 staging records.
+The original L40S execution records identify both dataset writers. Starting with the pinned 20,000-record staging file, the L40S recovery reproduced the hashes of the 19,257-record candidate and the 10,684-record training JSONL in memory. The training identity binds the latter to the 668-step run. Release and session receipts connect its adapter to the merged BF16 model, the FP16 conversion and successful inference on two V100 GPUs. A separate L40S CPU reconstruction matched every byte of the 20,000-record staging file from retained intermediates. The original final assembly invocation and six of its nine historical input pins remain unresolved. Full historical replay starting from raw sources has yet to be demonstrated.
 
 | Stage | Verified evidence or reproducible operation | Remaining prerequisite |
 |---|---|---|
-| Raw sources to 20,000 staging records | Audit counts and SHA-256 digests of nine assembly inputs | Original final assembly invocation, private inputs, and execution-bound upstream generator versions and runtime |
+| Raw sources to intermediates | The recovered 7,200-slot production command pins its program and routing manifest | Private generation inputs, historical runners, models and runtime for an independent replay |
+| Intermediates to 20,000 staging records | Recorded CPU reconstruction matched all 20,000 lines and the staging SHA-256 | Twelve external files for the comparison. The historical final assembler, five archives and the object behind the supersession-plan pin remain unidentified or unavailable. |
 | Staging to frozen training data | Original inline commands, ordering, receipts and matching historical output hashes | Pinned staging file, historical hold index, licence evidence or approved manifests, and fresh isolated output paths |
 | SFT and checkpointing | Verify the exact launcher, worker, settings, runtime versions and checkpoint events of the completed run | Frozen data, pinned base, eight L40S GPUs, matching environment and historical input bindings for a replay |
 | Adapter merge | Apply the archived CPU merge and compare every exported tensor using the original equation checker | Complete pinned base, final adapter weights and matching packaging environment |
@@ -35,6 +36,33 @@ The [extraction receipt](../../engineering-maintenance/frozen-v1-training-extrac
 | 19,257 candidates after 743 exclusions | `engineering-maintenance/isolated-candidate-v1-20281029/candidate-19257.jsonl`, accompanied by `exclusion-manifest.json` | `dbaa76ba35448d6ffbc94ace43d4ad7253ac4ed415a78ff76b14abbd86ae75a1` (candidate) |
 | Ordered selection of 10,684 PMC records | `engineering-maintenance/v1-revised-scope-package-v1-20281029/V1_PROPOSED_MANIFEST.json`, field `record_ids` | `b0810d15a4aa2968b03690a63a6d38d0ba9f9a9162acd357d08f77dbe772c8a4` |
 
+### Reconstruction of the 20,000 staging records
+
+On L40S, the recovery verifier compared each reconstructed line with the preserved staging JSONL and checked for trailing bytes. All **20,000 records and 41,846,228 bytes** matched SHA-256 `24889f6495d4e9e5015f7a63352fba470b9913fcb1dbeebc7d84c0eb0546b5fd`. The historical candidate writer subsequently checked that same digest before filtering. [L40S reconstruction result](l40s-recovery/staging-20000/evidence/VERIFICATION_RESULT.json) · [Candidate receipt](../../engineering-maintenance/isolated-candidate-v1-20281029/CANDIDATE_RECEIPT.json)
+
+| Staging rows (inclusive) | Retained input in original order | Records |
+|---|---|---:|
+| 1–5,800 | Repaired batch001 | 5,800 |
+| 5,801–12,800 | PMC batch002 | 7,000 |
+| 12,801–19,960 | Accepted production records after removing 12 superseded IDs from 7,172 | 7,160 |
+| 19,961–19,988 | Recoveries covering all 28 exhausted routing slots | 28 |
+| 19,989–19,999 | Accepted duplicate replacements | 11 |
+| 20,000 | Final replacement for slot 06926 | 1 |
+
+The verifier preserves JSON key order, serializes with `json.dumps(row, ensure_ascii=False, separators=(',', ':'), sort_keys=False)`, appends one LF and encodes UTF-8. It also checks replacement slots, domains, tasks and source identities. The historical staging audit counted 20,000 unique IDs and 20,000 unique normalized questions. The original final assembly program, its invocation and its execution record are still missing. The later October 9 observation corroborates the staging metadata. The historical near-duplicate audit was outside the reconstruction. [Recovery verifier](l40s-recovery/staging-20000/tools/verify_20k_composition.py) · [October 9 observation](l40s-recovery/staging-20000/evidence/OCT09_OBSERVATION.json) · [Staging audit](l40s-recovery/staging-20000/staging-audit-report.json)
+
+**Original upstream invocation.** Line 68 of the L40S shell history preserves the 7,200-slot production command. It pins the production source (`107f9657c4d224d7bbbdc97dc0588ab7aa867c7c38dc21ea2a737d7201a7d441`) and routing manifest (`9fa357a11754f303703a1be1f8f9c7fa190ae8fc31d7624656c228a1ea9a2097`). Its run summary records 7,172 accepted slots and 28 exhausted. The history line has no timestamp. The package also supplies the repaired batch001 assembler and PMC producer source. Their file hashes establish the recovered bytes, while their exact historical launch revisions remain unconfirmed. [Original command](l40s-recovery/staging-20000/commands/production-7200-original-shell-history.txt) · [Command receipt](l40s-recovery/staging-20000/evidence/COMMAND_RECEIPT.json) · [Run summary](l40s-recovery/staging-20000/production-run/summary.json) · [Historical source](l40s-recovery/staging-20000/historical/src/)
+
+**Status of the nine historical pins.** The L40S recovery directly verified the batch001, PMC and production file hashes. Five archive payloads remain missing: `recovered28_archive`, `previous11_archive`, `single_archive`, `source12_archive` and `source1_archive`. Their expanded files match historical member checksums. Verification of the archive digests requires the original archive bytes. The sixth unresolved pin, `supersession_plan`, names digest `b73c01129e0fb30939fca75422ba80925582ff7ce261f9334faba1919c622d5e`. The retained 12-row plan matches its own historical checksum, `495a7a415bdb7e4683ef6098ff27fa2bf39b3d867c8fc5840429f9419947b964`. The object behind the first digest is unknown. [Nine pin bindings](l40s-recovery/staging-20000/evidence/NINE_PIN_BINDINGS.json) · [Original input hashes](l40s-recovery/staging-20000/input-sha256.json) · [Member checksums](l40s-recovery/staging-20000/member-checksums/)
+
+To repeat the byte comparison, run the following from the repository root on a host with the 12 external files in their recorded layout. Use Python 3.12.3 to match the historical recovery environment. The verifier reads those files, including the staging file used as the reference, and emits a JSON report to stdout. The original 7,200-slot command is retained as inert text. [Required paths, sizes and hashes](l40s-recovery/staging-20000/evidence/EXTERNAL_INPUTS.json)
+
+```sh
+python3.12 -B deployment/reproducibility/l40s-recovery/staging-20000/tools/verify_20k_composition.py --data-root /data/axonai
+```
+
+The incremental package was reconciled against the fourth commit, `ef3fb0f`. Its 53 entries verified against the supplied manifest SHA-256 `bae24736d3f5166261b128b8b9706813d307424c1f41395b5e4f01edfb753fc8`. The two identical staging records already in Git are reused above. On clu1 the review checked the verifier and result hashes, block counts, production bindings and checksum records. The line-by-line comparison was performed on L40S, where the private inputs reside. This establishes the identity of the staging output. Independent replay of raw-source generation and the historical final assembly remains open. [Incremental package manifest](l40s-recovery/staging-20000/package-SHA256SUMS)
+
 ### Original commands and byte-level evidence
 
 The commands below are inline Python recovered from October 29 L40S shell execution events. Each `.sh.txt` preserves the original command bytes. Its adjoining receipt identifies the source log, line, UTC timestamp, command and raw-event hashes, exit code and output. The November 3 lineage investigation compared already-written records. The later command recovery identifies the writers themselves. [Recovered commands and receipts](l40s-recovery/recovered-commands/)
@@ -47,8 +75,6 @@ The commands below are inline Python recovered from October 29 L40S shell execut
 | 4592, 4599 | The writer resolved `record_id` with fallback to `id`, checked duplicates and coverage, and wrote compact UTF-8 JSON in manifest order with one newline per record. After closing the file it exited 1 with `UnboundLocalError` in its checksum helper. The second command hashed the completed 23,478,493-byte file and wrote its receipt, exiting 0. [Writer](l40s-recovery/recovered-commands/04592-frozen-jsonl-writer-then-hash-failure.sh.txt) · [Receipt command](l40s-recovery/recovered-commands/04599-extraction-receipt-repair.sh.txt) |
 
 For a downstream replay, use an isolated workspace with the historical `/data/axonai` layout, read-only private inputs, and empty output locations. Start with the staging digest above and `decision-runs/axonai-v1-freeze-decisions-v1-20261012/licensing/record_decision_index_743.jsonl` (SHA-256 `245efa2005530a49a34c59727567de92a3839499e30dc879c2bb0ab9d1b854d7`). Create the candidate directory before running 1453. To reproduce the selection, supply the licence lookup pinned in the matrix verification and follow 1592 through 2186. For extraction from an existing approved selection, supply the hash-matched candidate and freeze wrapper. Run 4592 with its output directory still absent, then 4599 after confirming the recorded post-write failure. Compare the data digests above. New timestamped receipts will have different bytes.
-
-**Where raw-source replay stops.** The staging audit attributes 5,800 records to batch001, 7,000 to PMC production, 7,160 to production completion, 28 to historical recovery and 12 to duplicate replacements. The nine input hashes and audit were copied from the original staging directory in the table above. The package contains candidate upstream source revisions but does not establish the final assembly command or bind all generator revisions to that execution. The pinned staging file is the earliest verified starting point for the recovered writers. [Assembly input hashes](l40s-recovery/staging-20000/input-sha256.json) · [Staging audit](l40s-recovery/staging-20000/staging-audit-report.json)
 
 ## 2. Recover the training invocation and optimizer settings
 

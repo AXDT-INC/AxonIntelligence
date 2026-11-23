@@ -1,0 +1,128 @@
+[
+  {
+    "historical_pin_name": "batch001",
+    "historical_sha256": "8f3918f4eece4e83e87702308a972b1a620e76f34d0d244bb78a8df7792dfd67",
+    "direct_original_payload_hash_verified": true,
+    "available_related_payload": {
+      "original_relative_path": "datasets/axonai-v1/sft/train/repaired/batch001-repaired-20261002T141416Z/batch001-5800-repaired.jsonl",
+      "sha256": "8f3918f4eece4e83e87702308a972b1a620e76f34d0d244bb78a8df7792dfd67",
+      "bytes": 11223948,
+      "records": 5800,
+      "included": false
+    },
+    "binding_status": "Exact original file pin verified",
+    "note": ""
+  },
+  {
+    "historical_pin_name": "pmc",
+    "historical_sha256": "4ebc148178d70bd65302bbdc7714e3bde6e5fca662a08cc71a1dc1bc590d7f7f",
+    "direct_original_payload_hash_verified": true,
+    "available_related_payload": {
+      "original_relative_path": "datasets/axonai-v1/sft/train/pmc-batch002-7000.jsonl",
+      "sha256": "4ebc148178d70bd65302bbdc7714e3bde6e5fca662a08cc71a1dc1bc590d7f7f",
+      "bytes": 16037357,
+      "records": 7000,
+      "included": false
+    },
+    "binding_status": "Exact original file pin verified",
+    "note": ""
+  },
+  {
+    "historical_pin_name": "production",
+    "historical_sha256": "ba0f5b5b20add36c459bdda395ec2311626c7aeb0de33b553f9fcf24bce563f4",
+    "direct_original_payload_hash_verified": true,
+    "available_related_payload": {
+      "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/accepted-canonical.jsonl",
+      "sha256": "ba0f5b5b20add36c459bdda395ec2311626c7aeb0de33b553f9fcf24bce563f4",
+      "bytes": 15738412,
+      "records": 7172,
+      "included": false
+    },
+    "binding_status": "Exact original file pin verified",
+    "note": ""
+  },
+  {
+    "historical_pin_name": "recovered28_archive",
+    "historical_sha256": "c479afe31be7c1212e41100fbdc274a4a74c00603c9beb4a553a24a93a7a2f46",
+    "direct_original_payload_hash_verified": false,
+    "available_related_payload": {
+      "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/reconcile-28-20261008T155441Z/provisional-recovered-28.jsonl",
+      "sha256": "0e05760d4c4ffe548d55ff198c7ff27a00ecb1e7c52b46c956fc74989b10654f",
+      "bytes": 68525,
+      "records": 28,
+      "included": false
+    },
+    "binding_status": "Pinned object not located; expanded JSONL differs, independently matches its adjacent historical SHA256SUMS; original pinned-object/member relationship is not cryptographically verified",
+    "note": ""
+  },
+  {
+    "historical_pin_name": "supersession_plan",
+    "historical_sha256": "b73c01129e0fb30939fca75422ba80925582ff7ce261f9334faba1919c622d5e",
+    "direct_original_payload_hash_verified": false,
+    "available_related_payload": {
+      "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/duplicate-replacement-plan-20261008T163702Z/12-proposed-production-supersessions.jsonl",
+      "sha256": "495a7a415bdb7e4683ef6098ff27fa2bf39b3d867c8fc5840429f9419947b964",
+      "bytes": 18988,
+      "records": 12,
+      "included": false
+    },
+    "binding_status": "Pinned object not located; expanded JSONL differs, independently matches its adjacent historical SHA256SUMS; original pinned-object/member relationship is not cryptographically verified",
+    "note": "supersession_plan pin does not equal the preserved JSONL digest; archive/container interpretation remains unproven"
+  },
+  {
+    "historical_pin_name": "previous11_archive",
+    "historical_sha256": "3e88d4599b2c5b967d67ebc1bc15d54b8a42bfbc4fc6a9f22bcd389b824c527c",
+    "direct_original_payload_hash_verified": false,
+    "available_related_payload": {
+      "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/duplicate12-generated-v1/provisional-duplicate-replacements-12.jsonl",
+      "sha256": "0f18830e44a768b000265146e388016b0b60ead40df0b1078af06a096a180472",
+      "bytes": 29637,
+      "records": 11,
+      "included": false
+    },
+    "binding_status": "Pinned object not located; expanded JSONL differs, independently matches its adjacent historical SHA256SUMS; original pinned-object/member relationship is not cryptographically verified",
+    "note": ""
+  },
+  {
+    "historical_pin_name": "single_archive",
+    "historical_sha256": "bcc4edb9dd34b0f76545bd0cd190568419faff46d117cbb18d8c59e01d95acee",
+    "direct_original_payload_hash_verified": false,
+    "available_related_payload": {
+      "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/slot06926-generated-v1/provisional-single-06926.jsonl",
+      "sha256": "a1531f752b73ca1292443e75260a4226393922c9fc7cba4dd9920c82938c07e1",
+      "bytes": 2608,
+      "records": 1,
+      "included": false
+    },
+    "binding_status": "Pinned object not located; expanded JSONL differs, independently matches its adjacent historical SHA256SUMS; original pinned-object/member relationship is not cryptographically verified",
+    "note": ""
+  },
+  {
+    "historical_pin_name": "source12_archive",
+    "historical_sha256": "7a99de30ab0a60f73d9c80e954e0021f568e0048d919c8c9c0f460e5655a1fd5",
+    "direct_original_payload_hash_verified": false,
+    "available_related_payload": {
+      "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/duplicate12-source-freeze-20261009T042202Z/frozen-12-duplicate-replacement-sources.jsonl",
+      "sha256": "504c86a85b3dd047c27faf1c39408c1ae058f0ce24d15d469f2330a8dc3fa4e8",
+      "bytes": 76891,
+      "records": 12,
+      "included": false
+    },
+    "binding_status": "Pinned object not located; expanded JSONL differs, independently matches its adjacent historical SHA256SUMS; original pinned-object/member relationship is not cryptographically verified",
+    "note": ""
+  },
+  {
+    "historical_pin_name": "source1_archive",
+    "historical_sha256": "aebfe44772bf22a74a8b913590a8138ff96de973565c71b3e38143bb7fb2a955",
+    "direct_original_payload_hash_verified": false,
+    "available_related_payload": {
+      "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/slot06926-source-freeze-20261009T044828Z/frozen-06926-replacement-source.jsonl",
+      "sha256": "2bb726b3e2823e03a26df65912f13b1ae3e1ce38dd9146440b11a75c41de1973",
+      "bytes": 3456,
+      "records": 1,
+      "included": false
+    },
+    "binding_status": "Pinned object not located; expanded JSONL differs, independently matches its adjacent historical SHA256SUMS; original pinned-object/member relationship is not cryptographically verified",
+    "note": ""
+  }
+]

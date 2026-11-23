@@ -1,0 +1,169 @@
+{
+  "status": "PASS_BYTE_EXACT_COMPOSITION_FROM_RETAINED_INTERMEDIATES",
+  "original_assembly_implementation_recovered": false,
+  "original_assembly_invocation_recovered": false,
+  "full_raw_to_20k_historical_replay_proven": false,
+  "python": "3.12.3",
+  "verifier_sha256": "cdefc1bfa211843bdb5c91fdcff3daf08c41c374b1abd685428a9724730374c0",
+  "external_inputs_verified": {
+    "batch001": {
+      "sha256": "8f3918f4eece4e83e87702308a972b1a620e76f34d0d244bb78a8df7792dfd67",
+      "bytes": 11223948
+    },
+    "pmc": {
+      "sha256": "4ebc148178d70bd65302bbdc7714e3bde6e5fca662a08cc71a1dc1bc590d7f7f",
+      "bytes": 16037357
+    },
+    "production": {
+      "sha256": "ba0f5b5b20add36c459bdda395ec2311626c7aeb0de33b553f9fcf24bce563f4",
+      "bytes": 15738412
+    },
+    "recovered28": {
+      "sha256": "0e05760d4c4ffe548d55ff198c7ff27a00ecb1e7c52b46c956fc74989b10654f",
+      "bytes": 68525
+    },
+    "previous11": {
+      "sha256": "0f18830e44a768b000265146e388016b0b60ead40df0b1078af06a096a180472",
+      "bytes": 29637
+    },
+    "single": {
+      "sha256": "a1531f752b73ca1292443e75260a4226393922c9fc7cba4dd9920c82938c07e1",
+      "bytes": 2608
+    },
+    "supersession_rows": {
+      "sha256": "495a7a415bdb7e4683ef6098ff27fa2bf39b3d867c8fc5840429f9419947b964",
+      "bytes": 18988
+    },
+    "source12": {
+      "sha256": "504c86a85b3dd047c27faf1c39408c1ae058f0ce24d15d469f2330a8dc3fa4e8",
+      "bytes": 76891
+    },
+    "source1": {
+      "sha256": "2bb726b3e2823e03a26df65912f13b1ae3e1ce38dd9146440b11a75c41de1973",
+      "bytes": 3456
+    },
+    "exhausted": {
+      "sha256": "afabf785c10375812f3715891383ba6c685cca4c8c745005182a7cf8980fbfe9",
+      "bytes": 133718
+    },
+    "routing7200": {
+      "sha256": "9fa357a11754f303703a1be1f8f9c7fa190ae8fc31d7624656c228a1ea9a2097",
+      "bytes": 32980642
+    },
+    "staging": {
+      "sha256": "24889f6495d4e9e5015f7a63352fba470b9913fcb1dbeebc7d84c0eb0546b5fd",
+      "bytes": 41846228
+    }
+  },
+  "historical_member_checksum_bindings_verified": {
+    "batch001": "datasets/axonai-v1/sft/train/repaired/batch001-repaired-20261002T141416Z/SHA256SUMS",
+    "recovered28": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/reconcile-28-20261008T155441Z/SHA256SUMS",
+    "previous11": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/duplicate12-generated-v1/SHA256SUMS",
+    "single": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/slot06926-generated-v1/SHA256SUMS",
+    "supersession_rows": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/duplicate-replacement-plan-20261008T163702Z/SHA256SUMS",
+    "source12": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/duplicate12-source-freeze-20261009T042202Z/SHA256SUMS",
+    "source1": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/slot06926-source-freeze-20261009T044828Z/SHA256SUMS",
+    "routing7200": "datasets/axonai-v1/plans/20k-completion/final-routing-freeze/freeze-20261003T030006Z/SHA256SUMS",
+    "staging": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/final-20000-staging-v11-20261009T051315Z/SHA256SUMS"
+  },
+  "composition_order": {
+    "batch001": {
+      "records": 5800,
+      "first_row_1based": 1,
+      "last_row_1based": 5800
+    },
+    "pmc": {
+      "records": 7000,
+      "first_row_1based": 5801,
+      "last_row_1based": 12800
+    },
+    "production": {
+      "records": 7160,
+      "first_row_1based": 12801,
+      "last_row_1based": 19960
+    },
+    "recovered28": {
+      "records": 28,
+      "first_row_1based": 19961,
+      "last_row_1based": 19988
+    },
+    "previous11": {
+      "records": 11,
+      "first_row_1based": 19989,
+      "last_row_1based": 19999
+    },
+    "single": {
+      "records": 1,
+      "first_row_1based": 20000,
+      "last_row_1based": 20000
+    }
+  },
+  "records": 20000,
+  "unique_ids": 20000,
+  "unique_questions_whitespace_lowercase": 20000,
+  "baseline_exact_question_duplicate_groups": 12,
+  "baseline_duplicate_extra_records": 12,
+  "superseded_production_records": 12,
+  "replacement_domain_task_slot_and_source_bindings_verified": true,
+  "production_order_matches_routing_manifest": true,
+  "recovered28_exactly_covers_exhausted_slots": true,
+  "domain_counts": {
+    "bioinformatics": 4200,
+    "scientific_computing": 3300,
+    "research_methodology": 3500,
+    "literature_reasoning": 2500,
+    "biomedical": 6500
+  },
+  "source_issuer_counts": {
+    "galaxy-training-network": 5131,
+    "biopython": 352,
+    "snakemake": 143,
+    "nextflow": 722,
+    "turing-way": 2174,
+    "PubMed Central": 10684,
+    "AXDT-INC/AxonOS": 794
+  },
+  "domain_task_counts": {
+    "bioinformatics|bioinformatics_workflow": 800,
+    "bioinformatics|coding": 700,
+    "bioinformatics|evidence_assessment": 550,
+    "bioinformatics|reasoning": 650,
+    "bioinformatics|result_interpretation": 550,
+    "bioinformatics|scientific_qa": 550,
+    "bioinformatics|uncertainty_assessment": 400,
+    "biomedical|bioinformatics_workflow": 722,
+    "biomedical|coding": 722,
+    "biomedical|evidence_assessment": 722,
+    "biomedical|experimental_design": 723,
+    "biomedical|reasoning": 722,
+    "biomedical|result_interpretation": 722,
+    "biomedical|scientific_qa": 722,
+    "biomedical|statistical_analysis": 723,
+    "biomedical|uncertainty_assessment": 722,
+    "literature_reasoning|literature_reasoning": 2500,
+    "research_methodology|evidence_assessment": 450,
+    "research_methodology|experimental_design": 500,
+    "research_methodology|literature_reasoning": 400,
+    "research_methodology|reasoning": 450,
+    "research_methodology|result_interpretation": 400,
+    "research_methodology|scientific_qa": 400,
+    "research_methodology|statistical_analysis": 500,
+    "research_methodology|uncertainty_assessment": 400,
+    "scientific_computing|coding": 700,
+    "scientific_computing|evidence_assessment": 500,
+    "scientific_computing|reasoning": 600,
+    "scientific_computing|result_interpretation": 500,
+    "scientific_computing|scientific_qa": 500,
+    "scientific_computing|uncertainty_assessment": 500
+  },
+  "reconstructed_bytes": 41846228,
+  "reconstructed_sha256": "24889f6495d4e9e5015f7a63352fba470b9913fcb1dbeebc7d84c0eb0546b5fd",
+  "original_staging_bytes_matched_line_by_line": true,
+  "serialization": "json.dumps(row, ensure_ascii=False, separators=(comma, colon), sort_keys=False) + LF; UTF-8",
+  "corpus_output_written": false,
+  "limitations": [
+    "Original assembly script/invocation and their execution identity are missing.",
+    "Five original archive pins and the supersession_plan pin remain unverified against original payloads.",
+    "This verifier does not recreate LLM generation or the historical near-duplicate audit."
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "batch001": {
+    "original_relative_path": "datasets/axonai-v1/sft/train/repaired/batch001-repaired-20261002T141416Z/batch001-5800-repaired.jsonl",
+    "sha256": "8f3918f4eece4e83e87702308a972b1a620e76f34d0d244bb78a8df7792dfd67",
+    "bytes": 11223948,
+    "records": 5800,
+    "included": false
+  },
+  "pmc": {
+    "original_relative_path": "datasets/axonai-v1/sft/train/pmc-batch002-7000.jsonl",
+    "sha256": "4ebc148178d70bd65302bbdc7714e3bde6e5fca662a08cc71a1dc1bc590d7f7f",
+    "bytes": 16037357,
+    "records": 7000,
+    "included": false
+  },
+  "production": {
+    "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/accepted-canonical.jsonl",
+    "sha256": "ba0f5b5b20add36c459bdda395ec2311626c7aeb0de33b553f9fcf24bce563f4",
+    "bytes": 15738412,
+    "records": 7172,
+    "included": false
+  },
+  "recovered28": {
+    "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/reconcile-28-20261008T155441Z/provisional-recovered-28.jsonl",
+    "sha256": "0e05760d4c4ffe548d55ff198c7ff27a00ecb1e7c52b46c956fc74989b10654f",
+    "bytes": 68525,
+    "records": 28,
+    "included": false
+  },
+  "previous11": {
+    "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/duplicate12-generated-v1/provisional-duplicate-replacements-12.jsonl",
+    "sha256": "0f18830e44a768b000265146e388016b0b60ead40df0b1078af06a096a180472",
+    "bytes": 29637,
+    "records": 11,
+    "included": false
+  },
+  "single": {
+    "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/slot06926-generated-v1/provisional-single-06926.jsonl",
+    "sha256": "a1531f752b73ca1292443e75260a4226393922c9fc7cba4dd9920c82938c07e1",
+    "bytes": 2608,
+    "records": 1,
+    "included": false
+  },
+  "supersession_rows": {
+    "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/duplicate-replacement-plan-20261008T163702Z/12-proposed-production-supersessions.jsonl",
+    "sha256": "495a7a415bdb7e4683ef6098ff27fa2bf39b3d867c8fc5840429f9419947b964",
+    "bytes": 18988,
+    "records": 12,
+    "included": false
+  },
+  "source12": {
+    "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/duplicate12-source-freeze-20261009T042202Z/frozen-12-duplicate-replacement-sources.jsonl",
+    "sha256": "504c86a85b3dd047c27faf1c39408c1ae058f0ce24d15d469f2330a8dc3fa4e8",
+    "bytes": 76891,
+    "records": 12,
+    "included": false
+  },
+  "source1": {
+    "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/slot06926-source-freeze-20261009T044828Z/frozen-06926-replacement-source.jsonl",
+    "sha256": "2bb726b3e2823e03a26df65912f13b1ae3e1ce38dd9146440b11a75c41de1973",
+    "bytes": 3456,
+    "records": 1,
+    "included": false
+  },
+  "exhausted": {
+    "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/exhausted-slots.jsonl",
+    "sha256": "afabf785c10375812f3715891383ba6c685cca4c8c745005182a7cf8980fbfe9",
+    "bytes": 133718,
+    "records": 28,
+    "included": false
+  },
+  "routing7200": {
+    "original_relative_path": "datasets/axonai-v1/plans/20k-completion/final-routing-freeze/freeze-20261003T030006Z/final-generation-source-manifest-7200.jsonl",
+    "sha256": "9fa357a11754f303703a1be1f8f9c7fa190ae8fc31d7624656c228a1ea9a2097",
+    "bytes": 32980642,
+    "records": 7200,
+    "included": false
+  },
+  "staging": {
+    "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/final-20000-staging-v11-20261009T051315Z/axonai-v1-20000-STAGING-NOT-FROZEN.jsonl",
+    "sha256": "24889f6495d4e9e5015f7a63352fba470b9913fcb1dbeebc7d84c0eb0546b5fd",
+    "bytes": 41846228,
+    "records": 20000,
+    "included": false
+  }
+}

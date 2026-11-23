@@ -1,0 +1,124 @@
+{
+  "source_session": "/home/nvidia/.codex/sessions/2026/10/09/rollout-2026-10-09T12-33-26-01a120a7-705c-7ee1-a176-a0e4bde0486a.jsonl",
+  "line": 44,
+  "raw_event_sha256": "a319e27ef57602c347dbb549768cbc2539ef60fad145fb4484f34c46147c6468",
+  "timestamp": "2026-10-09T12:38:11.972Z",
+  "call_id": "call_539c9d6102a1481eb234fa2dd1c636c3",
+  "scope": "Metadata extracted from later same-day read-only inspection; this is NOT an assembly execution receipt. No full session or QA text copied.",
+  "blocks": [
+    {
+      "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/final-20000-staging-v11-20261009T051315Z/input-sha256.json",
+      "observed_json": {
+        "batch001": "8f3918f4eece4e83e87702308a972b1a620e76f34d0d244bb78a8df7792dfd67",
+        "pmc": "4ebc148178d70bd65302bbdc7714e3bde6e5fca662a08cc71a1dc1bc590d7f7f",
+        "production": "ba0f5b5b20add36c459bdda395ec2311626c7aeb0de33b553f9fcf24bce563f4",
+        "recovered28_archive": "c479afe31be7c1212e41100fbdc274a4a74c00603c9beb4a553a24a93a7a2f46",
+        "supersession_plan": "b73c01129e0fb30939fca75422ba80925582ff7ce261f9334faba1919c622d5e",
+        "previous11_archive": "3e88d4599b2c5b967d67ebc1bc15d54b8a42bfbc4fc6a9f22bcd389b824c527c",
+        "single_archive": "bcc4edb9dd34b0f76545bd0cd190568419faff46d117cbb18d8c59e01d95acee",
+        "source12_archive": "7a99de30ab0a60f73d9c80e954e0021f568e0048d919c8c9c0f460e5655a1fd5",
+        "source1_archive": "aebfe44772bf22a74a8b913590a8138ff96de973565c71b3e38143bb7fb2a955"
+      }
+    },
+    {
+      "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/final-20000-staging-v11-20261009T051315Z/staging-audit-report.json",
+      "observed_json": {
+        "version": "axonai-v1-final-20000-staging-audit-v1.1",
+        "status": "STAGING_COMPLETE_REVIEW_REQUIRED",
+        "records": 20000,
+        "unique_record_ids": 20000,
+        "unique_normalized_questions": 20000,
+        "origin_counts": {
+          "batch001": 5800,
+          "pmc": 7000,
+          "production": 7160,
+          "historical_recoveries_28": 28,
+          "duplicate_replacements_12": 12
+        },
+        "superseded_production_records_excluded": 12,
+        "historic_recovery_archive_included_once": true,
+        "duplicate_replacements_from_old_archive": 11,
+        "single_slot_replacement_from_new_archive": 1,
+        "domain_task_quotas_preserved": true,
+        "domain_counts": {
+          "bioinformatics": 4200,
+          "scientific_computing": 3300,
+          "research_methodology": 3500,
+          "literature_reasoning": 2500,
+          "biomedical": 6500
+        },
+        "licence_value_counts": {
+          "None": 4870,
+          "CC-BY-4.0": 3407,
+          "LicenseRef-Biopython-Agreement": 136,
+          "CC-BY": 10527,
+          "CC0": 157,
+          "MIT": 806,
+          "MPL-2.0": 34,
+          "Apache-2.0": 63
+        },
+        "source_issuer_counts": {
+          "galaxy-training-network": 5131,
+          "biopython": 352,
+          "snakemake": 143,
+          "nextflow": 722,
+          "turing-way": 2174,
+          "PubMed Central": 10684,
+          "AXDT-INC/AxonOS": 794
+        },
+        "max_units_per_origin": {
+          "batch001|scientific-chunk-00004259": 2,
+          "batch001|scientific-chunk-00003590": 2,
+          "batch001|scientific-chunk-00009682": 2,
+          "batch001|scientific-chunk-00002967": 2,
+          "batch001|scientific-chunk-00007980": 2,
+          "batch001|scientific-chunk-00006599": 2,
+          "batch001|scientific-chunk-00006454": 2,
+          "batch001|scientific-chunk-00008296": 2,
+          "batch001|scientific-chunk-00007987": 2,
+          "batch001|scientific-chunk-00007978": 2
+        },
+        "near_duplicate_pairs_flagged": 42,
+        "near_duplicate_method": {
+          "method": "v1 shingle candidate screen + SequenceMatcher 0.90; exact 64-way partition",
+          "pairs_considered": 871180,
+          "shards": 64,
+          "peak_shard_candidates": 15233,
+          "skipped_generic_shingles": 115,
+          "is_exhaustive_semantic_paraphrase_check": false,
+          "run": true
+        },
+        "provenance_missing_unit_records": [],
+        "original_training_files_modified": false,
+        "original_production_sqlite_modified": false,
+        "ready_for_training": false,
+        "next_gate": "INDEPENDENT_FINAL_HARD_AUDIT_AND_EXPLICIT_VERSIONED_FREEZE",
+        "cautions": [
+          "This is a versioned staging corpus, NOT a model-training release.",
+          "The 2/unit and 12/document concentration caps were approved per generation batch; global concentrations require disclosure.",
+          "This lexical near-duplicate screen is not an exhaustive semantic paraphrase search.",
+          "Licences and provenance must be audited against primary sources prior to distribution.",
+          "Final model-appropriate token length audit and representative difficult-case QA remain to be completed."
+        ],
+        "staged_dataset_sha256": "24889f6495d4e9e5015f7a63352fba470b9913fcb1dbeebc7d84c0eb0546b5fd"
+      }
+    },
+    {
+      "original_relative_path": "datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/final-20000-staging-v11-20261009T051315Z/superseded-production-record-ids.json",
+      "observed_json": [
+        "axonai20k-054bb4340df0c123c7b399b3",
+        "axonai20k-08b7ee14c3f12a3c6553af01",
+        "axonai20k-373692cf3052cdd5bc002fc8",
+        "axonai20k-4591441b5088c94239cda15e",
+        "axonai20k-8e139836c14e443c5397b970",
+        "axonai20k-9bd8333b96358c694ef1aed8",
+        "axonai20k-a4d973bd6573a590906e1f66",
+        "axonai20k-b1c5c767f72336b79f16e9e3",
+        "axonai20k-b5b78155d34d7ce30ef17c96",
+        "axonai20k-eff4452e330569bee2602b7a",
+        "axonai20k-f34200b5c8a1f1d1038e2100",
+        "axonai20k-fb4f50d6e433ba6b39920ecf"
+      ]
+    }
+  ]
+}

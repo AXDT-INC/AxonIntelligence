@@ -1,0 +1,20 @@
+{
+  "version": "axonai-7200-production-v1",
+  "manifest_sha256": "9fa357a11754f303703a1be1f8f9c7fa190ae8fc31d7624656c228a1ea9a2097",
+  "accepted": 7172,
+  "exhausted": 28,
+  "status_counts": {
+    "ACCEPTED": 7172,
+    "EXHAUSTED": 28
+  },
+  "attempt_distribution": {
+    "1": 7017,
+    "2": 128,
+    "3": 18,
+    "4": 37
+  },
+  "elapsed_seconds": 271468.68857598305,
+  "generator": "Qwen/Qwen3.8-27B",
+  "verifier": "Qwen/Qwen3-32B-V3-two-stage",
+  "status": "PRODUCTION_7200_INCOMPLETE"
+}

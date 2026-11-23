@@ -1,0 +1,11 @@
+{
+  "version": "axonai-7200-production-v1",
+  "manifest": "/tmp/axonai-prod-manifest/axonai-final-routing-freeze/final-generation-source-manifest-7200.jsonl",
+  "manifest_sha256": "9fa357a11754f303703a1be1f8f9c7fa190ae8fc31d7624656c228a1ea9a2097",
+  "generator_model": "/data/axonai/models/base/Qwen3.8-27B",
+  "verifier_model": "/data/axonai/models/base/Qwen3-32B",
+  "generator_name": "Qwen/Qwen3.8-27B",
+  "verifier_name": "Qwen/Qwen3-32B-V3-two-stage",
+  "max_attempts": 4,
+  "started_or_resumed_at": 1791000280.5098188
+}

@@ -1,0 +1,10 @@
+{
+  "original_path": "/home/nvidia/.bash_history",
+  "line": 68,
+  "history_file_sha256_at_recovery": "8bc2072cf52e6900a49d02b10d6e11f235f2b41a7936c0883e51bb51f15e2155",
+  "raw_line_sha256": "78872567000ac56be9bcc7d3f699a242cc7a84db34ddf54eef0e79ad13df03ad",
+  "timestamp": "not recorded in shell history",
+  "source_sha256_pin": "107f9657c4d224d7bbbdc97dc0588ab7aa867c7c38dc21ea2a737d7201a7d441",
+  "source_pin_matches_current_file": true,
+  "meaning": "Original upstream production invocation, NOT final 20k assembly invocation. Retained as inert text; do not run."
+}
