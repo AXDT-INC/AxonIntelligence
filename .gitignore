@@ -134,6 +134,11 @@ test-workspace/
 *.o
 *.a
 *.log
+!/engineering-maintenance/merged-v1-packaging-v1-20261109/CPU_TESTS.log
+!/engineering-maintenance/merged-v1-packaging-v1-20261109/CPU_GUARD_TESTS.log
+!/engineering-maintenance/merged-v1-packaging-v1-20261109/CPU_NO_PEFT_ENV_TESTS.log
+!/engineering-maintenance/merged-v1-packaging-v1-20261109/CPU_TMPDIR_TEST.log
+/engineering-maintenance/merged-v1-packaging-v1-20261109/VALIDATION_PROMPTS.json
 *.log.*
 *.stdout
 *.stderr

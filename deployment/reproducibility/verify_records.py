@@ -149,22 +149,71 @@ def recovered_sources(root, provenance):
     print(f"Verified launch approval, {len(members)} snapshot members, extraction receipt and step-668 result.")
 
 
-def merge_sources(root, provenance):
+def merge_sources(root, provenance, external=None):
     package = root / "engineering-maintenance/merged-v1-packaging-v1-20261109"
-    freeze = json.loads((package / "EXECUTION_FREEZE.json").read_bytes())
-    for name in ("merge_cpu.py", "verify_weights.py", "campaign.py", "validate_gpu.py", "runtime_safeguards.py"):
-        verify_file(package / name, freeze[name])
+    historical_package = Path("/data/axonai") / package.relative_to(root)
+    artifacts_path = package / "ARTIFACT_MANIFEST.json"
+    verify_file(artifacts_path, "69457aa564895f5a7bd59b9fd4895c7b8fe3d6d368ab6b66523aebad96cb1545")
+    artifacts = json.loads(artifacts_path.read_bytes())
+    rows = {row["path"]: row for row in artifacts["files"]}
+    model = artifacts["model_manifest"]
+    check(model["sha256"] == BF16_DIGEST and model["path"] == "/data/axonai/models/merged/AxonAI-v1-27B/" + MANIFEST,
+          "Package names a different BF16 release")
+    verify_file(BF16 / MANIFEST, model["sha256"], model["bytes"])
+    missing = set()
+
+    def verify_member(name, digest=None, size=None):
+        check(Path(name).name == name and name not in ("", ".", ".."), "Invalid campaign filename")
+        row = rows[str(historical_package / name)]
+        check((digest is None or row["sha256"] == digest) and (size is None or row["bytes"] == size),
+              f"Conflicting campaign records for {name}")
+        path = package / name
+        if name == "VALIDATION_PROMPTS.json" and not path.is_file():
+            if external is None:
+                missing.add(name)
+                return
+            path = external / name
+        verify_file(path, row["sha256"], row["bytes"])
+
+    for record in ("EXECUTION_FREEZE.json", "REPAIR_EXECUTION_FREEZE.json", "REPAIR2_EXECUTION_FREEZE.json"):
+        verify_member(record)
+        freeze = json.loads((package / record).read_bytes())
+        for name, digest in freeze.items():
+            verify_member(name, digest)
+    for name in ("CPU_TEST_RESULTS.json", "VALIDATION_REPAIR.diff", "MERGE_RESULT.json", "preflight.py",
+                 "compare.py", "summarize.py", "verify_equations.py", "package_support.py", "finalize_package.py"):
+        verify_member(name)
+    tests = json.loads((package / "CPU_TEST_RESULTS.json").read_bytes())
+    check(sum(t["count"] for t in tests["tests"]) == tests["passed"] == 9 and tests["failed"] == 0,
+          "Historical CPU test totals differ")
+    for row in [t["file"] for t in tests["tests"]] + [tests["weight_equation_check"]]:
+        verify_member(Path(row["path"]).name, row["sha256"], row["bytes"])
+    preflight = json.loads((package / "PREFLIGHT.json").read_bytes())
+    authorization = json.loads((package / "AUTHORIZATION.json").read_bytes())
+    check(preflight["all_passed"] and preflight["verified_source_files"] == provenance["base_files"]
+          and preflight["adapter"] == provenance["adapter"]
+          and preflight["base_revision"] == authorization["base_revision"] == provenance["base_revision"]
+          and authorization["adapter_sha256"] == provenance["adapter"]["sha256"],
+          "Historical preflight or authorization differs from the BF16 release")
     check(json.loads((package / "MERGE_RESULT.json").read_bytes()) == provenance["merge"],
           "Archived merge result differs from release provenance")
     bf = manifest(BF16, BF16_DIGEST)
+    summary = rows[str(historical_package / "VALIDATION_SUMMARY.json")]
+    check(summary["sha256"] == bf["VALIDATION_SUMMARY.json"]["sha256"]
+          and summary["bytes"] == bf["VALIDATION_SUMMARY.json"]["bytes"], "Release validation summary differs")
+    verify_file(BF16 / "VALIDATION_SUMMARY.json", summary["sha256"], summary["bytes"])
     for name in ("MERGE_EQUATION_VERIFICATION.json", "standalone_inference.py", "verify_manifest.py"):
         verify_file(package / name, bf[name]["sha256"], bf[name]["bytes"])
-    print("Verified frozen merge and validation source, merge result and release-bound files.")
+    print("Verified BF16 campaign source and available records against the freezes and release provenance.")
+    if missing:
+        print("Recorded inputs requiring external bytes for a full hash check:", ", ".join(sorted(missing)))
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--archive-root", type=Path, help="directory corresponding to /data/axonai")
+    parser.add_argument("--bf16-inputs", type=Path,
+                        help="BF16 campaign directory containing the external frozen inputs; require all hashes")
     parser.add_argument("--check-input", action="append",
                         choices=("dataset", "attribution", "config", "adapter", "base"),
                         help="stream and hash this group of original inputs (repeatable)")
@@ -173,6 +222,6 @@ if __name__ == "__main__":
         parser.error("supply --archive-root and --check-input together")
     evidence, register = release_records()
     recovered_sources(Path(__file__).resolve().parents[2], evidence)
-    merge_sources(Path(__file__).resolve().parents[2], evidence)
+    merge_sources(Path(__file__).resolve().parents[2], evidence, args.bf16_inputs)
     if args.check_input:
         archive_inputs(args.archive_root, args.check_input, evidence, register)

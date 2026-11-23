@@ -1,0 +1,8 @@
+{
+  "resume_validation.py": "8de745c525aea6dc1baba1d5da1aa664ec6e5fd9cf7575abe1a3044842ec09ad",
+  "validate_gpu.v2.py": "fcd666326f25e08f19621d8dc52e614415101e0cfae897ccf9276a970172c25e",
+  "no_peft_guard.py": "4f2dcb9e8707256680c8181695139c760bd9db22f63cc4a3a021c03ae665fd25",
+  "campaign.py": "26de67e341fe690fe5634a35616c5a10dd885c7e854766a22c28af24a737007e",
+  "VALIDATION_PROMPTS.json": "932c88ba252710a40998accd1be0ef5a0d502d67743f94c814f43dd8166e5ef9",
+  "CPU_GUARD_TESTS.log": "a56f0bec51b2e9dcc98e14f9d49ba0376032d774ca5911a1051573e1f274266a"
+}

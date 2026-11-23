@@ -1,0 +1,28 @@
+--- original
++++ repair1
+@@ -3,12 +3,10 @@
+ P=Path(__file__).resolve().parent;ROOT=Path('/data/axonai');BASE=ROOT/'models/base/Qwen3.8-27B';ADAPTER=ROOT/'engineering-maintenance/main-sft-run-20261029T150039Z/final_adapter';MERGED=ROOT/'models/merged/AxonAI-v1-27B'
+ from runtime_safeguards import restrict_writes,write,append
+ 
+-def main(mode):
+- out=P/mode;out.mkdir(exist_ok=False);write(out/'CONFINEMENT.json',restrict_writes(P))
++def main(mode,output_name=None):
++ out=P/(output_name or mode);out.mkdir(exist_ok=False);write(out/'CONFINEMENT.json',restrict_writes(P))
+  if mode!='baseline':
+-  class NoPeft(importlib.abc.MetaPathFinder):
+-   def find_spec(self,fullname,path=None,target=None):
+-    if fullname=='peft' or fullname.startswith('peft.'):raise ImportError('Standalone validation forbids PEFT imports')
++  from no_peft_guard import NoPeft
+   sys.meta_path.insert(0,NoPeft())
+   def audit(event,args):
+    if event=='open' and isinstance(args[0],(str,bytes,os.PathLike)):
+@@ -60,6 +58,6 @@
+  import gc;gc.collect()
+  for d in range(2):torch.cuda.synchronize(d);torch.cuda.empty_cache()
+ if __name__=='__main__':
+- p=argparse.ArgumentParser();p.add_argument('mode',choices=['baseline','merged','smoke']);a=p.parse_args()
+- try:main(a.mode)
+- except BaseException:(P/(a.mode+'_TRACEBACK.log')).write_text(traceback.format_exc());raise
++ p=argparse.ArgumentParser();p.add_argument('mode',choices=['baseline','merged','smoke']);p.add_argument('--output-name');a=p.parse_args()
++ try:main(a.mode,a.output_name)
++ except BaseException:(P/((a.output_name or a.mode)+'_TRACEBACK.log')).write_text(traceback.format_exc());raise

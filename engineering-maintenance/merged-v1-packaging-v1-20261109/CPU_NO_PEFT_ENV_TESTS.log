@@ -1,0 +1,7 @@
+test_actual_model_class_import_without_peft (__main__.NoPeftEnvironment.test_actual_model_class_import_without_peft) ... ok
+test_package_reported_absent_and_import_blocked (__main__.NoPeftEnvironment.test_package_reported_absent_and_import_blocked) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 3.393s
+
+OK

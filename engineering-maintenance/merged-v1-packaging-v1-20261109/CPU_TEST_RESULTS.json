@@ -1,0 +1,45 @@
+{
+  "passed": 9,
+  "failed": 0,
+  "tests": [
+    {
+      "file": {
+        "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/CPU_TESTS.log",
+        "sha256": "a4f8f127f60c09ddd1d62df1d86f2a2671fc3cdbd3c99715c3122ace11dac818",
+        "bytes": 446
+      },
+      "count": 4
+    },
+    {
+      "file": {
+        "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/CPU_GUARD_TESTS.log",
+        "sha256": "a56f0bec51b2e9dcc98e14f9d49ba0376032d774ca5911a1051573e1f274266a",
+        "bytes": 320
+      },
+      "count": 2,
+      "note": "First guard version tests retained; actual model import required subsequent repair."
+    },
+    {
+      "file": {
+        "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/CPU_NO_PEFT_ENV_TESTS.log",
+        "sha256": "1a965b4a1ff1b3a9f5f5731d79d80131cd0623ee8f967be36afefb8addfe3785",
+        "bytes": 354
+      },
+      "count": 2
+    },
+    {
+      "file": {
+        "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/CPU_TMPDIR_TEST.log",
+        "sha256": "30bdb05a7ceef2ab0691752d90707fae5b01e280c9de19ef91ee344ecb8b7057",
+        "bytes": 53
+      },
+      "count": 1
+    }
+  ],
+  "all_current_checks_passed": true,
+  "weight_equation_check": {
+    "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/MERGE_EQUATION_VERIFICATION.json",
+    "sha256": "0550d0cebe5fe54da3920d97ea9fd429c16712372320af6f68b1d9193a902c53",
+    "bytes": 754
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "adapter_sha256": "5280cf5f30265038a6fee6aa57955b829d387b7d78fb9fe6afab86d65ac50978",
+  "base_revision": "1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0",
+  "decision_maker": "User, project owner/CTO in conversation",
+  "max_campaign_seconds": 5400,
+  "recorded_utc": "2026-11-09T06:39:39.713707+00:00",
+  "scope": "One local v1-only merge, bounded comparative validation and fresh standalone smoke, portable packaging; no training, deployment or publication",
+  "source": "Current user message: AxonAI-v1: Create and Validate Standalone Merged Model",
+  "stop_before_ist": "2026-11-24T00:00:00+05:30",
+  "v11_excluded": true
+}

@@ -1,0 +1,9 @@
+test_fp32_merge_then_round (__main__.MergeTests.test_fp32_merge_then_round) ... ok
+test_frozen_prompts_no_contaminated (__main__.MergeTests.test_frozen_prompts_no_contaminated) ... ok
+test_safe_merge_rejects_nan (__main__.MergeTests.test_safe_merge_rejects_nan) ... ok
+test_worker_uses_v1_only (__main__.MergeTests.test_worker_uses_v1_only) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.019s
+
+OK

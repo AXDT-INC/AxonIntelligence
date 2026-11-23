@@ -1,0 +1,559 @@
+{
+  "schema": "axonai.merged-packaging-artifacts.v1",
+  "files": [
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/AUTHORIZATION.json",
+      "sha256": "a3abf473c45c5d46d2bc5e8695e96399864332fb959f9ca2bafe1f5b131a722a",
+      "bytes": 626
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/CAMPAIGN.log",
+      "sha256": "8ced18ccd2ad6fcd965f8acbcb52164e7c5632261a321e83936aec40e0a2e829",
+      "bytes": 778
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/CAMPAIGN_EXIT.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "bytes": 2
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/CAMPAIGN_TRACEBACK.log",
+      "sha256": "8ced18ccd2ad6fcd965f8acbcb52164e7c5632261a321e83936aec40e0a2e829",
+      "bytes": 778
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/CONSOLIDATED_REPORT.md",
+      "sha256": "555aa1882804dde3e4eae3c5807eb304e01dc9a4b99ea98e607a44bd769f78dd",
+      "bytes": 9130
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/CPU_GUARD_TESTS.log",
+      "sha256": "a56f0bec51b2e9dcc98e14f9d49ba0376032d774ca5911a1051573e1f274266a",
+      "bytes": 320
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/CPU_NO_PEFT_ENV_TESTS.log",
+      "sha256": "1a965b4a1ff1b3a9f5f5731d79d80131cd0623ee8f967be36afefb8addfe3785",
+      "bytes": 354
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/CPU_TESTS.log",
+      "sha256": "a4f8f127f60c09ddd1d62df1d86f2a2671fc3cdbd3c99715c3122ace11dac818",
+      "bytes": 446
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/CPU_TEST_RESULTS.json",
+      "sha256": "fb10e58c5443b9bef495146b3801733b8185ee94a835eaa5c83010a4f3d3dc63",
+      "bytes": 1517
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/CPU_TMPDIR_TEST.log",
+      "sha256": "30bdb05a7ceef2ab0691752d90707fae5b01e280c9de19ef91ee344ecb8b7057",
+      "bytes": 53
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/ERROR_REPAIR_JOURNAL.json",
+      "sha256": "9d64ed09b07c78344800e4dc2eb54187cca963116ca105c502103652e070c7e0",
+      "bytes": 1935
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/EXECUTION_FREEZE.json",
+      "sha256": "0556c8007953cdf4d91f416eeb66518c9322e00778ca3851378c7c463ee7b577",
+      "bytes": 813
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/FINAL_SOURCE_INTEGRITY.json",
+      "sha256": "7352d540290a9a455b65edef6057591ed0b8123588a22dad681cb300aae81c37",
+      "bytes": 6831
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/INCREMENTAL_TRANSFER.md",
+      "sha256": "c465b5bfcab3b99a04cb63b75ddcff6b1cee0849e045a28cec1f0b9d88b17ded",
+      "bytes": 1922
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/MERGE_CONFINEMENT.json",
+      "sha256": "61ea2c2319b4386f1bf48ccd8c7923842e0eba6ec86325acc807d2c26a7b1ae7",
+      "bytes": 291
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/MERGE_EQUATION_VERIFICATION.json",
+      "sha256": "0550d0cebe5fe54da3920d97ea9fd429c16712372320af6f68b1d9193a902c53",
+      "bytes": 754
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/MERGE_RESULT.json",
+      "sha256": "9074bef8c3f59fd36bc54f10c6e844b5c30c49f6736ce618a8c5e2790e27043e",
+      "bytes": 1013
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/POSTREPAIR2_SOURCE_INTEGRITY.json",
+      "sha256": "4cfc82d3dd35940196eb69e3f5699b4196147cea38e9737156cf34d735ef31d2",
+      "bytes": 6012
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/POSTREPAIR_SOURCE_INTEGRITY.json",
+      "sha256": "4cfc82d3dd35940196eb69e3f5699b4196147cea38e9737156cf34d735ef31d2",
+      "bytes": 6012
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/PREFLIGHT.json",
+      "sha256": "4ab76199b9785f751c01ba54cb78aba4da355e979192f273298980c95e6636cd",
+      "bytes": 8810
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/PREFLIGHT.log",
+      "sha256": "5e6c3919a3603f66a2d2fcdda37d17b0ad1fe7793498311d5c5a7ae028363a56",
+      "bytes": 15
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/PROCESS_TERMINATION.json",
+      "sha256": "bc61050f001d748a3ba48a2e981854f0bf999889bf2b2efdfa4a02dfc2e241e6",
+      "bytes": 380
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/PROVISIONAL_COMPARISON_REVIEW.json",
+      "sha256": "78c56b94f5ee534b9e07ba9a835d4ed12400406df9d91e063b761bb87d67a8a7",
+      "bytes": 2245
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/REPAIR2_EXECUTION_FREEZE.json",
+      "sha256": "f61f408cdb5ecfcb94c491c9b7a208d74516a935a29a8a581dfc9834391172fd",
+      "bytes": 566
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/REPAIR_EXECUTION_FREEZE.json",
+      "sha256": "0835cfe211c2ee77f5fddbfdbd6bf409877abcf5844da1b4739500902cbf97ab",
+      "bytes": 554
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/RESOURCE_METRICS.json",
+      "sha256": "1edae21d228b481256687f5c2b54f9f3cd27e4fdf3154de737051866be7846ae",
+      "bytes": 6010
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/RESUME.log",
+      "sha256": "8a9df82e734e439b81a6920202c2a9e00fae5df74756c05128fac6a176b68a68",
+      "bytes": 686
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/RESUME2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/RESUME2_COMPLETE.json",
+      "sha256": "753d026cd513c7da196a47348a5b10d8cf6f9b83e2bda41d0819a7cca5b4dccd",
+      "bytes": 203
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/RESUME2_EXIT.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/RESUME_EXIT.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "bytes": 2
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/RESUME_TRACEBACK.log",
+      "sha256": "8a9df82e734e439b81a6920202c2a9e00fae5df74756c05128fac6a176b68a68",
+      "bytes": 686
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/TOKEN_COMPARISON.json",
+      "sha256": "0f091b7ec20203946294297dd585b3f5c967c1119444a70c4a213cc470bb6a2f",
+      "bytes": 30582
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/VALIDATION_PROMPTS.json",
+      "sha256": "932c88ba252710a40998accd1be0ef5a0d502d67743f94c814f43dd8166e5ef9",
+      "bytes": 44848
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/VALIDATION_REPAIR.diff",
+      "sha256": "1c97ca520fef1150720acfaf3775dd830e942a39fa97ebf2a9938919b66cc4a6",
+      "bytes": 1634
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/VALIDATION_SUMMARY.json",
+      "sha256": "ad5a37e614de10853b589ad8478be1adaf84ecf38cadc6e5ee8dd18716008714",
+      "bytes": 7475
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/WEIGHT_EQUATIONS.initial-error.log",
+      "sha256": "0cc9e2e3bafc52a08e6c48bfb21297a3d41f36cca539fd9cba21ca254ecae542",
+      "bytes": 3837
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/WEIGHT_EQUATIONS.log",
+      "sha256": "b3849a96c7b24f7d5fdc48e7463e0af089e1ccdec491e54c27417f635d9293b8",
+      "bytes": 30
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/WEIGHT_VERIFICATION.json",
+      "sha256": "64b0b2d05111c4a844e2e2237ef26f767eb826a5cdb061dfa3141ed546cf32eb",
+      "bytes": 164373
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/baseline/CONFINEMENT.json",
+      "sha256": "61ea2c2319b4386f1bf48ccd8c7923842e0eba6ec86325acc807d2c26a7b1ae7",
+      "bytes": 291
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/baseline/RESULT.json",
+      "sha256": "e52a4d92c015c41a6034244fa1b1e246dcd5e3e98b9c0bf4658c8667ce13241f",
+      "bytes": 2244
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/baseline/logits-0.npy",
+      "sha256": "225026738214e8f755ce32958928ac66502b457ce2cc9b25cbb1ad7ddfe78d93",
+      "bytes": 31785088
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/baseline/logits-1.npy",
+      "sha256": "023974a1be4fe7e100b1709e3934cc8a2c80dac3e9c2328e334208a964c151e1",
+      "bytes": 31785088
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/baseline/logits-2.npy",
+      "sha256": "e3e32449e8d72f9fc8583d2b62561983552e156dda214c5e2373942382b78bbc",
+      "bytes": 31785088
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/baseline/logits-3.npy",
+      "sha256": "01d41e86922a13dfdbb503066499a210b0008be8231ad4f1c595daf1b8fd6be1",
+      "bytes": 31785088
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/baseline/logits-4.npy",
+      "sha256": "4868b45fba31e4f7a02768e7859c52f9edd78771736504795d9e8caa757639fa",
+      "bytes": 31785088
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/baseline/logits-5.npy",
+      "sha256": "a67ef36336ee72362dce7e85c8bd90f4c0c15b55f5e4c47fa666a9dce18ad73e",
+      "bytes": 31785088
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/baseline/responses.jsonl",
+      "sha256": "1c64fcf14049801a0180eef4888df63d746c700c319c9b74422f8fa8f9140266",
+      "bytes": 36716
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/baseline.log",
+      "sha256": "30e47e5990e44523bee1180c384e853b0c1b817ab5cdaeacd719afac42554a26",
+      "bytes": 5729
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/baseline_CLEANUP.json",
+      "sha256": "76d01e5e305d316bdae39d90e45a316df1bf097a7c33c8776f6245a2735f047f",
+      "bytes": 115
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/baseline_PROCESS.json",
+      "sha256": "a4e23b739eb5a56ea0fb6a843ff97b67582f1f844be3818c97e076a5b5437740",
+      "bytes": 205
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/baseline_RESOURCES.jsonl",
+      "sha256": "63ddf6e6b7ff070b0115a24aa8490bfec47b728ef688bb86eaed460383ee1fb2",
+      "bytes": 7722
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/campaign.py",
+      "sha256": "26de67e341fe690fe5634a35616c5a10dd885c7e854766a22c28af24a737007e",
+      "bytes": 3876
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/compare.py",
+      "sha256": "8a7a7a44ced68548a1412d8185a5e21f3cb86e165209718a3bcac52f105cb48e",
+      "bytes": 2721
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/finalize_package.py",
+      "sha256": "83f0b7f65ba9ad410ff6db4d3ada306d18a330a2eee842be132abe78c1cf8db6",
+      "bytes": 20367
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merge_cpu.log",
+      "sha256": "7402c815fc8b1f491a66c8bc1525437cbcb322b7734245eeeb03f948fc17b667",
+      "bytes": 1940
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merge_cpu.py",
+      "sha256": "af6b3c9e7171eb632c3ce703daa6fda403ea4420d9a9a4f6cea9a9958990ec03",
+      "bytes": 3897
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merge_cpu_CLEANUP.json",
+      "sha256": "d3fecbe30782de01769e7620951351befccda5657ee1c6127f21ccea193399e2",
+      "bytes": 117
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merge_cpu_PROCESS.json",
+      "sha256": "210da63300fdb3abe42af94f64ca008ff000c6328453240a5df20633d66e3d2b",
+      "bytes": 186
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merge_cpu_RESOURCES.jsonl",
+      "sha256": "3de4c80b385b8293e3043b48ff6781df7b79ee93d05f6040aa38ca78ce38ba6a",
+      "bytes": 5964
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged/CONFINEMENT.json",
+      "sha256": "61ea2c2319b4386f1bf48ccd8c7923842e0eba6ec86325acc807d2c26a7b1ae7",
+      "bytes": 291
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged-repair1/CONFINEMENT.json",
+      "sha256": "61ea2c2319b4386f1bf48ccd8c7923842e0eba6ec86325acc807d2c26a7b1ae7",
+      "bytes": 291
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged-repair1_TRACEBACK.log",
+      "sha256": "6097044172be87f3a0fe980a1ff8b07cc83daea4d3933b05f2186eaace783718",
+      "bytes": 1822
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged-repair2/CONFINEMENT.json",
+      "sha256": "61ea2c2319b4386f1bf48ccd8c7923842e0eba6ec86325acc807d2c26a7b1ae7",
+      "bytes": 291
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged-repair2/RESULT.json",
+      "sha256": "f5d65f9ebb246fcc75c69672b072a5f3ffa0dec3472ed565093b3c95215c7887",
+      "bytes": 2240
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged-repair2/responses.jsonl",
+      "sha256": "2e4dd2833c4a3478121ae4ac33570a4a4b4f20b18bf09ea305ae22bf36189949",
+      "bytes": 41506
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged.log",
+      "sha256": "59f0dee7a197215e68c6af1ae2cd9a4128af7aa9f7fa22616937760a064f9df1",
+      "bytes": 2329
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged_CLEANUP.json",
+      "sha256": "42bc66d5c9a160ed5dba9c070fbb8bc80a8c3008529b700ed2344ace340da383",
+      "bytes": 115
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged_PROCESS.json",
+      "sha256": "246e2926dd7d1b9454d94dd588e3750a031b90acda250a947cd0808046fcb879",
+      "bytes": 203
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged_RESOURCES.jsonl",
+      "sha256": "19dadf80959d3a93528c1bd2de73f6ded3b8d87435a49bed69c4a0f26813a429",
+      "bytes": 649
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged_TRACEBACK.log",
+      "sha256": "59f0dee7a197215e68c6af1ae2cd9a4128af7aa9f7fa22616937760a064f9df1",
+      "bytes": 2329
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged_repair1.log",
+      "sha256": "6097044172be87f3a0fe980a1ff8b07cc83daea4d3933b05f2186eaace783718",
+      "bytes": 1822
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged_repair1_CLEANUP.json",
+      "sha256": "0661cc46664994b4380073da52cc7b6b504d645c4b6e3556395c99fbc8650a33",
+      "bytes": 116
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged_repair1_PROCESS.json",
+      "sha256": "6edd676fd3d802d9e991cafa1f455b602b7da9c6866d46da05645f1cc4d06463",
+      "bytes": 249
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged_repair1_RESOURCES.jsonl",
+      "sha256": "77a1287c34b56e06d2935473ddcfee5070e112d79c1c88faf6324a7449f25631",
+      "bytes": 432
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged_repair2.log",
+      "sha256": "5f5ea497fd3fd6fb6a1cc314fb54bc29808d8c91d1dc8122eebd800607769e60",
+      "bytes": 5848
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged_repair2_CLEANUP.json",
+      "sha256": "5b5f63542aea0e1c68acff0dd2a73f6577e534f79e67153ed90302445172375b",
+      "bytes": 116
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged_repair2_PROCESS.json",
+      "sha256": "c0f07a5a1116e801e011f3fe2f816b5fef0cc67d95d347131e53617f119bdc7b",
+      "bytes": 249
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/merged_repair2_RESOURCES.jsonl",
+      "sha256": "6b08ae90778d2bb71b88dfa3feb68317f29d8a228315fd99025e48ad43a6b554",
+      "bytes": 8155
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/no_peft_guard.py",
+      "sha256": "4f2dcb9e8707256680c8181695139c760bd9db22f63cc4a3a021c03ae665fd25",
+      "bytes": 544
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/no_peft_guard.v2.py",
+      "sha256": "af31019b9b375b9b59153a4f5736336877128e7f09bfec525442358099ce62ce",
+      "bytes": 896
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/package_support.py",
+      "sha256": "a0df134a593f708b6fde7fab5e3e3f360680ba2a445894e01762d072ec72e2ae",
+      "bytes": 8346
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/preflight.py",
+      "sha256": "abfec5988270cf0f4b83f9719a46ce9270ab9fbc1cd50d4ab7d16328b3e6815f",
+      "bytes": 4286
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/resume_validation.py",
+      "sha256": "8de745c525aea6dc1baba1d5da1aa664ec6e5fd9cf7575abe1a3044842ec09ad",
+      "bytes": 2168
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/resume_validation.v2.py",
+      "sha256": "051636aff79f85632fd03221a29aab7064372ef6b24e36e837b50e99cd7b05bb",
+      "bytes": 2181
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/runtime_safeguards.py",
+      "sha256": "aa3449525a2165e179287207c10d355dbddc389f250fb91b20dd27154d2e737d",
+      "bytes": 2974
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/smoke/CONFINEMENT.json",
+      "sha256": "61ea2c2319b4386f1bf48ccd8c7923842e0eba6ec86325acc807d2c26a7b1ae7",
+      "bytes": 291
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/smoke/RESULT.json",
+      "sha256": "ef0c1d14693769bbbfbe77a82fddfc29013136ba1a8d843f04deb3c0c852d574",
+      "bytes": 2239
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/smoke/responses.jsonl",
+      "sha256": "be2ff50ebe6f5f95af419d0648609115137e63b07127c80ced17a3705bfc80d5",
+      "bytes": 748
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/smoke.log",
+      "sha256": "045016ac1d2693904cca7e0ee3eacc5363fc6101e8dcda791222cb31bc3b6d56",
+      "bytes": 5857
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/smoke_CLEANUP.json",
+      "sha256": "6cda30514ec44f85c32d7ad3f42bd443d92f8589d6ed00336a86670770d1b93b",
+      "bytes": 116
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/smoke_PROCESS.json",
+      "sha256": "21795ae325390d40bf8ad405488be3da2e369fcc855b9757975d36b837683836",
+      "bytes": 205
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/smoke_RESOURCES.jsonl",
+      "sha256": "42127dece78a49a2e93888a045762ca5bfe2f30b76a2d07de999feb038461ca9",
+      "bytes": 2454
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/standalone_inference.py",
+      "sha256": "88d2c8ccdeef126b61c3f384d6885dc07660f29defc7ccf87052d42d97dfc0e0",
+      "bytes": 2484
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/summarize.py",
+      "sha256": "0166a5e89c6e30397d03490ee237ddd01b4acddd152578b37f2b1310d0058dbf",
+      "bytes": 5105
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/test_guard.py",
+      "sha256": "c88eb7009eec6d67acec0ddb11696bdb2d4e83eff6e8224e7202500d83054df6",
+      "bytes": 1114
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/test_merge.py",
+      "sha256": "3eb9559f934f17d265e3cd25a44a037b2d113faac53a07efc6d51f3c8f015c52",
+      "bytes": 1772
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/test_no_peft_environment.py",
+      "sha256": "b1b3b70e1988156d50d6697cf8a82927eb8cbbdd564561dcc469f5d2782125eb",
+      "bytes": 1116
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/validate_gpu.py",
+      "sha256": "421225ede7762c0698f9a02dfbdde2d3ed626bda3e4b4190df9e0068699a9852",
+      "bytes": 6445
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/validate_gpu.v2.py",
+      "sha256": "fcd666326f25e08f19621d8dc52e614415101e0cfae897ccf9276a970172c25e",
+      "bytes": 6358
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/validate_gpu.v3.py",
+      "sha256": "549ad68332760cc915430f2108257f3d753186d63b6574f88856ed2396c97024",
+      "bytes": 6490
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/verify_equations.py",
+      "sha256": "c2369ce5dfaf57e4a290293a41e1a8e4e3f50a6aa0c194fc7473436c8a052ff1",
+      "bytes": 2707
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/verify_manifest.py",
+      "sha256": "c204ecea2599481567065f9ce77135cbdeb65ae64271d0ae156179854637eb54",
+      "bytes": 826
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/verify_weights.log",
+      "sha256": "d07185efa653e6f83e1ad66cadd7f7e7f6f2bde99776cacaffe98a2100d3af04",
+      "bytes": 13
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/verify_weights.py",
+      "sha256": "9b12b1ca8586bf00e31d99698addd86f03616f0ab0d94aceeb4aff353c02e99f",
+      "bytes": 1648
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/verify_weights_CLEANUP.json",
+      "sha256": "5a532af42c7184aca3270abd052bf111a0320477c058fdc5514261faff30483b",
+      "bytes": 116
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/verify_weights_PROCESS.json",
+      "sha256": "d09837ec9ff979287db292ff1f4952848f3584430cf84cc6f5fa833e81db1a1c",
+      "bytes": 191
+    },
+    {
+      "path": "/data/axonai/engineering-maintenance/merged-v1-packaging-v1-20261109/verify_weights_RESOURCES.jsonl",
+      "sha256": "8a33f8f69190a2087cf064881f5ddd1a417cef648ab927d414b0eaae5723a687",
+      "bytes": 2764
+    }
+  ],
+  "model_manifest": {
+    "path": "/data/axonai/models/merged/AxonAI-v1-27B/SHA256_MANIFEST.json",
+    "sha256": "d34c6389c0ca68df59e11f2a18f3616e7b335066fd8c493acf46044551e1daee",
+    "bytes": 5915
+  },
+  "excluded_controls": [
+    "ARTIFACT_MANIFEST.json",
+    "BACKUP_MANIFEST.json",
+    "BACKUP_VERIFY.log",
+    "DELTA_FILES.txt",
+    "FINALIZATION_RESULT.json",
+    "FINAL_VERIFICATION.json",
+    "TRANSFER_CONTROL_SHA256.json"
+  ]
+}
