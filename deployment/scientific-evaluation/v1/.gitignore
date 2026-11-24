@@ -1,0 +1,23 @@
+# Only reviewed protocol, implementation and disposable synthetic test source belong here.
+*
+!.gitignore
+!README.md
+!stage0.md
+!verify_stage0.py
+!item.schema.json
+!outcome.schema.json
+!pilot.py
+!screen.py
+!screening.md
+!runner.py
+!inference.md
+!score.py
+!analysis.py
+!scoring-analysis.md
+!blind_review.py
+!custody.md
+!handoff.py
+!test_protocol.py
+!test_runner.py
+!test_scoring.py
+!test_screen.py

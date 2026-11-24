@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Private pilot registry entry, immutable revision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["protocol", "item_id", "revision", "cohort", "task_family", "source_ids", "source_family_id", "rights", "contamination", "sealed_coverage", "author_review", "prior_exposure", "expected_format", "scoring", "content_commitment"],
+  "properties": {
+    "protocol": {"const": "axonai-sci-v1"},
+    "item_id": {"type": "string", "pattern": "^[a-f0-9]{32}$"},
+    "revision": {"type": "integer", "minimum": 1},
+    "cohort": {"enum": ["pilot_candidate", "development_diagnostic"]},
+    "task_family": {"enum": ["biomedical_factual", "biomedical_reasoning", "evidence_qa", "hallucination_citations", "experimental_design", "statistical_reasoning", "scientific_programming", "uncertainty_abstention", "general_retention", "scientific_transfer"]},
+    "source_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/definitions/ref"}},
+    "source_family_id": {"$ref": "#/definitions/ref"},
+    "rights": {
+      "type": "object", "additionalProperties": false, "required": ["status", "basis", "use_receipt"],
+      "properties": {
+        "status": {"enum": ["cleared_internal_evaluation", "pending", "denied"]},
+        "basis": {"type": "string", "minLength": 1},
+        "use_receipt": {"$ref": "#/definitions/ref"}
+      }
+    },
+    "contamination": {
+      "type": "object", "additionalProperties": false, "required": ["status", "disposition", "receipt"],
+      "properties": {
+        "status": {"enum": ["no_detected_overlap", "exact_match", "shared_source", "probable_paraphrase", "unresolved"]},
+        "disposition": {"enum": ["approved_for_pilot", "diagnostic_only", "pending", "excluded"]},
+        "receipt": {"$ref": "#/definitions/ref"}
+      }
+    },
+    "author_review": {"enum": ["independently_verified", "pending", "rejected"]},
+    "sealed_coverage": {"enum": ["unassessed", "custodian_assessed", "pilot_scope_limited_unknown"]},
+    "prior_exposure": {"enum": ["none_known", "exposed", "unknown"]},
+    "expected_format": {"type": "string", "minLength": 1},
+    "answerability": {"enum": ["answerable", "insufficient_evidence"]},
+    "scoring": {
+      "type": "object", "additionalProperties": false, "required": ["kind", "rule_ref", "failure_taxonomy", "dual_review"],
+      "properties": {
+        "kind": {"enum": ["numeric", "multiple_choice", "evidence", "citation", "abstention", "programming", "expert"]},
+        "rule_ref": {"$ref": "#/definitions/ref"},
+        "failure_taxonomy": {"const": "axonai-sci-v1"},
+        "dual_review": {"type": "boolean"}
+      }
+    },
+    "content_commitment": {"description": "Private custodian HMAC-SHA256 over frozen item bundle including prompt, approved source snapshot, scoring key, rubric or tests, and revision-bound author/rights/screen receipts.", "type": "string", "pattern": "^[a-f0-9]{64}$"}
+  },
+  "if": {"properties": {"task_family": {"const": "uncertainty_abstention"}}},
+  "then": {"required": ["answerability"], "properties": {"scoring": {"properties": {"kind": {"const": "abstention"}}}}},
+  "allOf": [{
+    "if": {"properties": {"task_family": {"const": "scientific_programming"}}},
+    "then": {"properties": {"scoring": {"properties": {"kind": {"const": "programming"}}}}}
+  }, {
+    "if": {"properties": {"task_family": {"const": "evidence_qa"}}},
+    "then": {"properties": {"scoring": {"properties": {"kind": {"enum": ["evidence", "expert"]}}}}}
+  }, {
+    "if": {"properties": {"task_family": {"const": "hallucination_citations"}}},
+    "then": {"properties": {"scoring": {"properties": {"kind": {"enum": ["citation", "expert"]}}}}}
+  }],
+  "definitions": {
+    "ref": {"description": "Reference in the custodian's versioned private registry", "type": "string", "minLength": 1}
+  }
+}
