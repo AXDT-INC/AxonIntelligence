@@ -1,0 +1,105 @@
+--- a/placement.py
++++ b/placement.py
+@@ -8,8 +8,8 @@
+
+ GIB = 1 << 30
+ ANCHOR = "c3a6cb1deb5123cc35ccc9c07de36545f82b91a317f97971b6bd56b3403f2e06"
+-INPUT = 256
+-OUTPUT = 32
++INPUT = 1024
++OUTPUT = 128
+
+
+ def read_model(root):
+--- a/infer_session.py
++++ b/infer_session.py
+@@ -66,7 +66,34 @@
+
+
+ def run(root, reserved):
+-    require(bool(os.statvfs(root).f_flag & os.ST_RDONLY), "Model mount must be read-only")
++    if not os.statvfs(root).f_flag & os.ST_RDONLY:
++        import stat
++        require(os.geteuid() == 1000, "Expected session worker")
++        if root == Path("/home/aXonian/axonai-v100-fp16/model"):
++            # Pin the protected directory across any rename of the writable desktop home.
++            fd = os.open(root, os.O_RDONLY | os.O_NOFOLLOW | os.O_DIRECTORY)
++            mode = os.fstat(fd)
++            require(mode.st_uid == 0 and not mode.st_mode & 0o222,
++                    "Expected root-owned, read-only checkpoint directory")
++            root = Path(f"/proc/self/fd/{fd}")
++            parents = ()
++        else:
++            require(re.fullmatch(r"/opt/axonai-smoke-[A-Za-z0-9]{8}/model", str(root)),
++                    "Expected private staged session model")
++            parents = (root, *root.parents)
++        status = Path("/proc/self/status").read_text().splitlines()
++        require(any(line.startswith("NoNewPrivs:") and line.split()[1] == "1" for line in status)
++                and any(line.startswith("CapEff:") and int(line.split()[1], 16) == 0 for line in status),
++                "Expected unprivileged worker")
++        for parent in parents:
++            mode = parent.lstat()
++            require(stat.S_ISDIR(mode.st_mode) and mode.st_uid == 0 and not os.access(parent, os.W_OK),
++                    f"Writable or untrusted staging directory: {parent}")
++        for path in root.iterdir():
++            mode = path.lstat()
++            require(stat.S_ISREG(mode.st_mode) and mode.st_uid == 0 and mode.st_nlink == 1
++                    and not mode.st_mode & 0o222 and not os.access(path, os.W_OK),
++                    f"Writable or untrusted staged file: {path}")
+     require(os.environ.get("CUDA_VISIBLE_DEVICES") == ",".join(reserved) ==
+             os.environ.get("NVIDIA_VISIBLE_DEVICES"), "Reservation visibility mismatch")
+     exposed = subprocess.check_output(
+@@ -129,16 +156,29 @@
+     outputs = {}
+     with torch.inference_mode(), sdpa_kernel([SDPBackend.MATH]):
+         smoke = {"id": "initial_decode", "prompt": "Count from one to five using digits."}
+-        for case in [smoke, *fixture]:
++        context = {"id": "valve_log_1024", "prompt": (
++            "Instrument run ID: CEDAR. Each sample records the valve position.\n"
++            "Valve samples: closed\n"
++            "Write a 300-word shift handover. Begin with the run ID, describe the observed pattern, "
++            "and explain which additional measurements would help interpret it.")}
++        for case in [smoke, *fixture, context]:
+             text = tokenizer.apply_chat_template([{"role":"system","content":SYSTEM},
+                                                   {"role":"user","content":case["prompt"]}],
+                                                  tokenize=False, add_generation_prompt=True, enable_thinking=False)
++            if case is context:
++                remaining = INPUT - len(tokenizer.encode(text, add_special_tokens=False))
++                states = (" open", " open", " closed", " closed")
++                samples = "".join(states[i % 4] for i in range(remaining))
++                text = text.replace("Valve samples: closed", "Valve samples: closed" + samples, 1)
+             ids = tokenizer(text, add_special_tokens=False, return_tensors="pt").input_ids.to("cuda:0")
++            if case is context:
++                require(ids.shape[1] == INPUT, "Expected exactly 1024 chat-templated input tokens")
+             for i in range(count):
+                 torch.cuda.reset_peak_memory_stats(i)
+             initial = case is smoke
+             emit(stage="starting_case", case=case["id"])
+-            tokens, cache, first, elapsed = greedy(model, ids, eos, limit=4 if initial else OUTPUT)
++            limit = OUTPUT if case is context else 32
++            tokens, cache, first, elapsed = greedy(model, ids, eos, limit=4 if initial else limit)
+             for layer, kind in zip(cache.layers, cfg["layer_types"], strict=True):
+                 if kind == "linear_attention":
+                     state = layer.recurrent_states[0]
+@@ -151,12 +191,20 @@
+             if initial:
+                 require(len(tokens) >= 2, "Initial prompt ended before a cached decode step")
+                 emit(stage="initial_prefill_and_decode_passed")
++            elif case is context:
++                steps = len(tokens) - 1
++                full_length = len(tokens) == OUTPUT
++                recalled = bool(re.search(r"\bCEDAR\b", continuation, re.IGNORECASE))
++                context_passed = full_length and recalled
++                emit(stage="context_result", case=case["id"], generated_tokens=len(tokens),
++                     reached_128=full_length, recalled_run_id=recalled, ended_on_eos=tokens[-1] in eos,
++                     cached_decode_tokens_per_s=steps / (elapsed - first) if steps else None)
+             else:
+                 outputs[case["id"]] = continuation
+     results = score(outputs)
+     emit(suite="inherited prospective controls", passed=sum(results.values()), total=len(results),
+          results=results, historical_replay=False)
+-    return 0 if all(results.values()) else 2
++    return 0 if all(results.values()) and context_passed else 2
+
+
+ if __name__ == "__main__":

@@ -1,0 +1,348 @@
+{
+  "session": 584,
+  "test": "sustained",
+  "batch_size": 1,
+  "model_loads": 1,
+  "exit_code": 0,
+  "model_manifest_sha256": "c3a6cb1deb5123cc35ccc9c07de36545f82b91a317f97971b6bd56b3403f2e06",
+  "worker_sha256": "00d667130431ace79d23cc1f8d5278642d765a0599abe7c701c0b62de6e517f3",
+  "placement_source_sha256": "63b169f44ad2299afcaa37e1c82f546568ef704e65006bbd8b73a72ab635238e",
+  "worker_wall_s": 258,
+  "load_s": 84.74538819491863,
+  "sampled_board_peak_mib": [
+    28491,
+    27968
+  ],
+  "load_allocator_peak": [
+    {
+      "allocated_bytes": 26896020992,
+      "free_bytes_at_sample": 6249054208,
+      "reserved_bytes": 26925334528
+    },
+    {
+      "allocated_bytes": 26896030208,
+      "free_bytes_at_sample": 6759579648,
+      "reserved_bytes": 26925334528
+    }
+  ],
+  "requests": [
+    {
+      "after": [
+        {
+          "allocated_bytes": 26904540160,
+          "reserved_bytes": 27216838656
+        },
+        {
+          "allocated_bytes": 26904549376,
+          "reserved_bytes": 27204255744
+        }
+      ],
+      "before": [
+        {
+          "allocated_bytes": 26896020480,
+          "reserved_bytes": 26925334528
+        },
+        {
+          "allocated_bytes": 26896029696,
+          "reserved_bytes": 26925334528
+        }
+      ],
+      "cached_steps": 255,
+      "cached_tokens_per_s": 8.152576543156727,
+      "checks": {
+        "cycle": true,
+        "period": true,
+        "run_id": true
+      },
+      "ended_on_eos": false,
+      "final_fp32_recurrent_states_finite": true,
+      "first_token_s": 2.5481409300118685,
+      "generated_tokens": 256,
+      "generation_s": 33.826596109196544,
+      "input_tokens": 512,
+      "parsed_answer": {
+        "cycle": [
+          "open",
+          "closed"
+        ],
+        "period": 2,
+        "run_id": "ALDER-11"
+      },
+      "peak": [
+        {
+          "allocated_bytes": 27171496960,
+          "free_bytes_at_sample": 5942870016,
+          "reserved_bytes": 27216838656
+        },
+        {
+          "allocated_bytes": 27166259200,
+          "free_bytes_at_sample": 6465978368,
+          "reserved_bytes": 27204255744
+        }
+      ],
+      "raw_logits_finite": true,
+      "request": 1,
+      "response_s": 33.87165208719671,
+      "sampled_board_peak_mib": [
+        26827,
+        26328
+      ]
+    },
+    {
+      "after": [
+        {
+          "allocated_bytes": 26904540160,
+          "reserved_bytes": 28961669120
+        },
+        {
+          "allocated_bytes": 26904549376,
+          "reserved_bytes": 28923920384
+        }
+      ],
+      "before": [
+        {
+          "allocated_bytes": 26904540160,
+          "reserved_bytes": 27216838656
+        },
+        {
+          "allocated_bytes": 26904549376,
+          "reserved_bytes": 27204255744
+        }
+      ],
+      "cached_steps": 255,
+      "cached_tokens_per_s": 8.240285347444747,
+      "checks": {
+        "cycle": true,
+        "period": true,
+        "run_id": true
+      },
+      "ended_on_eos": false,
+      "final_fp32_recurrent_states_finite": true,
+      "first_token_s": 2.5518756955862045,
+      "generated_tokens": 256,
+      "generation_s": 33.49740600772202,
+      "input_tokens": 2048,
+      "parsed_answer": {
+        "cycle": [
+          "closed",
+          "closed",
+          "open",
+          "open"
+        ],
+        "period": 4,
+        "run_id": "BIRCH-29"
+      },
+      "peak": [
+        {
+          "allocated_bytes": 28314170880,
+          "free_bytes_at_sample": 4198039552,
+          "reserved_bytes": 28961669120
+        },
+        {
+          "allocated_bytes": 28290046464,
+          "free_bytes_at_sample": 4746313728,
+          "reserved_bytes": 28923920384
+        }
+      ],
+      "raw_logits_finite": true,
+      "request": 2,
+      "response_s": 33.5054528824985,
+      "sampled_board_peak_mib": [
+        28491,
+        27968
+      ]
+    },
+    {
+      "after": [
+        {
+          "allocated_bytes": 26904540160,
+          "reserved_bytes": 28961669120
+        },
+        {
+          "allocated_bytes": 26904549376,
+          "reserved_bytes": 28923920384
+        }
+      ],
+      "before": [
+        {
+          "allocated_bytes": 26904540160,
+          "reserved_bytes": 28961669120
+        },
+        {
+          "allocated_bytes": 26904549376,
+          "reserved_bytes": 28923920384
+        }
+      ],
+      "cached_steps": 255,
+      "cached_tokens_per_s": 8.25796139015734,
+      "checks": {
+        "cycle": true,
+        "period": true,
+        "run_id": true
+      },
+      "ended_on_eos": false,
+      "final_fp32_recurrent_states_finite": true,
+      "first_token_s": 1.418607484549284,
+      "generated_tokens": 256,
+      "generation_s": 32.297899352386594,
+      "input_tokens": 1024,
+      "parsed_answer": {
+        "cycle": [
+          "closed",
+          "open"
+        ],
+        "period": 2,
+        "run_id": "ELM-53"
+      },
+      "peak": [
+        {
+          "allocated_bytes": 27417856512,
+          "free_bytes_at_sample": 4198039552,
+          "reserved_bytes": 28961669120
+        },
+        {
+          "allocated_bytes": 27409337856,
+          "free_bytes_at_sample": 4746313728,
+          "reserved_bytes": 28923920384
+        }
+      ],
+      "raw_logits_finite": true,
+      "request": 3,
+      "response_s": 32.3030308149755,
+      "sampled_board_peak_mib": [
+        28491,
+        27968
+      ]
+    },
+    {
+      "after": [
+        {
+          "allocated_bytes": 26904540160,
+          "reserved_bytes": 28961669120
+        },
+        {
+          "allocated_bytes": 26904549376,
+          "reserved_bytes": 28923920384
+        }
+      ],
+      "before": [
+        {
+          "allocated_bytes": 26904540160,
+          "reserved_bytes": 28961669120
+        },
+        {
+          "allocated_bytes": 26904549376,
+          "reserved_bytes": 28923920384
+        }
+      ],
+      "cached_steps": 255,
+      "cached_tokens_per_s": 8.26888605818414,
+      "checks": {
+        "cycle": true,
+        "period": true,
+        "run_id": true
+      },
+      "ended_on_eos": false,
+      "final_fp32_recurrent_states_finite": true,
+      "first_token_s": 1.9697123635560274,
+      "generated_tokens": 256,
+      "generation_s": 32.80820719897747,
+      "input_tokens": 1536,
+      "parsed_answer": {
+        "cycle": [
+          "open",
+          "open",
+          "closed"
+        ],
+        "period": 3,
+        "run_id": "PINE-71"
+      },
+      "peak": [
+        {
+          "allocated_bytes": 27801396736,
+          "free_bytes_at_sample": 4198039552,
+          "reserved_bytes": 28961669120
+        },
+        {
+          "allocated_bytes": 27785665024,
+          "free_bytes_at_sample": 4746313728,
+          "reserved_bytes": 28923920384
+        }
+      ],
+      "raw_logits_finite": true,
+      "request": 4,
+      "response_s": 32.814928367733955,
+      "sampled_board_peak_mib": [
+        28491,
+        27968
+      ]
+    },
+    {
+      "after": [
+        {
+          "allocated_bytes": 26904540160,
+          "reserved_bytes": 28961669120
+        },
+        {
+          "allocated_bytes": 26904549376,
+          "reserved_bytes": 28923920384
+        }
+      ],
+      "before": [
+        {
+          "allocated_bytes": 26904540160,
+          "reserved_bytes": 28961669120
+        },
+        {
+          "allocated_bytes": 26904549376,
+          "reserved_bytes": 28923920384
+        }
+      ],
+      "cached_steps": 255,
+      "cached_tokens_per_s": 8.26318270564004,
+      "checks": {
+        "cycle": true,
+        "period": true,
+        "run_id": true
+      },
+      "ended_on_eos": false,
+      "final_fp32_recurrent_states_finite": true,
+      "first_token_s": 0.5854740384966135,
+      "generated_tokens": 256,
+      "generation_s": 31.445253990590572,
+      "input_tokens": 512,
+      "parsed_answer": {
+        "cycle": [
+          "open",
+          "open",
+          "closed",
+          "closed"
+        ],
+        "period": 4,
+        "run_id": "MAPLE-83"
+      },
+      "peak": [
+        {
+          "allocated_bytes": 27171365888,
+          "free_bytes_at_sample": 4198039552,
+          "reserved_bytes": 28961669120
+        },
+        {
+          "allocated_bytes": 27165405696,
+          "free_bytes_at_sample": 4746313728,
+          "reserved_bytes": 28923920384
+        }
+      ],
+      "raw_logits_finite": true,
+      "request": 5,
+      "response_s": 31.44864058494568,
+      "sampled_board_peak_mib": [
+        28491,
+        27968
+      ]
+    }
+  ],
+  "generated_tokens": 1280,
+  "correct_requests": 5,
+  "passed_content_checks": 15
+}

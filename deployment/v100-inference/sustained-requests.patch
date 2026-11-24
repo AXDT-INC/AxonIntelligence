@@ -1,0 +1,142 @@
+--- a/infer_session.py
++++ b/infer_session.py
+@@ -63,6 +63,13 @@
+     return [{"allocated_bytes": torch.cuda.max_memory_allocated(i),
+              "reserved_bytes": torch.cuda.max_memory_reserved(i),
+              "free_bytes_at_sample": torch.cuda.mem_get_info(i)[0]} for i in range(count)]
++
++
++def current_memory(torch, count):
++    for device in range(count):
++        torch.cuda.synchronize(device)
++    return [{"allocated_bytes": torch.cuda.memory_allocated(i),
++             "reserved_bytes": torch.cuda.memory_reserved(i)} for i in range(count)]
+
+
+ def run(root, reserved):
+@@ -151,69 +158,70 @@
+     load_peak = peaks(torch, count)
+     emit(stage="loaded", seconds=time.perf_counter()-start, peak=load_peak, uuids=reserved,
+          model_manifest_sha256=ANCHOR, placement=rows)
+-    fixture = json.loads(Path(__file__).with_name("seven-prospective.json").read_text())
+     eos = set(json.loads((root / "generation_config.json").read_text())["eos_token_id"])
+-    outputs = {}
++    requests = [
++        (512, "ALDER-11", ["open", "closed"]),
++        (2048, "BIRCH-29", ["closed", "closed", "open", "open"]),
++        (1024, "ELM-53", ["closed", "open"]),
++        (1536, "PINE-71", ["open", "open", "closed"]),
++        (512, "MAPLE-83", ["open", "open", "closed", "closed"]),
++    ]
++    passed = 0
+     with torch.inference_mode(), sdpa_kernel([SDPBackend.MATH]):
+-        smoke = {"id": "initial_decode", "prompt": "Count from one to five using digits."}
+-        cycle = ["open", "open", "closed", "closed"]
+-        context = {"id": "valve_log_2048", "prompt": (
+-            "Instrument run ID: LARCH-47. Each sample records the valve position.\n"
+-            "Valve samples: open\n"
+-            "Start with a JSON object containing run_id (string), period (integer, the shortest "
+-            "repeating cycle length in samples), and cycle (array of valve states for one shortest "
+-            "cycle starting at the first sample). Then write a 350-word shift handover that "
+-            "explains the pattern, its limits, and suggested follow-up measurements.")}
+-        for case in [smoke, *fixture, context]:
++        for number, (length, run_id, cycle) in enumerate(requests, 1):
++            before = current_memory(torch, count)
++            for device in range(count):
++                torch.cuda.reset_peak_memory_stats(device)
++            start_epoch = time.time()
++            start_perf = time.perf_counter()
++            prefix = f"Valve samples: {cycle[0]}"
++            prompt = (
++                f"Instrument run ID: {run_id}. Each sample records the valve position.\n"
++                f"{prefix}\n"
++                "Start with a JSON object containing run_id (string), period (integer, the shortest "
++                "repeating cycle length in samples), and cycle (array of valve states for one shortest "
++                "cycle starting at the first sample). Then write a 350-word shift handover that "
++                "explains the pattern, its limits, and suggested follow-up measurements.")
+             text = tokenizer.apply_chat_template([{"role":"system","content":SYSTEM},
+-                                                  {"role":"user","content":case["prompt"]}],
+-                                                 tokenize=False, add_generation_prompt=True, enable_thinking=False)
+-            if case is context:
+-                remaining = INPUT - len(tokenizer.encode(text, add_special_tokens=False))
+-                samples = "".join(" " + cycle[(i + 1) % len(cycle)] for i in range(remaining))
+-                text = text.replace("Valve samples: open", "Valve samples: open" + samples, 1)
++                                                 {"role":"user","content":prompt}],
++                                                tokenize=False, add_generation_prompt=True, enable_thinking=False)
++            remaining = length - len(tokenizer.encode(text, add_special_tokens=False))
++            samples = "".join(" " + cycle[(i + 1) % len(cycle)] for i in range(remaining))
++            text = text.replace(prefix, prefix + samples, 1)
+             ids = tokenizer(text, add_special_tokens=False, return_tensors="pt").input_ids.to("cuda:0")
+-            if case is context:
+-                require(ids.shape[1] == INPUT, "Expected exactly 2048 chat-templated input tokens")
+-            for i in range(count):
+-                torch.cuda.reset_peak_memory_stats(i)
+-            initial = case is smoke
+-            emit(stage="starting_case", case=case["id"])
+-            limit = OUTPUT if case is context else 32
+-            tokens, cache, first, elapsed = greedy(model, ids, eos, limit=4 if initial else limit)
++            require(ids.shape == (1, length), "Rendered prompt length mismatch")
++            emit(stage="starting_request", request=number, input_tokens=length, start_epoch=start_epoch)
++
++            # greedy() starts prefill with past_key_values=None on every call.
++            tokens, cache, first, elapsed = greedy(model, ids, eos, limit=OUTPUT)
++            continuation = tokenizer.decode(tokens, skip_special_tokens=True, clean_up_tokenization_spaces=False)
++            response_seconds = time.perf_counter() - start_perf
+             for layer, kind in zip(cache.layers, cfg["layer_types"], strict=True):
+                 if kind == "linear_attention":
+                     state = layer.recurrent_states[0]
+                     require(state.dtype == torch.float32 and torch.isfinite(state).all().item(), "DeltaNet state")
+-            continuation = tokenizer.decode(tokens, skip_special_tokens=True, clean_up_tokenization_spaces=False)
+-            emit(case=case["id"], input_tokens=ids.shape[1], generated_ids=tokens, seconds=elapsed,
+-                 first_token_s=first, tokens_per_s=len(tokens)/elapsed, peak=peaks(torch,count),
+-                 continuation=continuation, cached_decode_steps=len(tokens)-1, all_raw_logits_finite=True)
+-            del cache
+-            if initial:
+-                require(len(tokens) >= 2, "Initial prompt ended before a cached decode step")
+-                emit(stage="initial_prefill_and_decode_passed")
+-            elif case is context:
+-                steps = len(tokens) - 1
+-                full_length = len(tokens) == OUTPUT
+-                try:
+-                    answer, _ = json.JSONDecoder().raw_decode(continuation[continuation.index("{"):])
+-                except ValueError:
+-                    answer = {}
+-                recalled = answer.get("run_id") == "LARCH-47"
+-                period_ok = type(answer.get("period")) is int and answer["period"] == len(cycle)
+-                cycle_ok = answer.get("cycle") == cycle
+-                context_passed = full_length and recalled and period_ok and cycle_ok
+-                emit(stage="context_result", case=case["id"], generated_tokens=len(tokens),
+-                     reached_256=full_length, recalled_run_id=recalled, period_correct=period_ok,
+-                     cycle_correct=cycle_ok, parsed_answer=answer, ended_on_eos=tokens[-1] in eos,
+-                     cached_decode_tokens_per_s=steps / (elapsed - first) if steps else None)
+-            else:
+-                outputs[case["id"]] = continuation
+-    results = score(outputs)
+-    emit(suite="inherited prospective controls", passed=sum(results.values()), total=len(results),
+-         results=results, historical_replay=False)
+-    return 0 if all(results.values()) and context_passed else 2
++            request_peak = peaks(torch, count)
++            del ids, state, layer, cache
++            after = current_memory(torch, count)
++            try:
++                answer, _ = json.JSONDecoder().raw_decode(continuation[continuation.index("{"):])
++            except ValueError:
++                answer = {}
++            checks = {"run_id": answer.get("run_id") == run_id,
++                      "period": type(answer.get("period")) is int and answer["period"] == len(cycle),
++                      "cycle": answer.get("cycle") == cycle}
++            passed += all(checks.values())
++            steps = len(tokens) - 1
++            emit(stage="request_result", request=number, input_tokens=length, generated_tokens=len(tokens),
++                 ended_on_eos=tokens[-1] in eos, cached_steps=steps, first_token_s=first,
++                 generation_s=elapsed, response_s=response_seconds,
++                 cached_tokens_per_s=steps/(elapsed-first) if steps else None,
++                 checks=checks, parsed_answer=answer, continuation=continuation,
++                 raw_logits_finite=True, final_fp32_recurrent_states_finite=True,
++                 before=before, peak=request_peak, after=after, start_epoch=start_epoch, end_epoch=time.time())
++    emit(stage="summary", passed=passed, total=len(requests))
++    return 0 if passed == len(requests) else 2
++
+
+
+ if __name__ == "__main__":

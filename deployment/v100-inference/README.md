@@ -17,6 +17,40 @@ sha256sum "$scratch/infer_session.py"
 
 The reconstructed source has SHA-256 `dde53d36889beaec2cdf5138e0932c55fbb5191ec1ced51be561de41ce7539fa`. The [Stage 1 image record](stage1-20261123/result.json), the [proposed direct-run handoff](SESSION-575.md) and the planning notes below precede the successful in-session run.
 
+## Session 584 validation on two V100s
+
+The initial validated AxonOS Medium configuration uses batch size one, up to 2,048 input tokens and 256 generated tokens, and two V100-SXM2-32GB GPUs. The planner requires 29,892 MiB free per card at that setting. Session 584 used the staged FP16 checkpoint, offline runtime and `pread` loader. All seven regression controls passed in each of the three single-load tests on 2026-11-24. These runs establish engineering behavior for the tested prompts, including memory use, numerical stability, latency and exact answers. Scientific reasoning and domain accuracy require a separate capability evaluation.
+
+| Input tokens | Output actual / cap | First token | Cached tokens/s | Sampled peak MiB, GPU 0 / 1 | Long-case outcome |
+|---:|---:|---:|---:|---:|---|
+| 1,024 | 128 / 128 | 1.55 s | 8.45 | 27,207 / 26,720 | Recalled CEDAR. The prose incorrectly described paired states as alternating at each sample. [Run record](session-584/context-1024.json) |
+| 2,048 | 256 / 256 | 2.58 s | 8.69 | 28,395 / 27,908 | Correct run ID, shortest period of four, and ordered cycle. All checked logits and final FP32 recurrent states were finite. [Run record](session-584/context-2048.json) |
+| 4,096 | 0 / 256 | — | — | 32,029 / 26,592 | The current implementation stopped on CUDA OOM during prefill, before producing an answer. [Run record](session-584/context-4096.json) |
+
+### Five consecutive requests in one load
+
+Session 584 completed five batch-one requests in 258 s, including an 84.75 s model load. Each call started with an empty cache, received its own run ID and valve pattern, and generated 256 tokens. All 15 exact checks passed across run ID, shortest period and ordered cycle. Every request had finite raw logits at each step and finite final FP32 recurrent states.
+
+| Request | Input tokens | First token, s | Response, s | Cached tokens/s | Sampled peak MiB, GPU 0 / 1 |
+|---:|---:|---:|---:|---:|---:|
+| 1 | 512 | 2.55 | 33.87 | 8.15 | 26,827 / 26,328 |
+| 2 | 2,048 | 2.55 | 33.51 | 8.24 | 28,491 / 27,968 |
+| 3 | 1,024 | 1.42 | 32.30 | 8.26 | 28,491 / 27,968 |
+| 4 | 1,536 | 1.97 | 32.81 | 8.27 | 28,491 / 27,968 |
+| 5 | 512 | 0.59 | 31.45 | 8.26 | 28,491 / 27,968 |
+
+First-token timing starts at model prefill. Response timing includes prompt preparation and tokenization through detokenization. The first request followed model loading without a warm-up. After cache release, live PyTorch allocations rose 8.125 MiB per card on the first request and then held at 25,658.17 and 25,658.18 MiB across all five post-request measurements. Allocator reservations rose to 27,620 and 27,584 MiB on the 2,048-token request and stayed there through request five. [Run record](session-584/sustained.json)
+
+### Reproducing a recorded test
+
+On the Docker host, select a project-owned Medium session with the verified model and runtime already staged. Set `AXGT_SESSION_ID` and `AXGT_GPU_UUIDS` from its current allocation (two UUIDs, comma-separated in CUDA order). Export `AXGT_RUNTIME_STAGE` as the session directory containing `runtime/usr/local`. The default model path is `/home/aXonian/axonai-v100-fp16/model`. A read-only mount can be selected with `AXGT_MODEL_PATH`.
+
+```bash
+bash run-context-1024.sh "${AXGT_SESSION_ID:?}" "${AXGT_GPU_UUIDS:?}" 2048
+```
+
+The final argument selects `1024`, `2048`, `4096`, or `sustained`. Each invocation runs one test in one model load. The 4,096-token selector preserves the configuration that failed during prefill. The launcher reconstructs the worker from the pinned session 575 source and local patches. The four reviewed records include hashes of the executed worker and placement files. GPU memory arrays are in worker device order (0, 1).
+
 ## Original two-card plan
 
 The 64-layer placement puts 25.049 GiB of weights on each device. The proposed per-device operating budget was 29.130 GiB.

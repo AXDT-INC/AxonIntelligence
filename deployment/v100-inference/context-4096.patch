@@ -1,0 +1,71 @@
+--- a/placement.py
++++ b/placement.py
+@@ -8,8 +8,8 @@
+
+ GIB = 1 << 30
+ ANCHOR = "c3a6cb1deb5123cc35ccc9c07de36545f82b91a317f97971b6bd56b3403f2e06"
+-INPUT = 1024
+-OUTPUT = 128
++INPUT = 4096
++OUTPUT = 256
+
+
+ def read_model(root):
+--- a/infer_session.py
++++ b/infer_session.py
+@@ -156,23 +156,25 @@
+     outputs = {}
+     with torch.inference_mode(), sdpa_kernel([SDPBackend.MATH]):
+         smoke = {"id": "initial_decode", "prompt": "Count from one to five using digits."}
+-        context = {"id": "valve_log_1024", "prompt": (
+-            "Instrument run ID: CEDAR. Each sample records the valve position.\n"
+-            "Valve samples: closed\n"
+-            "Write a 300-word shift handover. Begin with the run ID, describe the observed pattern, "
+-            "and explain which additional measurements would help interpret it.")}
++        cycle = ["open", "open", "closed", "closed"]
++        context = {"id": "valve_log_4096", "prompt": (
++            "Instrument run ID: LARCH-47. Each sample records the valve position.\n"
++            "Valve samples: open\n"
++            "Start with a JSON object containing run_id (string), period (integer, the shortest "
++            "repeating cycle length in samples), and cycle (array of valve states for one shortest "
++            "cycle starting at the first sample). Then write a 350-word shift handover that "
++            "explains the pattern, its limits, and suggested follow-up measurements.")}
+         for case in [smoke, *fixture, context]:
+             text = tokenizer.apply_chat_template([{"role":"system","content":SYSTEM},
+                                                   {"role":"user","content":case["prompt"]}],
+                                                  tokenize=False, add_generation_prompt=True, enable_thinking=False)
+             if case is context:
+                 remaining = INPUT - len(tokenizer.encode(text, add_special_tokens=False))
+-                states = (" open", " open", " closed", " closed")
+-                samples = "".join(states[i % 4] for i in range(remaining))
+-                text = text.replace("Valve samples: closed", "Valve samples: closed" + samples, 1)
++                samples = "".join(" " + cycle[(i + 1) % len(cycle)] for i in range(remaining))
++                text = text.replace("Valve samples: open", "Valve samples: open" + samples, 1)
+             ids = tokenizer(text, add_special_tokens=False, return_tensors="pt").input_ids.to("cuda:0")
+             if case is context:
+-                require(ids.shape[1] == INPUT, "Expected exactly 1024 chat-templated input tokens")
++                require(ids.shape[1] == INPUT, "Expected exactly 4096 chat-templated input tokens")
+             for i in range(count):
+                 torch.cuda.reset_peak_memory_stats(i)
+             initial = case is smoke
+@@ -194,10 +196,17 @@
+             elif case is context:
+                 steps = len(tokens) - 1
+                 full_length = len(tokens) == OUTPUT
+-                recalled = bool(re.search(r"\bCEDAR\b", continuation, re.IGNORECASE))
+-                context_passed = full_length and recalled
++                try:
++                    answer, _ = json.JSONDecoder().raw_decode(continuation[continuation.index("{"):])
++                except ValueError:
++                    answer = {}
++                recalled = answer.get("run_id") == "LARCH-47"
++                period_ok = type(answer.get("period")) is int and answer["period"] == len(cycle)
++                cycle_ok = answer.get("cycle") == cycle
++                context_passed = full_length and recalled and period_ok and cycle_ok
+                 emit(stage="context_result", case=case["id"], generated_tokens=len(tokens),
+-                     reached_128=full_length, recalled_run_id=recalled, ended_on_eos=tokens[-1] in eos,
++                     reached_256=full_length, recalled_run_id=recalled, period_correct=period_ok,
++                     cycle_correct=cycle_ok, parsed_answer=answer, ended_on_eos=tokens[-1] in eos,
+                      cached_decode_tokens_per_s=steps / (elapsed - first) if steps else None)
+             else:
+                 outputs[case["id"]] = continuation

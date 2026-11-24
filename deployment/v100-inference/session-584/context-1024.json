@@ -1,0 +1,243 @@
+{
+  "session": 584,
+  "test": "context-1024",
+  "batch_size": 1,
+  "model_loads": 1,
+  "exit_code": 0,
+  "model_manifest_sha256": "c3a6cb1deb5123cc35ccc9c07de36545f82b91a317f97971b6bd56b3403f2e06",
+  "worker_sha256": "b364fa67268fe4547cf1cb0dd28264b8eb8e81e1f6b025147a559282390c09d8",
+  "placement_source_sha256": "fe99aec5bc7d530bb0df462196c6eaf2c3b7bae9727f7d19fb7e5a4052737a31",
+  "worker_wall_s": 125,
+  "load_s": 84.47089872695506,
+  "sampled_board_peak_mib": [
+    27207,
+    26720
+  ],
+  "load_allocator_peak": [
+    {
+      "allocated_bytes": 26896020992,
+      "free_bytes_at_sample": 6249119744,
+      "reserved_bytes": 26925334528
+    },
+    {
+      "allocated_bytes": 26896030208,
+      "free_bytes_at_sample": 6759579648,
+      "reserved_bytes": 26925334528
+    }
+  ],
+  "regression_controls": {
+    "sum": true,
+    "ratio": true,
+    "units": true,
+    "replicates": true,
+    "insufficient": true,
+    "citation": true,
+    "ordering": true
+  },
+  "completed_case_measurements": [
+    {
+      "case": "initial_decode",
+      "input_tokens": 46,
+      "generated_tokens": 4,
+      "first_token_s": 2.9742312114685774,
+      "generation_s": 3.773687034845352,
+      "cached_steps": 3,
+      "cached_tokens_per_s": 3.7525525642285964,
+      "allocator_peak": [
+        {
+          "allocated_bytes": 27017442304,
+          "free_bytes_at_sample": 6114902016,
+          "reserved_bytes": 27044872192
+        },
+        {
+          "allocated_bytes": 27016979968,
+          "free_bytes_at_sample": 6627459072,
+          "reserved_bytes": 27042775040
+        }
+      ]
+    },
+    {
+      "case": "sum",
+      "input_tokens": 54,
+      "generated_tokens": 11,
+      "first_token_s": 0.73727055080235,
+      "generation_s": 1.9249118994921446,
+      "cached_steps": 10,
+      "cached_tokens_per_s": 8.420050388976433,
+      "allocator_peak": [
+        {
+          "allocated_bytes": 27020025344,
+          "free_bytes_at_sample": 6114902016,
+          "reserved_bytes": 27044872192
+        },
+        {
+          "allocated_bytes": 27022290944,
+          "free_bytes_at_sample": 6625361920,
+          "reserved_bytes": 27044872192
+        }
+      ]
+    },
+    {
+      "case": "ratio",
+      "input_tokens": 52,
+      "generated_tokens": 7,
+      "first_token_s": 0.7270502243191004,
+      "generation_s": 1.4464915357530117,
+      "cached_steps": 6,
+      "cached_tokens_per_s": 8.339804657646722,
+      "allocator_peak": [
+        {
+          "allocated_bytes": 27019162112,
+          "free_bytes_at_sample": 6114902016,
+          "reserved_bytes": 27044872192
+        },
+        {
+          "allocated_bytes": 27022062592,
+          "free_bytes_at_sample": 6625361920,
+          "reserved_bytes": 27044872192
+        }
+      ]
+    },
+    {
+      "case": "units",
+      "input_tokens": 56,
+      "generated_tokens": 9,
+      "first_token_s": 0.7301227636635303,
+      "generation_s": 1.6896917782723904,
+      "cached_steps": 8,
+      "cached_tokens_per_s": 8.33707620630181,
+      "allocator_peak": [
+        {
+          "allocated_bytes": 27020127744,
+          "free_bytes_at_sample": 6114902016,
+          "reserved_bytes": 27044872192
+        },
+        {
+          "allocated_bytes": 27022581760,
+          "free_bytes_at_sample": 6625361920,
+          "reserved_bytes": 27044872192
+        }
+      ]
+    },
+    {
+      "case": "replicates",
+      "input_tokens": 59,
+      "generated_tokens": 2,
+      "first_token_s": 0.7517499178647995,
+      "generation_s": 0.8807753715664148,
+      "cached_steps": 1,
+      "cached_tokens_per_s": 7.750408708599491,
+      "allocator_peak": [
+        {
+          "allocated_bytes": 27020284928,
+          "free_bytes_at_sample": 6114902016,
+          "reserved_bytes": 27044872192
+        },
+        {
+          "allocated_bytes": 27023097344,
+          "free_bytes_at_sample": 6625361920,
+          "reserved_bytes": 27044872192
+        }
+      ]
+    },
+    {
+      "case": "insufficient",
+      "input_tokens": 56,
+      "generated_tokens": 2,
+      "first_token_s": 0.3908086996525526,
+      "generation_s": 0.5122795887291431,
+      "cached_steps": 1,
+      "cached_tokens_per_s": 8.232425131666519,
+      "allocator_peak": [
+        {
+          "allocated_bytes": 27020127744,
+          "free_bytes_at_sample": 6114902016,
+          "reserved_bytes": 27044872192
+        },
+        {
+          "allocated_bytes": 27022954496,
+          "free_bytes_at_sample": 6625361920,
+          "reserved_bytes": 27044872192
+        }
+      ]
+    },
+    {
+      "case": "citation",
+      "input_tokens": 57,
+      "generated_tokens": 15,
+      "first_token_s": 0.7303660307079554,
+      "generation_s": 2.412121716886759,
+      "cached_steps": 14,
+      "cached_tokens_per_s": 8.324633664126363,
+      "allocator_peak": [
+        {
+          "allocated_bytes": 27020180480,
+          "free_bytes_at_sample": 6114902016,
+          "reserved_bytes": 27044872192
+        },
+        {
+          "allocated_bytes": 27022984704,
+          "free_bytes_at_sample": 6625361920,
+          "reserved_bytes": 27044872192
+        }
+      ]
+    },
+    {
+      "case": "ordering",
+      "input_tokens": 64,
+      "generated_tokens": 18,
+      "first_token_s": 0.8013632874935865,
+      "generation_s": 2.7998351212590933,
+      "cached_steps": 17,
+      "cached_tokens_per_s": 8.506499672786841,
+      "allocator_peak": [
+        {
+          "allocated_bytes": 27020018176,
+          "free_bytes_at_sample": 6114902016,
+          "reserved_bytes": 27044872192
+        },
+        {
+          "allocated_bytes": 27022808064,
+          "free_bytes_at_sample": 6625361920,
+          "reserved_bytes": 27044872192
+        }
+      ]
+    },
+    {
+      "case": "valve_log_1024",
+      "input_tokens": 1024,
+      "generated_tokens": 128,
+      "first_token_s": 1.5498453751206398,
+      "generation_s": 16.573045935481787,
+      "cached_steps": 127,
+      "cached_tokens_per_s": 8.453591462733359,
+      "allocator_peak": [
+        {
+          "allocated_bytes": 27420346880,
+          "free_bytes_at_sample": 5544476672,
+          "reserved_bytes": 27615297536
+        },
+        {
+          "allocated_bytes": 27406923264,
+          "free_bytes_at_sample": 6054936576,
+          "reserved_bytes": 27615297536
+        }
+      ]
+    }
+  ],
+  "completed_cases_all_raw_logits_finite": true,
+  "completed_cases_final_fp32_recurrent_states_finite": true,
+  "requested_input_tokens": 1024,
+  "requested_output_tokens": 128,
+  "long_case": {
+    "cached_decode_tokens_per_s": 8.453591462733359,
+    "ended_on_eos": false,
+    "generated_tokens": 128,
+    "reached_128": true,
+    "recalled_run_id": true,
+    "answer_excerpt": "Run ID: CEDAR. The valve position data exhibits a strict, repeating alternating pattern of 'closed' followed by 'open'.",
+    "reviewed_content_error": "Correct run ID. The answer described a strict one-by-one alternation. The input repeated states in pairs after an initial closed sample."
+  },
+  "verified_runtime_regular_files": 31828,
+  "model_and_tokenizer_hashes_verified": true
+}
