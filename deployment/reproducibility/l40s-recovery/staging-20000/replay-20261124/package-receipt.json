@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "package_path": "/data/axonai/axonai-v1-original-assembler-replay-evidence-20261124",
+  "package_file_count_including_manifest": 23,
+  "package_total_regular_file_bytes": 92544,
+  "sha256_manifest": "/data/axonai/axonai-v1-original-assembler-replay-evidence-20261124/SHA256SUMS",
+  "sha256_manifest_digest": "a5007167ad5b8a936be0ab2eea5132b16bcb47176c6a86dc863d9b6234a324fa",
+  "bundle_path": "/data/axonai/axonai-v1-original-assembler-replay-evidence-20261124.tar.gz",
+  "bundle_bytes": 27590,
+  "bundle_sha256": "95a8f07f1c976b24dc39db21cbc693a769563c8cc2d14f4ed8ead5fc0d49dbad",
+  "source_sha256": "cbbb8750b0d21d129899578cfbf61ce7b1a8af665f2761277e70c55b3a9b36f9",
+  "replay_status": "PASS",
+  "privacy_review": "Explicit allowlist; no private dataset rows, near-question payload, historical archive payloads, model weights or binaries included.",
+  "bundle_content_verification": "Every regular member compared against package bytes; PASS"
+}

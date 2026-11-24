@@ -1,0 +1,249 @@
+{
+  "status": "PASS",
+  "time_utc": "2026-11-24T03:54:15.725770+00:00",
+  "files": {
+    "assembler": {
+      "path": "/data/axonai/axonai-v1-original-assembler-replay-20261124/inputs/axonai_stage_final_20000_v11.py",
+      "bytes": 18334,
+      "sha256": "cbbb8750b0d21d129899578cfbf61ce7b1a8af665f2761277e70c55b3a9b36f9",
+      "mtime_ns": 1795436042795752681,
+      "inode": 30065025255,
+      "device": 2431,
+      "mode": "0o600",
+      "links": 1
+    },
+    "batch001": {
+      "path": "/data/axonai/datasets/axonai-v1/sft/train/repaired/batch001-repaired-20261002T141416Z/batch001-5800-repaired.jsonl",
+      "bytes": 11223948,
+      "sha256": "8f3918f4eece4e83e87702308a972b1a620e76f34d0d244bb78a8df7792dfd67",
+      "mtime_ns": 1790950474919425550,
+      "inode": 66572087997,
+      "device": 2431,
+      "mode": "0o664",
+      "links": 1
+    },
+    "pmc": {
+      "path": "/data/axonai/datasets/axonai-v1/sft/train/pmc-batch002-7000.jsonl",
+      "bytes": 16037357,
+      "sha256": "4ebc148178d70bd65302bbdc7714e3bde6e5fca662a08cc71a1dc1bc590d7f7f",
+      "mtime_ns": 1789013183232538428,
+      "inode": 4295021517,
+      "device": 2431,
+      "mode": "0o664",
+      "links": 1
+    },
+    "production": {
+      "path": "/data/axonai/datasets/axonai-v1/generated/20k-completion-production/run-v1/accepted-canonical.jsonl",
+      "bytes": 15738412,
+      "sha256": "ba0f5b5b20add36c459bdda395ec2311626c7aeb0de33b553f9fcf24bce563f4",
+      "mtime_ns": 1791271749187701151,
+      "inode": 32212960193,
+      "device": 2431,
+      "mode": "0o664",
+      "links": 1
+    },
+    "recovered28_archive": {
+      "path": "/data/axonai/axonai-v1-original-assembler-replay-20261124/inputs/axonai-reconcile-28-20261008T155441Z.tar.gz",
+      "bytes": 18466,
+      "sha256": "c479afe31be7c1212e41100fbdc274a4a74c00603c9beb4a553a24a93a7a2f46",
+      "mtime_ns": 1791474908627093893,
+      "inode": 30065025252,
+      "device": 2431,
+      "mode": "0o600",
+      "links": 1
+    },
+    "supersession_plan": {
+      "path": "/data/axonai/axonai-v1-original-assembler-replay-20261124/inputs/axonai-duplicate-replacement-plan-20261008T163702Z.tar.gz",
+      "bytes": 5722,
+      "sha256": "b73c01129e0fb30939fca75422ba80925582ff7ce261f9334faba1919c622d5e",
+      "mtime_ns": 1791477449588766791,
+      "inode": 30065025249,
+      "device": 2431,
+      "mode": "0o600",
+      "links": 1
+    },
+    "previous11_archive": {
+      "path": "/data/axonai/axonai-v1-original-assembler-replay-20261124/inputs/axonai-duplicate12-generation-20261009T042944Z.tar.gz",
+      "bytes": 15833,
+      "sha256": "3e88d4599b2c5b967d67ebc1bc15d54b8a42bfbc4fc6a9f22bcd389b824c527c",
+      "mtime_ns": 1791520711316109861,
+      "inode": 30065025250,
+      "device": 2431,
+      "mode": "0o600",
+      "links": 1
+    },
+    "single_archive": {
+      "path": "/data/axonai/axonai-v1-original-assembler-replay-20261124/inputs/axonai-slot06926-generation-20261009T045823Z.tar.gz",
+      "bytes": 3382,
+      "sha256": "bcc4edb9dd34b0f76545bd0cd190568419faff46d117cbb18d8c59e01d95acee",
+      "mtime_ns": 1791522078818884713,
+      "inode": 30065025253,
+      "device": 2431,
+      "mode": "0o600",
+      "links": 1
+    },
+    "source12_archive": {
+      "path": "/data/axonai/axonai-v1-original-assembler-replay-20261124/inputs/axonai-duplicate12-source-freeze-20261009T042202Z.tar.gz",
+      "bytes": 27206,
+      "sha256": "7a99de30ab0a60f73d9c80e954e0021f568e0048d919c8c9c0f460e5655a1fd5",
+      "mtime_ns": 1791519742436156575,
+      "inode": 30065025251,
+      "device": 2431,
+      "mode": "0o600",
+      "links": 1
+    },
+    "source1_archive": {
+      "path": "/data/axonai/axonai-v1-original-assembler-replay-20261124/inputs/axonai-slot06926-source-freeze-20261009T044828Z.tar.gz",
+      "bytes": 2834,
+      "sha256": "aebfe44772bf22a74a8b913590a8138ff96de973565c71b3e38143bb7fb2a955",
+      "mtime_ns": 1791521331676578152,
+      "inode": 30065025254,
+      "device": 2431,
+      "mode": "0o600",
+      "links": 1
+    }
+  },
+  "imports": [
+    "__future__",
+    "argparse",
+    "collections",
+    "difflib",
+    "hashlib",
+    "json",
+    "os",
+    "pathlib",
+    "re",
+    "tarfile",
+    "unicodedata"
+  ],
+  "archive_checks": [
+    {
+      "input": "recovered28_archive",
+      "members": 5,
+      "regular_files": 4,
+      "expanded_bytes": 86284,
+      "internal_checksums": 3,
+      "status": "PASS"
+    },
+    {
+      "input": "supersession_plan",
+      "members": 5,
+      "regular_files": 5,
+      "expanded_bytes": 30328,
+      "internal_checksums": 4,
+      "status": "PASS"
+    },
+    {
+      "input": "previous11_archive",
+      "members": 18,
+      "regular_files": 16,
+      "expanded_bytes": 113689,
+      "internal_checksums": 3,
+      "status": "PASS"
+    },
+    {
+      "input": "single_archive",
+      "members": 6,
+      "regular_files": 5,
+      "expanded_bytes": 13199,
+      "internal_checksums": 4,
+      "status": "PASS"
+    },
+    {
+      "input": "source12_archive",
+      "members": 6,
+      "regular_files": 6,
+      "expanded_bytes": 89128,
+      "internal_checksums": 5,
+      "status": "PASS"
+    },
+    {
+      "input": "source1_archive",
+      "members": 3,
+      "regular_files": 3,
+      "expanded_bytes": 5746,
+      "internal_checksums": 2,
+      "status": "PASS"
+    }
+  ],
+  "historical_outputs": {
+    "axonai-v1-20000-STAGING-NOT-FROZEN.jsonl": {
+      "path": "/data/axonai/datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/final-20000-staging-v11-20261009T051315Z/axonai-v1-20000-STAGING-NOT-FROZEN.jsonl",
+      "bytes": 41846228,
+      "sha256": "24889f6495d4e9e5015f7a63352fba470b9913fcb1dbeebc7d84c0eb0546b5fd",
+      "mtime_ns": 1791522801557928421,
+      "inode": 15032444923,
+      "device": 2431,
+      "mode": "0o664",
+      "links": 1
+    },
+    "input-sha256.json": {
+      "path": "/data/axonai/datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/final-20000-staging-v11-20261009T051315Z/input-sha256.json",
+      "bytes": 789,
+      "sha256": "0a86d4cf03345b9ab3e361e5547f3295c030d07ea99a2ecf6e5fab65592d5312",
+      "mtime_ns": 1791522801617927041,
+      "inode": 15032444927,
+      "device": 2431,
+      "mode": "0o664",
+      "links": 1
+    },
+    "near-question-review.json": {
+      "path": "/data/axonai/datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/final-20000-staging-v11-20261009T051315Z/near-question-review.json",
+      "bytes": 23310,
+      "sha256": "06eabd8fd70ecf7a9cfd9e8b068afcb412f1a691bfb041b7243b5b26567d5bcb",
+      "mtime_ns": 1791522801588927708,
+      "inode": 15032444925,
+      "device": 2431,
+      "mode": "0o664",
+      "links": 1
+    },
+    "staging-audit-report.json": {
+      "path": "/data/axonai/datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/final-20000-staging-v11-20261009T051315Z/staging-audit-report.json",
+      "bytes": 2895,
+      "sha256": "0d447cee999af9271837796544c9fccfcca1089d6e391734cefb1838ad92f860",
+      "mtime_ns": 1791522801587927731,
+      "inode": 15032444924,
+      "device": 2431,
+      "mode": "0o664",
+      "links": 1
+    },
+    "superseded-production-record-ids.json": {
+      "path": "/data/axonai/datasets/axonai-v1/generated/20k-completion-production/run-v1/recovery/final-20000-staging-v11-20261009T051315Z/superseded-production-record-ids.json",
+      "bytes": 483,
+      "sha256": "d332eab16ccb587ca7897ae0defab0d8df8f74e8e50a65ad9e08e3e65011d272",
+      "mtime_ns": 1791522801588927708,
+      "inode": 15032444926,
+      "device": 2431,
+      "mode": "0o664",
+      "links": 1
+    }
+  },
+  "runtime": {
+    "python": "3.12.3 (main, Jul 15 2026, 23:46:41) [GCC 13.3.0]",
+    "executable": "/data/axonai/.venv/bin/python",
+    "prefix": "/data/axonai/.venv",
+    "platform": "Linux-6.8.0-139-generic-x86_64-with-glibc2.39",
+    "mem_available_bytes": 2133022126080,
+    "disk_free_bytes": 54196972437504,
+    "cgroup_memory_limits": {
+      "/sys/fs/cgroup/user.slice/user-1000.slice/session-14373.scope/memory.max": "max",
+      "/sys/fs/cgroup/user.slice/user-1000.slice/memory.max": "max",
+      "/sys/fs/cgroup/user.slice/memory.max": "max"
+    },
+    "landlock_abi": 4,
+    "replay_address_space_limit_bytes": 8589934592
+  },
+  "static_review": {
+    "complete_source_reviewed": true,
+    "third_party_dependencies": [],
+    "gpu_imports": false,
+    "network_calls": false,
+    "subprocess_calls": false,
+    "archive_extraction_to_disk": false,
+    "archive_access": "tarfile r:gz, regular members read with extractfile; no extraction to filesystem",
+    "writes": "output_dir mkdir; five output files via temporary files, fsync and os.replace; output SHA256SUMS",
+    "original_paths_opened_for_write": false,
+    "near_screen": "unchanged default enabled, no skip flag"
+  },
+  "output": "/data/axonai/axonai-v1-original-assembler-replay-20261124/execution/output"
+}

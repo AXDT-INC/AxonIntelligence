@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "outside_allowlist_write_denied": true,
+  "create_write_replace_read_unlink_rmdir_inside_allowlist_passed": true,
+  "protected_canary_preserved": true,
+  "note": "Only disposable replay-local files tested; no write attempt against original artifacts."
+}

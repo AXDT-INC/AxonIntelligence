@@ -1,0 +1,23 @@
+	Command being timed: "/data/axonai/.venv/bin/python -I -B /data/axonai/axonai-v1-original-assembler-replay-20261124/tools/restrict_writes.py /data/axonai/axonai-v1-original-assembler-replay-20261124/execution /data/axonai/axonai-v1-original-assembler-replay-20261124/tmp -- /data/axonai/.venv/bin/python -B /data/axonai/axonai-v1-original-assembler-replay-20261124/inputs/axonai_stage_final_20000_v11.py --batch001 /data/axonai/datasets/axonai-v1/sft/train/repaired/batch001-repaired-20261002T141416Z/batch001-5800-repaired.jsonl --pmc /data/axonai/datasets/axonai-v1/sft/train/pmc-batch002-7000.jsonl --production /data/axonai/datasets/axonai-v1/generated/20k-completion-production/run-v1/accepted-canonical.jsonl --recovered28-archive /data/axonai/axonai-v1-original-assembler-replay-20261124/inputs/axonai-reconcile-28-20261008T155441Z.tar.gz --supersession-plan /data/axonai/axonai-v1-original-assembler-replay-20261124/inputs/axonai-duplicate-replacement-plan-20261008T163702Z.tar.gz --previous11-archive /data/axonai/axonai-v1-original-assembler-replay-20261124/inputs/axonai-duplicate12-generation-20261009T042944Z.tar.gz --single-archive /data/axonai/axonai-v1-original-assembler-replay-20261124/inputs/axonai-slot06926-generation-20261009T045823Z.tar.gz --source12-archive /data/axonai/axonai-v1-original-assembler-replay-20261124/inputs/axonai-duplicate12-source-freeze-20261009T042202Z.tar.gz --source1-archive /data/axonai/axonai-v1-original-assembler-replay-20261124/inputs/axonai-slot06926-source-freeze-20261009T044828Z.tar.gz --output-dir /data/axonai/axonai-v1-original-assembler-replay-20261124/execution/output"
+	User time (seconds): 5.73
+	System time (seconds): 0.23
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.97
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 334304
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 87650
+	Voluntary context switches: 156
+	Involuntary context switches: 28
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 81816
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
