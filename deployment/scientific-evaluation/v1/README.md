@@ -1,5 +1,7 @@
 # AxonAI-v1 prospective scientific evaluation · protocol v1.0
 
+**L40S hardware validation returned NO-GO.** All 59 CPU tests passed (40 protocol tests and 19 backend tests). Further L40S comparative evaluation is deferred. Outstanding hardware checks cover the pinned BF16 model and adapter load on the two reserved GPUs, container isolation, bare versus disabled-adapter equivalence, repeatability, and memory and timing at the full context budget. The [L40S runbook](LIVE.md) preserves the preflight procedure. The immediate priority is V100 inference development with the validated FP16 model and the existing AxonOS inference implementation.
+
 **Status on 2026-11-24:** proposed for review at Git HEAD `a1501ac21bace58304018ca941f735269899bf7f`. The implemented components have CPU-only synthetic exercises. No pilot item, scientific score or performance result has been collected. The first experiment asks how often the final adapter changes the correctness of the same task on a pinned base, and whether the evaluation can measure that difference reliably. A negative or null difference is a valid outcome.
 
 ## Design and scope of inference

@@ -21,3 +21,10 @@
 !test_runner.py
 !test_scoring.py
 !test_screen.py
+!live_backend.py
+!live_worker.py
+!live_supervisor.py
+!live_store.py
+!live_package.py
+!test_live.py
+!LIVE.md
