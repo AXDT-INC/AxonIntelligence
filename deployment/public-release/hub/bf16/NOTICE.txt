@@ -1,0 +1,16 @@
+AxonAI-v1-27B canonical BF16 release candidate
+Qwen team. Copyright 2026 Alibaba Cloud. Apache License, Version 2.0.
+Base: Qwen/Qwen3.8-27B at 1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0.
+
+On November 9, 2026 AxonAI serialized the text-only BF16 merge of its
+scientific LoRA adapter with Qwen's text model. The merge used FP32
+arithmetic. The export adapts the tokenizer packaging and text configuration,
+and omits 333 vision tensors and 15 auxiliary MTP tensors. The local FP16
+derivative was converted from these BF16 tensors on November 20, 2026.
+
+Retain Qwen's license, attribution and applicable notices of changes.
+AxonDAO licenses its first-party code and documentation under Apache-2.0.
+Model and dataset redistribution decisions are pending. The source register
+provides article-level credits and terms. Third-party rights and exceptions
+apply to the underlying material. No endorsement by Qwen or the article
+authors is implied.

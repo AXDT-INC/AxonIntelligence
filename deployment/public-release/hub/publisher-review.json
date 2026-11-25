@@ -1,0 +1,166 @@
+{
+  "PMC13542652.1": {
+    "doi": "10.14789/ejmj.JMJ26-0041-OA",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.jstage.jst.go.jp/article/ejmj/72/4/72_JMJ26-0041-OA/_article/-char/en",
+    "basis": "Final article identifies its DOI and explicitly licenses the article under CC BY 4.0."
+  },
+  "PMC13542657.1": {
+    "doi": "10.14789/ejmj.JMJ26-0002-OA",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.jstage.jst.go.jp/article/ejmj/72/4/72_JMJ26-0002-OA/_article/-char/ja",
+    "basis": "Final article identifies its DOI and explicitly licenses the article under CC BY 4.0."
+  },
+  "PMC13454948.1": {
+    "doi": "10.15698/cst2026.08.320",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "source": "https://www.cell-stress.com/researcharticles/2026a-lambertucci-cell-stress/",
+    "basis": "Publisher names the article and authors in the CC BY 4.0 grant."
+  },
+  "PMC12807375.1": {
+    "doi": "10.1002/tpg2.20386",
+    "source": "https://acsess.onlinelibrary.wiley.com/doi/full/10.1002/tpg2.20386",
+    "basis": "Wiley's How to cite section supplies a citation without a named author. Keep the published copyright notice and leave the author list empty.",
+    "credit_line": "Research highlights, The Plant Genome, Volume 16, Issue 3 (2023). The Plant Genome 16, e20386. https://doi.org/10.1002/tpg2.20386",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "PMC13408521.1": {
+    "doi": "10.34172/apb.025.46563",
+    "source": "https://apb.tbzmed.ac.ir/ContactsandEditorialOffice",
+    "basis": "The article PDF grants CC BY without a version. The publisher specifies CC BY 4.0 for its journal articles, corroborating the PMC version annotation.",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "PMC13408527.1": {
+    "doi": "10.34172/apb.025.45970",
+    "source": "https://apb.tbzmed.ac.ir/ContactsandEditorialOffice",
+    "basis": "The article PDF grants CC BY without a version. The publisher specifies CC BY 4.0 for its journal articles, corroborating the PMC version annotation.",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "PMC13428630.1": {
+    "doi": "10.15190/d.2026.10",
+    "source": "https://discoveriesjournals.org/discoveries/D.2026.02.RA.ZehraA.pdf",
+    "open_issue": "The article PDF on page 20 and publisher issue terms explicitly exclude commercial uses of the article. The general CC BY mining URL conflicts. No standardized NC license version is established."
+  },
+  "PMC13428643.1": {
+    "doi": "10.1111/jgs.70421",
+    "source": "https://agsjournals.onlinelibrary.wiley.com/doi/abs/10.1111/jgs.70421",
+    "open_issue": "The PMC author manuscript points to generic Wiley terms. The publisher lists American Geriatrics Society copyright and all rights reserved. Confirm a specific reuse basis for the relevant version."
+  },
+  "PMC13432066.1": {
+    "doi": "10.1002/prca.202300015",
+    "source": "https://onlinelibrary.wiley.com/doi/10.1002/prca.202300015",
+    "open_issue": "The PMC author manuscript points to generic Wiley terms. A general CC grant for this manuscript or the published article is unverified. The publisher separately describes the South African source data as restricted."
+  },
+  "PMC13432921.1": {
+    "doi": "10.1016/j.stem.2025.01.011",
+    "source": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13432921.1/PMC13432921.1.pdf",
+    "open_issue": "The PMC deposit identifies itself as the accepted manuscript and grants unversioned CC BY to that manuscript. The publisher's deposited CC BY 4.0 URL applies to the version of record. The frozen passage version needs verification."
+  },
+  "PMC13437122.1": {
+    "doi": "10.14336/AD.2025.0801",
+    "source": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13437122.1/PMC13437122.1.pdf",
+    "basis": "Page 1 of the typeset article links its copyright/attribution notice to CC BY 4.0. The PMC JATS text-mining annotation instead names 2.0.",
+    "pmc_annotation": "https://creativecommons.org/licenses/by/2.0/",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "PMC13437126.1": {
+    "doi": "10.14336/AD.2025.0518",
+    "source": "https://pmc-oa-opendata.s3.amazonaws.com/PMC13437126.1/PMC13437126.1.pdf",
+    "basis": "Page 1 of the typeset article links its copyright/attribution notice to CC BY 4.0. The PMC JATS text-mining annotation instead names 2.0.",
+    "pmc_annotation": "https://creativecommons.org/licenses/by/2.0/",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "PMC13504950.1": {
+    "doi": "10.5114/biolsport.2026.159563",
+    "source": "https://pjp.termedia.pl/Journal/Biology_of_Sport-78/office",
+    "basis": "The publisher identifies CC BY 4.0 as the journal's article license. The article identifies CC BY and the deposited paper also contains a CC BY 4.0 statement.",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "PMC13504960.1": {
+    "doi": "10.5114/biolsport.2026.161106",
+    "source": "https://pjp.termedia.pl/Journal/Biology_of_Sport-78/office",
+    "basis": "The publisher identifies CC BY 4.0 as the journal's article license. The article identifies CC BY and the deposited paper also contains a CC BY 4.0 statement.",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "PMC13527639.1": {
+    "doi": "10.1001/jamainternmed.2026.4773",
+    "source": "https://jamanetwork.com/pages/cc-by-license-permissions",
+    "open_issue": "JAMA's article links to its CC-BY permission for article content with author and journal credit. That permission does not identify the CC version."
+  },
+  "PMC13539385.1": {
+    "doi": "10.17912/micropub.biology.002343",
+    "source": "https://micropublication.org/journals/biology/micropub.biology.002343/",
+    "basis": "The publisher's article-specific copyright section explicitly names CC BY 4.0 International.",
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "PMC13544255.1": {
+    "doi": "10.5935/1518-0557.20260032",
+    "source": "https://doi.org/10.5935/1518-0557.20260032",
+    "open_issue": "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+  },
+  "PMC13544257.1": {
+    "doi": "10.5935/1518-0557.20260035",
+    "source": "https://doi.org/10.5935/1518-0557.20260035",
+    "open_issue": "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+  },
+  "PMC13544258.1": {
+    "doi": "10.5935/1518-0557.20260025",
+    "source": "https://doi.org/10.5935/1518-0557.20260025",
+    "open_issue": "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+  },
+  "PMC13544259.1": {
+    "doi": "10.5935/1518-0557.20260037",
+    "source": "https://doi.org/10.5935/1518-0557.20260037",
+    "open_issue": "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+  },
+  "PMC13544260.1": {
+    "doi": "10.5935/1518-0557.20260028",
+    "source": "https://doi.org/10.5935/1518-0557.20260028",
+    "open_issue": "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+  },
+  "PMC13544262.1": {
+    "doi": "10.5935/1518-0557.20260034",
+    "source": "https://doi.org/10.5935/1518-0557.20260034",
+    "open_issue": "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+  },
+  "PMC13544263.1": {
+    "doi": "10.5935/1518-0557.20260036",
+    "source": "https://doi.org/10.5935/1518-0557.20260036",
+    "open_issue": "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+  },
+  "PMC13544265.1": {
+    "doi": "10.5935/1518-0557.20260019",
+    "source": "https://doi.org/10.5935/1518-0557.20260019",
+    "open_issue": "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+  },
+  "PMC13544266.1": {
+    "doi": "10.5935/1518-0557.20260029",
+    "source": "https://doi.org/10.5935/1518-0557.20260029",
+    "open_issue": "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+  },
+  "PMC13544267.1": {
+    "doi": "10.5935/1518-0557.20260030",
+    "source": "https://doi.org/10.5935/1518-0557.20260030",
+    "open_issue": "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+  },
+  "PMC13544269.1": {
+    "doi": "10.5935/1518-0557.20260038",
+    "source": "https://doi.org/10.5935/1518-0557.20260038",
+    "open_issue": "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+  },
+  "PMC13544557.1": {
+    "doi": "10.5935/1518-0557.20260048",
+    "source": "https://doi.org/10.5935/1518-0557.20260048",
+    "open_issue": "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+  },
+  "PMC13544558.1": {
+    "doi": "10.5935/1518-0557.20260047",
+    "source": "https://doi.org/10.5935/1518-0557.20260047",
+    "open_issue": "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+  },
+  "PMC13544560.1": {
+    "doi": "10.5935/1518-0557.20260044",
+    "source": "https://doi.org/10.5935/1518-0557.20260044",
+    "open_issue": "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "total": 4230,
+  "records": 10684,
+  "pmc_records": 4230,
+  "article_terms": {
+    "https://creativecommons.org/licenses/by/4.0/": 4170,
+    "https://creativecommons.org/publicdomain/zero/1.0/": 9,
+    "https://creativecommons.org/licenses/by/3.0/": 29,
+    "unresolved": 19,
+    "https://creativecommons.org/licenses/by/3.0/igo/": 2,
+    "US public domain (publisher statement)": 1
+  },
+  "historical_cc0": {
+    "https://creativecommons.org/licenses/by/4.0/": 46,
+    "https://creativecommons.org/publicdomain/zero/1.0/": 9
+  },
+  "changes": {
+    "title": 380,
+    "article_license": 78,
+    "separate_data_waiver": 46,
+    "authors": 109,
+    "doi": 2
+  },
+  "missing_authors_recovered": 2,
+  "issues": {
+    "PMC13428630": [
+      "The article PDF on page 20 and publisher issue terms explicitly exclude commercial uses of the article. The general CC BY mining URL conflicts. No standardized NC license version is established."
+    ],
+    "PMC13428643": [
+      "The PMC author manuscript points to generic Wiley terms. The publisher lists American Geriatrics Society copyright and all rights reserved. Confirm a specific reuse basis for the relevant version."
+    ],
+    "PMC13432066": [
+      "The PMC author manuscript points to generic Wiley terms. A general CC grant for this manuscript or the published article is unverified. The publisher separately describes the South African source data as restricted."
+    ],
+    "PMC13432921": [
+      "The PMC deposit identifies itself as the accepted manuscript and grants unversioned CC BY to that manuscript. The publisher's deposited CC BY 4.0 URL applies to the version of record. The frozen passage version needs verification."
+    ],
+    "PMC13527639": [
+      "JAMA's article links to its CC-BY permission for article content with author and journal credit. That permission does not identify the CC version."
+    ],
+    "PMC13544255": [
+      "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+    ],
+    "PMC13544257": [
+      "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+    ],
+    "PMC13544258": [
+      "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+    ],
+    "PMC13544259": [
+      "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+    ],
+    "PMC13544260": [
+      "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+    ],
+    "PMC13544262": [
+      "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+    ],
+    "PMC13544263": [
+      "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+    ],
+    "PMC13544265": [
+      "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+    ],
+    "PMC13544266": [
+      "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+    ],
+    "PMC13544267": [
+      "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+    ],
+    "PMC13544269": [
+      "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+    ],
+    "PMC13544557": [
+      "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+    ],
+    "PMC13544558": [
+      "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+    ],
+    "PMC13544560": [
+      "The deposited article notice grants CC BY but omits its version. The 4.0 URL is tagged for text mining; the publisher evidence reviewed does not establish the general version."
+    ]
+  }
+}
