@@ -10,7 +10,8 @@ def main():
     from transformers import AutoModelForCausalLM, Qwen3_5ForCausalLM, Qwen3_5TextConfig
     from torch.nn.attention import SDPBackend, sdpa_kernel
 
-    from infer import greedy
+    from unittest.mock import Mock
+    from infer import Resident, greedy
 
     if list(Path("/dev").glob("nvidia*")) or "sm_70" not in torch._C._cuda_getArchFlags().split():
         raise RuntimeError("Expected a device-free build stage and Volta-capable wheel")
@@ -36,6 +37,11 @@ def main():
             assert torch.equal(tensor,weights[name]),name
         tokens,cache,_,_ = greedy(model,torch.tensor([[1,3,7,2]]),set(),limit=3)
         assert len(tokens)==3 and cache.layers[0].recurrent_states[0].dtype==torch.float32
+        resident = Resident(model, Mock(), cfg.layer_types, set(), 2048, 256)
+        for prompt in ([1,3,7,2], [1,9,6], [1,3,7,2]):
+            _, generated, _, _ = resident.decode(torch.tensor([prompt]), 3)
+            if prompt == [1,3,7,2]:
+                assert generated == tokens
     assert not torch.cuda.is_initialized()
     print("Passed local checkpoint key remapping and CPU HF/Accelerate prefill and decode")
 

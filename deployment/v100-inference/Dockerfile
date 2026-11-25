@@ -5,7 +5,7 @@ ENV NVIDIA_VISIBLE_DEVICES=void CUDA_VISIBLE_DEVICES="" PYTHONDONTWRITEBYTECODE=
 WORKDIR /opt/inference
 COPY wheels.lock .
 RUN python -m pip --isolated install --no-cache-dir --only-binary=:all: --require-hashes --no-deps --no-index -r wheels.lock && python -m pip check
-COPY placement.py infer.py score_cases.py seven-prospective.json test_loader.py ./
+COPY placement.py infer.py serve.py score_cases.py seven-prospective.json test_loader.py ./
 USER 1000:1000
 RUN --network=none python test_loader.py
 ENTRYPOINT ["timeout","--kill-after=15s","20m","python","/opt/inference/infer.py"]

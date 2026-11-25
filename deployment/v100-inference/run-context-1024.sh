@@ -19,8 +19,10 @@ p=$tmp/runtime/usr/local
 history_dir=session575-smoke-20261123T0705Z
 work=$(mktemp -d "${TMPDIR:-/tmp}/axonai-$profile.XXXXXXXX")
 echo "Run log and GPU samples: $work"
-cp infer.py "$work/infer_session.py"
-cp placement.py score_cases.py seven-prospective.json "$history_dir/offline.py" "$work/"
+baseline=67cb9147e00c9fd4dce92d185c1b51405695d13a:deployment/v100-inference
+git show "$baseline/infer.py" > "$work/infer_session.py"
+git show "$baseline/placement.py" > "$work/placement.py"
+cp score_cases.py seven-prospective.json "$history_dir/offline.py" "$work/"
 patch --batch --forward --fuzz=0 "$work/infer_session.py" < "$history_dir/pread.patch"
 echo "70ebf4f5f2011573e0805280bedd9e10bc65bb003af1a39745b03b0c882f19d9  $work/infer_session.py" | sha256sum -c -
 patch --batch --forward --fuzz=0 -d "$work" -p1 < context-1024.patch

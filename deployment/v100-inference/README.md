@@ -1,5 +1,30 @@
 # AxonAI-v1 FP16 on V100
 
+## Standalone private service
+
+`serve.py` serves one resident FP16 model over HTTP on an owner-only Unix socket. The weights load once. Each request uses the fixed AxonAI system prompt, a single user turn, greedy decoding and a fresh cache. The 2,048-token input limit includes the chat template. Generation stops at EOS or the requested cap of up to 256 tokens.
+
+Before starting the service, confirm that physical V100 32 GB GPUs 1 and 2 are reserved for AxonAI for the lifetime of the process. The AxonOS Compute pool is configured for GPUs `0,3,4,5,6,7`. Restrict the container to the two confirmed UUIDs and set both `NVIDIA_VISIBLE_DEVICES` and `CUDA_VISIBLE_DEVICES` to those UUIDs in physical GPU 1, 2 order. The loader verifies their identities as CUDA devices 0 and 1, their architecture, available memory and checkpoint.
+
+For a reviewed deployment, use the V100 runtime as UID/GID `1000:1000` with the verified `AxonAI-v1-27B-FP16` checkpoint mounted read-only at `/model`. Keep networking disabled. Mount the dedicated host directory `/var/lib/axonai-socket` (owner `1000:1000`, mode `0700`) read-write at `/run/axonai`. The service creates `inference.sock` there with mode `0600`. The AxonOS gate mounts the same directory read-only at `/root/axonai` and its client connects to `/root/axonai/inference.sock`.
+
+The service process arguments in the updated image are shown below. Select `python` as the container entrypoint to bypass the historical smoke runner's 20-minute timeout.
+
+```sh
+python /opt/inference/serve.py --reserved-uuids "${CUDA_VISIBLE_DEVICES:?}" --socket /run/axonai/inference.sock
+```
+
+| Request | Response |
+|---|---|
+| `GET /ready` | `200 {"status":"ready"}` once the model has loaded and passed its loading checks. Returns 503 while loading or stopping. |
+| `POST /generate` | Send JSON such as `{"prompt":"What does FP16 mean?","max_new_tokens":32}`. The 200 response contains `text`, `input_tokens` and `output_tokens`. The output count includes a generated EOS token. |
+
+Send a UTF-8 JSON object with `Content-Type: application/json` and a `Content-Length` of up to 64 KiB. The prompt must contain text. `max_new_tokens` accepts integers from 1 through 256 and defaults to 256. Invalid input returns 400, an oversized body returns 413, and an unsupported media type returns 415.
+
+One request runs at a time, with up to two more waiting in FIFO order. A full queue returns 429. Readiness stays responsive during generation. SIGTERM or SIGINT closes admission, releases waiting callers with 503, finishes the active request and removes the socket on exit. Allow shutdown time for an in-progress model load or generation. An unexpected inference failure returns 500 to the active caller and shuts down the worker with a nonzero exit.
+
+## Recorded smoke run
+
 On 2026-11-23 from 07:13:38 to 07:15:45 UTC, AxonAI-v1 FP16 ran inside AxonOS session 575 on two Tesla V100-SXM2-32GB GPUs on clu1. The recorded run exited 0, completed the initial cached decode with finite logits, and passed all seven prospective controls. Loading took 101.55 s. Sampled board memory peaked at 26,292 and 26,176 MiB. The per-case outputs, timings, fixture scores, GPU identities and model manifest digest are in the [session result](session575-smoke-20261123T0705Z/result.json).
 
 The original Stage 1 entry point is `infer.py`. The session added checks for its private, read-only-to-the-worker model files. The first load then failed while mapping shard 2 under the worker's 72 GiB address-space limit. The successful attempt selected the safetensors `pread` backend for CPU checkpoint reads during the Transformers load. The run directory contains the two source patches in application order below, the offline wrapper and the exact session-specific launch script.
@@ -9,7 +34,7 @@ To reconstruct the successful runner for inspection, run these commands from thi
 ```sh
 d=session575-smoke-20261123T0705Z
 scratch=$(mktemp -d)
-cp infer.py "$scratch/infer_session.py"
+git show 67cb9147:deployment/v100-inference/infer.py > "$scratch/infer_session.py"
 patch --batch --forward --fuzz=0 "$scratch/infer_session.py" < "$d/stage-readonly.patch"
 patch --batch --forward --fuzz=0 "$scratch/infer_session.py" < "$d/pread.patch"
 sha256sum "$scratch/infer_session.py"

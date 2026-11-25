@@ -4,5 +4,6 @@
 !test_loader.py
 !placement.py
 !infer.py
+!serve.py
 !score_cases.py
 !seven-prospective.json

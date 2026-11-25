@@ -47,7 +47,7 @@ def read_model(root):
     return cfg, sizes
 
 
-def plan(cfg, sizes, devices):
+def plan(cfg, sizes, devices, max_input=INPUT, max_output=OUTPUT):
     if devices not in (2, 3, 4):
         raise ValueError("Expected 2, 3 or 4 devices")
     layers = cfg["layer_types"]
@@ -64,7 +64,7 @@ def plan(cfg, sizes, devices):
     ranges = list(zip((0, *cuts), (*cuts, n)))
     device_map = {"model.embed_tokens": 0, "model.rotary_emb": 0, "model.norm": devices-1, "lm_head": devices-1}
     # Per layer at batch one. Compute types follow the pinned native fallback.
-    kv = 2 * cfg["num_key_value_heads"] * cfg["head_dim"] * (INPUT + OUTPUT) * 2
+    kv = 2 * cfg["num_key_value_heads"] * cfg["head_dim"] * (max_input + max_output) * 2
     recurrent = cfg["linear_num_value_heads"] * cfg["linear_key_head_dim"] * cfg["linear_value_head_dim"] * 4
     channels = 2*cfg["linear_num_key_heads"]*cfg["linear_key_head_dim"] + cfg["linear_num_value_heads"]*cfg["linear_value_head_dim"]
     conv = channels * cfg["linear_conv_kernel_dim"] * 2
