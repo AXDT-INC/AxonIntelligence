@@ -4,43 +4,51 @@
 
 `serve.py` serves one resident FP16 model over HTTP on an owner-only Unix socket. The weights load once. Each request uses the fixed AxonAI system prompt, a single user turn, greedy decoding and a fresh cache. The 2,048-token input limit includes the chat template. Generation stops at EOS or the requested cap of up to 256 tokens.
 
-### Start or restore the production service on clu1
+### Start or restore a private instance
 
-Before a future start, confirm that `docker exec axonos printenv AXGT_GPU_DEVICE_IDS` returns `0,3,4,5,6,7`. Check current tenant assignments and use host `nvidia-smi` to verify that physical V100 32 GB cards 1 and 2 match the UUIDs below, have no competing processes and each have at least 29,892 MiB free. Keep them reserved for the lifetime of the service. The loader checks both UUIDs in CUDA order, with physical GPUs 1 and 2 appearing as CUDA devices 0 and 1.
+Use a host with the validated V100 image and FP16 checkpoint already available. Confirm that two V100 32 GB GPUs are reserved for the service for its lifetime and excluded from other schedulers. Check their host UUIDs, active processes and available memory. Each needs at least 29,892 MiB free at startup. The loader checks the two UUIDs in the supplied CUDA order.
 
-The host needs the local image ID and FP16 checkpoint in the creation command below. The dedicated host directory `/var/lib/axonai-socket` must be owned by `1000:1000` with mode `0700`. If absent, provision it with `sudo install -d -m 0700 -o 1000 -g 1000 /var/lib/axonai-socket`. AxonAI writes `inference.sock` there as `1000:1000` with mode `0600`. The production gate mounts the directory read-only at `/root/axonai`.
+Set the following shell variables before running Docker.
 
-The container is retained with restart policy `no`. If `axonai-v1` is running, use the checks below. If the correctly configured container is stopped, `docker start axonai-v1` reuses its saved configuration after the preflight. A graceful shutdown removes the socket. After an abrupt exit, if the socket still exists, confirm that its owning service is stopped and a local connection returns `ECONNREFUSED` before unlinking the stale `/var/lib/axonai-socket/inference.sock`. A 503 response means a live service owns it.
+| Variable | Value |
+| --- | --- |
+| `AXONAI_GPU_UUIDS` | Two reserved physical GPU UUIDs, comma-separated in CUDA order |
+| `AXONAI_IMAGE` | Immutable local image ID (`sha256:…`) for the validated service build |
+| `AXONAI_MODEL_DIR` | Absolute host path to the verified FP16 checkpoint with its pinned manifest |
+| `AXONAI_SOCKET_DIR` | Dedicated host directory owned by `1000:1000` with mode `0700` |
+| `AXONAI_CONTAINER` | Local name for the standalone inference container |
 
-If the container is absent, create it on the Docker host using the exact production command.
+If the dedicated directory is absent, create it with `sudo install -d -m 0700 -o 1000 -g 1000 -- "${AXONAI_SOCKET_DIR:?}"`. The service creates `inference.sock` with mode `0600`. Mount its directory read-write in the service and read-only in a trusted backend with permission to connect. For a stopped, correctly configured container, repeat the GPU preflight and use `docker start "${AXONAI_CONTAINER:?}"`. The restart policy is `no`. After an abrupt exit, confirm the owning service is stopped and a connection returns `ECONNREFUSED` before unlinking a stale socket. HTTP 503 means a live service owns it.
+
+Use the following command only when creating an instance. It preserves the runtime options from the recorded production launch.
 
 ```sh
-pair='GPU-85a39500-3cd6-4604-7ff4-4c07d48fb086,GPU-60515032-f798-5aaa-d1e4-acf58ea8bfa8'
-docker run -d --pull=never --name axonai-v1 \
-  --runtime=nvidia --gpus "\"device=$pair\"" \
-  -e NVIDIA_VISIBLE_DEVICES="$pair" -e CUDA_VISIBLE_DEVICES="$pair" \
+docker run -d --pull=never --name "${AXONAI_CONTAINER:?set the container name}" \
+  --runtime=nvidia --gpus "\"device=${AXONAI_GPU_UUIDS:?set the reserved UUID pair}\"" \
+  -e NVIDIA_VISIBLE_DEVICES="$AXONAI_GPU_UUIDS" -e CUDA_VISIBLE_DEVICES="$AXONAI_GPU_UUIDS" \
   -e NVIDIA_DRIVER_CAPABILITIES=compute,utility \
   --network=none --ipc=private --cgroupns=private \
   --user=1000:1000 --cap-drop=ALL --security-opt=no-new-privileges=true \
   --read-only --cpus=4 --cpu-shares=128 --memory=72g --memory-swap=72g \
   --pids-limit=256 --shm-size=128m \
   --tmpfs=/tmp:rw,noexec,nosuid,nodev,size=512m,mode=1777 \
-  --mount type=bind,src=/data/axonai/models/merged/AxonAI-v1-27B-FP16,dst=/model,readonly,bind-recursive=disabled \
-  --mount type=bind,src=/var/lib/axonai-socket,dst=/run/axonai \
-  -e TORCH_DISABLE_NATIVE_JIT=1 --entrypoint /usr/bin/env sha256:e301f15677f5355711a47a51ca7627a52315cb4eca68766a45d614b45101c5fb \
-  NVIDIA_VISIBLE_DEVICES="$pair" python /opt/inference/serve.py --reserved-uuids "$pair" --socket /run/axonai/inference.sock
+  --mount "type=bind,src=${AXONAI_MODEL_DIR:?set the verified checkpoint path},dst=/model,readonly,bind-recursive=disabled" \
+  --mount "type=bind,src=${AXONAI_SOCKET_DIR:?set the dedicated socket directory},dst=/run/axonai" \
+  -e TORCH_DISABLE_NATIVE_JIT=1 --entrypoint /usr/bin/env "${AXONAI_IMAGE:?set the validated image ID}" \
+  NVIDIA_VISIBLE_DEVICES="$AXONAI_GPU_UUIDS" python /opt/inference/serve.py \
+  --reserved-uuids "$AXONAI_GPU_UUIDS" --socket /run/axonai/inference.sock
 ```
 
-Docker's UUID device request confines the container to the pair. On this host, the NVIDIA runtime passed `NVIDIA_VISIBLE_DEVICES=void` to the process even though Docker recorded the correct environment. The `/usr/bin/env` entrypoint restores the reserved pair immediately before Python checks visibility. `TORCH_DISABLE_NATIVE_JIT=1` disables the optional Triton dispatch that otherwise tries to compile a helper during the first forward pass. Both settings are needed for generation on this pinned image.
+Docker confines the container to the requested devices. On the validated host, the NVIDIA runtime passed `NVIDIA_VISIBLE_DEVICES=void` to Python despite the Docker environment setting. The `/usr/bin/env` entrypoint restores the reserved pair before the loader checks visibility. `TORCH_DISABLE_NATIVE_JIT=1` prevents an optional Triton dispatch from trying to compile a helper during the first forward pass.
 
-From the Docker host, wait for readiness through the gate's mount, then send a short request once. Loading returns HTTP 503. Expect HTTP 200 for both the ready service and generation, with `text` and token counts in the generation response. If startup fails, `docker logs --timestamps axonai-v1` and `docker inspect --format '{{json .State}}' axonai-v1` retain the evidence.
+From a client with access to the socket, set `AXONAI_SOCKET` to the client-visible path. Wait for HTTP 200 from readiness and verify one generation. Startup and exit evidence is available via `docker logs --timestamps "${AXONAI_CONTAINER:?}"` and `docker inspect --format '{{json .State}}' "${AXONAI_CONTAINER:?}"` on the Docker host.
 
 ```sh
-docker exec axonos curl --silent --show-error --fail --max-time 5 \
+curl --silent --show-error --fail --max-time 5 \
   --retry 40 --retry-all-errors --retry-delay 3 --retry-max-time 180 \
-  --unix-socket /root/axonai/inference.sock http://localhost/ready
-docker exec axonos curl --silent --show-error --fail --max-time 45 \
-  --unix-socket /root/axonai/inference.sock -H 'Content-Type: application/json' \
+  --unix-socket "${AXONAI_SOCKET:?set the client-visible socket path}" http://localhost/ready
+curl --silent --show-error --fail --max-time 45 \
+  --unix-socket "${AXONAI_SOCKET:?}" -H 'Content-Type: application/json' \
   --data '{"prompt":"Reply with OK.","max_new_tokens":4}' http://localhost/generate
 ```
 

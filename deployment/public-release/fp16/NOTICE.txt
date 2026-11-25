@@ -1,0 +1,16 @@
+AxonAI-v1-27B-FP16 — proposed public modification notice
+
+Base model: Qwen/Qwen3.8-27B, revision 1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0
+Qwen team. Copyright 2026 Alibaba Cloud. Apache License, Version 2.0.
+https://huggingface.co/Qwen/Qwen3.8-27B/blob/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/LICENSE
+
+AxonAI merged its v1 scientific LoRA adapter into the text model and
+serialized the BF16 export on November 9, 2026. It adapted the configuration
+and tokenizer packaging for local text-only loading and omitted the vision
+and auxiliary MTP components. On November 20, 2026 the project converted
+the BF16 export to FP16. This edition stores all 851 weight tensors in FP16.
+
+Retain the upstream license and applicable attribution notices. AxonDAO licenses
+its first-party source code and documentation under Apache-2.0. Clearance
+to redistribute the adapter, merged weights and training dataset remains
+pending. The historical article attribution register contains known errors.

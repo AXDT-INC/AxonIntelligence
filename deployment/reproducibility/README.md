@@ -15,7 +15,7 @@ The original L40S execution records identify both dataset writers. Starting with
 
 ## 1. Identify the corpus before preparing examples
 
-The recovered [inherited attribution register](../../models/merged/AxonAI-v1-27B/SOURCE_ATTRIBUTIONS.inherited-draft.json) has 4,230 distinct PMC identifiers. Its per-source counts sum to 10,684 training records. It lists 4,175 entries under CC-BY and 55 under CC0. These are the register's labels. Its release-clearance field remains open. The register records citations and counts. Reconstructing example text, ordering, labels or a split requires the original extraction.
+**The inherited article attribution register is a historical draft with known inaccuracies. Redistribution clearance for the underlying training material remains unresolved.** Its 4,230 distinct PMC identifiers account for 10,684 training records. The historical labels are 4,175 CC-BY and 55 CC0 entries. Some CC0 labels apply only to associated data, and at least one CC-BY license version is incorrect. The verifier reproduces the historical counts. Reconstructing example text, ordering, labels or a split requires the original extraction. [Historical register](../../models/merged/AxonAI-v1-27B/SOURCE_ATTRIBUTIONS.inherited-draft.json) · [Corrections and release scope](../../THIRD_PARTY_NOTICES.md#article-attribution-metadata)
 
 The following original paths are relative to `/data/axonai/engineering-maintenance/` on the L40S server. Preserve the literal directory names, including the `20281029` suffixes.
 
