@@ -4,15 +4,47 @@
 
 `serve.py` serves one resident FP16 model over HTTP on an owner-only Unix socket. The weights load once. Each request uses the fixed AxonAI system prompt, a single user turn, greedy decoding and a fresh cache. The 2,048-token input limit includes the chat template. Generation stops at EOS or the requested cap of up to 256 tokens.
 
-Before starting the service, confirm that physical V100 32 GB GPUs 1 and 2 are reserved for AxonAI for the lifetime of the process. The AxonOS Compute pool is configured for GPUs `0,3,4,5,6,7`. Restrict the container to the two confirmed UUIDs and set both `NVIDIA_VISIBLE_DEVICES` and `CUDA_VISIBLE_DEVICES` to those UUIDs in physical GPU 1, 2 order. The loader verifies their identities as CUDA devices 0 and 1, their architecture, available memory and checkpoint.
+### Start or restore the production service on clu1
 
-For a reviewed deployment, use the V100 runtime as UID/GID `1000:1000` with the verified `AxonAI-v1-27B-FP16` checkpoint mounted read-only at `/model`. Keep networking disabled. Mount the dedicated host directory `/var/lib/axonai-socket` (owner `1000:1000`, mode `0700`) read-write at `/run/axonai`. The service creates `inference.sock` there with mode `0600`. The AxonOS gate mounts the same directory read-only at `/root/axonai` and its client connects to `/root/axonai/inference.sock`.
+Before a future start, confirm that `docker exec axonos printenv AXGT_GPU_DEVICE_IDS` returns `0,3,4,5,6,7`. Check current tenant assignments and use host `nvidia-smi` to verify that physical V100 32 GB cards 1 and 2 match the UUIDs below, have no competing processes and each have at least 29,892 MiB free. Keep them reserved for the lifetime of the service. The loader checks both UUIDs in CUDA order, with physical GPUs 1 and 2 appearing as CUDA devices 0 and 1.
 
-The service process arguments in the updated image are shown below. Select `python` as the container entrypoint to bypass the historical smoke runner's 20-minute timeout.
+The host needs the local image ID and FP16 checkpoint in the creation command below. The dedicated host directory `/var/lib/axonai-socket` must be owned by `1000:1000` with mode `0700`. If absent, provision it with `sudo install -d -m 0700 -o 1000 -g 1000 /var/lib/axonai-socket`. AxonAI writes `inference.sock` there as `1000:1000` with mode `0600`. The production gate mounts the directory read-only at `/root/axonai`.
+
+The container is retained with restart policy `no`. If `axonai-v1` is running, use the checks below. If the correctly configured container is stopped, `docker start axonai-v1` reuses its saved configuration after the preflight. A graceful shutdown removes the socket. After an abrupt exit, if the socket still exists, confirm that its owning service is stopped and a local connection returns `ECONNREFUSED` before unlinking the stale `/var/lib/axonai-socket/inference.sock`. A 503 response means a live service owns it.
+
+If the container is absent, create it on the Docker host using the exact production command.
 
 ```sh
-python /opt/inference/serve.py --reserved-uuids "${CUDA_VISIBLE_DEVICES:?}" --socket /run/axonai/inference.sock
+pair='GPU-85a39500-3cd6-4604-7ff4-4c07d48fb086,GPU-60515032-f798-5aaa-d1e4-acf58ea8bfa8'
+docker run -d --pull=never --name axonai-v1 \
+  --runtime=nvidia --gpus "\"device=$pair\"" \
+  -e NVIDIA_VISIBLE_DEVICES="$pair" -e CUDA_VISIBLE_DEVICES="$pair" \
+  -e NVIDIA_DRIVER_CAPABILITIES=compute,utility \
+  --network=none --ipc=private --cgroupns=private \
+  --user=1000:1000 --cap-drop=ALL --security-opt=no-new-privileges=true \
+  --read-only --cpus=4 --cpu-shares=128 --memory=72g --memory-swap=72g \
+  --pids-limit=256 --shm-size=128m \
+  --tmpfs=/tmp:rw,noexec,nosuid,nodev,size=512m,mode=1777 \
+  --mount type=bind,src=/data/axonai/models/merged/AxonAI-v1-27B-FP16,dst=/model,readonly,bind-recursive=disabled \
+  --mount type=bind,src=/var/lib/axonai-socket,dst=/run/axonai \
+  -e TORCH_DISABLE_NATIVE_JIT=1 --entrypoint /usr/bin/env sha256:e301f15677f5355711a47a51ca7627a52315cb4eca68766a45d614b45101c5fb \
+  NVIDIA_VISIBLE_DEVICES="$pair" python /opt/inference/serve.py --reserved-uuids "$pair" --socket /run/axonai/inference.sock
 ```
+
+Docker's UUID device request confines the container to the pair. On this host, the NVIDIA runtime passed `NVIDIA_VISIBLE_DEVICES=void` to the process even though Docker recorded the correct environment. The `/usr/bin/env` entrypoint restores the reserved pair immediately before Python checks visibility. `TORCH_DISABLE_NATIVE_JIT=1` disables the optional Triton dispatch that otherwise tries to compile a helper during the first forward pass. Both settings are needed for generation on this pinned image.
+
+From the Docker host, wait for readiness through the gate's mount, then send a short request once. Loading returns HTTP 503. Expect HTTP 200 for both the ready service and generation, with `text` and token counts in the generation response. If startup fails, `docker logs --timestamps axonai-v1` and `docker inspect --format '{{json .State}}' axonai-v1` retain the evidence.
+
+```sh
+docker exec axonos curl --silent --show-error --fail --max-time 5 \
+  --retry 40 --retry-all-errors --retry-delay 3 --retry-max-time 180 \
+  --unix-socket /root/axonai/inference.sock http://localhost/ready
+docker exec axonos curl --silent --show-error --fail --max-time 45 \
+  --unix-socket /root/axonai/inference.sock -H 'Content-Type: application/json' \
+  --data '{"prompt":"Reply with OK.","max_new_tokens":4}' http://localhost/generate
+```
+
+### Private API
 
 | Request | Response |
 |---|---|
@@ -22,6 +54,18 @@ python /opt/inference/serve.py --reserved-uuids "${CUDA_VISIBLE_DEVICES:?}" --so
 Send a UTF-8 JSON object with `Content-Type: application/json` and a `Content-Length` of up to 64 KiB. The prompt must contain text. `max_new_tokens` accepts integers from 1 through 256 and defaults to 256. Invalid input returns 400, an oversized body returns 413, and an unsupported media type returns 415.
 
 One request runs at a time, with up to two more waiting in FIFO order. A full queue returns 429. Readiness stays responsive during generation. SIGTERM or SIGINT closes admission, releases waiting callers with 503, finishes the active request and removes the socket on exit. Allow shutdown time for an in-progress model load or generation. An unexpected inference failure returns 500 to the active caller and shuts down the worker with a nonzero exit.
+
+### Production verification on 2026-11-25
+
+From 03:59:30 to 04:00:19 UTC, the gate sent three consecutive, independent `POST /generate` requests over its private socket to the running container. Each supplied only its own prompt and output cap. All three returned HTTP 200. Latency is curl's elapsed time inside the gate from connection through receipt of the complete response.
+
+| Request and verified result | Input tokens | Output tokens / cap | Latency | Board memory after response, GPU 1 / 2 (MiB) |
+|---|---:|---:|---:|---:|
+| Radioactive decay from 80 mg over 18 hours at a 6-hour half-life. The response showed three half-lives and correctly calculated 80 × (½)³ = 10 mg. | 82 | 48 / 80 | 7.580 s | 26,176 / 26,174 |
+| Integers 1 through 88, one per line. The complete response matched the expected sequence exactly. | 84 | 255 / 256 | 37.155 s | 26,180 / 26,180 |
+| Sum of readings 3, 7 and 8 for sample MAPLE-31. The response parsed as the requested JSON object with the correct sample ID and sum of 18. | 82 | 18 / 40 | 2.969 s | 26,180 / 26,180 |
+
+Host `nvidia-smi` sampled board memory every 500 ms. Both cards started at 26,174 MiB and reached a sampled peak of 26,180 MiB. The third request and the five-second settled reading both ended at 26,180 MiB per card. `GET /ready` returned HTTP 200 with `{"status":"ready"}` before the first request, after each response and at the settled reading. The service and all three existing Compute tenant containers retained their original start times.
 
 ## Recorded smoke run
 
