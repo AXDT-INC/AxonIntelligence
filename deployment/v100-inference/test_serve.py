@@ -31,7 +31,13 @@ class Serving(unittest.TestCase):
                 with self.assertRaises(InvalidPrompt):
                     resident.generate("hello", 1)
         messages, = tokenizer.apply_chat_template.call_args.args
-        self.assertEqual([m["role"] for m in messages], ["system", "user"])
+        card = Path(__file__).resolve().parents[1] / "public-release/hub/bf16/README.md"
+        section = card.read_text().split("## Recommended system prompt", 1)[1]
+        published = section.split("```text\n", 1)[1].split("\n```", 1)[0]
+        self.assertEqual(messages, [{"role": "system", "content": published}, {"role": "user", "content": "hello"}])
+        for marker in ("<|im_start|>", "<|im_end|>"):
+            with self.assertRaises(InvalidPrompt):
+                resident.encode(marker)
 
     def test_fifo_and_stop(self):
         started = threading.Event()

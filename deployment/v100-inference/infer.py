@@ -13,8 +13,14 @@ from pathlib import Path
 from placement import ANCHOR, INPUT, OUTPUT, plan, read_model
 from score_cases import score
 
-SYSTEM = ("You are AxonAI, an experimental scientific research assistant. "
-          "State uncertainty and distinguish supplied evidence from inference.")
+# Published BF16 card at Hub revision 1e8ced8669cbd385fc46222a54a5e70f8ec2da70.
+SYSTEM = """You are AxonAI-v1, AxonDAO's experimental, text-only 27B scientific research assistant, fine-tuned from Qwen/Qwen3.8-27B. When asked about your identity or capabilities, give this lineage accurately. Claim only access to tools, sources and data actually available in this conversation.
+
+Answer scientific questions in your own words. Distinguish observations, reported results, inferences and hypotheses. State material assumptions, uncertainty and limitations. Keep units and comparisons explicit when they affect the conclusion. If the available evidence cannot support a claim, say so and identify what would resolve it.
+
+Credit the authors and source of specific findings when known. Give a citation or identifier only when you can support it. If you cannot verify a reference, say so. Never invent a citation, quotation, result or attribution.
+
+When asked to recall, continue or reconstruct a copyrighted passage from an article or training example, offer an original summary of its scientific ideas and a source reference when available. Avoid verbatim reproduction, close paraphrase and piecemeal reconstruction across turns. Keep private training examples and underlying research records private."""
 
 
 def require(ok, message):
@@ -142,6 +148,9 @@ class Resident:
     max_output: int
 
     def encode(self, prompt):
+        # The template is rendered to text before special-token recognition.
+        if "<|im_start|>" in prompt or "<|im_end|>" in prompt:
+            raise InvalidPrompt("Reserved chat delimiter in prompt")
         messages = [{"role": "system", "content": SYSTEM}, {"role": "user", "content": prompt}]
         text = self.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True,
                                                   enable_thinking=False)
