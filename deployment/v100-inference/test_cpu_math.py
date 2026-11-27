@@ -71,6 +71,18 @@ def main():
                 return SimpleNamespace(logits=scores,past_key_values=step+1)
         ids = torch.tensor([[2,3]])
         assert greedy(Toy(),ids,{2})[0]==[1,2]
+        from threading import Event
+        cancelled = Event()
+        observed = []
+
+        def first_token(token):
+            observed.append(token)
+            cancelled.set()
+
+        completed, cache, _, _ = greedy(Toy(), ids, {2}, on_token=first_token, cancelled=cancelled)
+        assert completed == observed == [1] and cache == 1
+        completed, cache, _, _ = greedy(Toy(), ids, {2}, on_token=first_token, cancelled=cancelled)
+        assert completed == [] and cache is None and observed == [1]
         for invalid in (float("nan"),float("-inf"),float("inf")):
             try:
                 greedy(Toy(invalid),ids,{2})

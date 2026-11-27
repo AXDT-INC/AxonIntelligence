@@ -40,14 +40,18 @@ def emit(**fields):
     print(json.dumps(fields, sort_keys=True), flush=True)
 
 
-def greedy(model, ids, eos, limit=OUTPUT, *, max_input=INPUT, max_output=OUTPUT):
+def greedy(model, ids, eos, limit=OUTPUT, *, max_input=INPUT, max_output=OUTPUT,
+           on_token=None, cancelled=None):
     """One unpadded sequence. Check every raw vocabulary logit before selecting a token."""
     import torch
     require(ids.shape[0] == 1 and 0 < ids.shape[1] <= max_input and 1 <= limit <= max_output, "Token budget")
     sequence = []
     cache = None
     start = time.perf_counter()
+    first = 0.0
     for step in range(limit):
+        if cancelled is not None and cancelled.is_set():
+            break
         result = model(input_ids=ids, past_key_values=cache, use_cache=True, logits_to_keep=1)
         logits = result.logits
         require(tuple(logits.shape) == (1, 1, model.config.vocab_size), "Raw logits shape")
@@ -56,6 +60,8 @@ def greedy(model, ids, eos, limit=OUTPUT, *, max_input=INPUT, max_output=OUTPUT)
         if step == 0:
             first = time.perf_counter() - start
         sequence.append(token)
+        if on_token is not None:
+            on_token(token)
         cache = result.past_key_values
         require(cache is not None, "Missing decode cache")
         if token in eos:
@@ -159,25 +165,45 @@ class Resident:
             raise InvalidPrompt(f"Rendered prompt exceeds {self.max_input} input tokens")
         return ids
 
-    def decode(self, ids, limit):
+    def decode(self, ids, limit, *, on_token=None, cancelled=None):
         import torch
         from torch.nn.attention import SDPBackend, sdpa_kernel
 
         with torch.inference_mode(), sdpa_kernel([SDPBackend.MATH]):
             device = self.model.get_input_embeddings().weight.device
             tokens, cache, first, elapsed = greedy(self.model, ids.to(device), self.eos, limit,
-                                                   max_input=self.max_input, max_output=self.max_output)
-            for layer, kind in zip(cache.layers, self.layer_types, strict=True):
+                                                   max_input=self.max_input, max_output=self.max_output,
+                                                   on_token=on_token, cancelled=cancelled)
+            for layer, kind in zip(cache.layers, self.layer_types, strict=True) if cache is not None else ():
                 if kind == "linear_attention":
                     state = layer.recurrent_states[0]
                     require(state.dtype == torch.float32 and torch.isfinite(state).all().item(), "DeltaNet state")
             text = self.tokenizer.decode(tokens, skip_special_tokens=True, clean_up_tokenization_spaces=False)
         return text, tokens, first, elapsed
 
-    def generate(self, prompt, limit):
+    def generate(self, prompt, limit, *, on_text=None, cancelled=None):
         ids = self.encode(prompt)
-        text, tokens, _, _ = self.decode(ids, limit)
-        return {"text": text, "input_tokens": ids.shape[1], "output_tokens": len(tokens)}
+        chunks = []
+        on_token = None
+        if on_text is not None:
+            from tokenizers.decoders import DecodeStream
+            decoder = DecodeStream(skip_special_tokens=True)
+
+            def on_token(token):
+                chunk = decoder.step(self.tokenizer.backend_tokenizer, token)
+                if chunk:
+                    chunks.append(chunk)
+                    on_text(chunk)
+
+        text, tokens, _, _ = self.decode(ids, limit, on_token=on_token, cancelled=cancelled)
+        if on_text is not None:
+            streamed = "".join(chunks)
+            require(text.startswith(streamed), "Incremental detokenization mismatch")
+            if len(text) > len(streamed):
+                # A byte sequence may remain incomplete at a length limit or stop.
+                on_text(text[len(streamed):])
+        reason = "stop" if tokens and tokens[-1] in self.eos else "length" if len(tokens) == limit else "cancelled"
+        return {"text": text, "input_tokens": ids.shape[1], "output_tokens": len(tokens), "finish_reason": reason}
 
 
 def run(root, reserved):

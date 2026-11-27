@@ -2,11 +2,11 @@
 
 ## Standalone private service
 
-`serve.py` serves one resident FP16 model over HTTP on an owner-only Unix socket. The weights load once. Each request uses the fixed AxonAI system prompt, a single user turn, greedy decoding and a fresh cache. The 2,048-token input limit includes the chat template. Generation stops at EOS or the requested cap of up to 256 tokens.
+`serve.py` serves one resident FP16 model over HTTP on an owner-only Unix socket. The weights load once. Each request uses the fixed AxonAI system prompt, a single user turn, greedy decoding and a fresh cache. The 2,048-token input limit includes the chat template. The streaming endpoint emits text during greedy decoding. Generation ends at EOS, the output limit, or a stop request. The production streaming limit is 4,096 output tokens.
 
 ### Start or restore a private instance
 
-Use a host with the validated V100 image and FP16 checkpoint already available. Confirm that two V100 32 GB GPUs are reserved for the service for its lifetime and excluded from other schedulers. Check their host UUIDs, active processes and available memory. Each needs at least 29,892 MiB free at startup. The loader checks the two UUIDs in the supplied CUDA order.
+Use a host with the validated V100 image and FP16 checkpoint already available. Confirm that two V100 32 GB GPUs are reserved for the service for its lifetime and excluded from other schedulers. Check their host UUIDs, active processes and available memory. With the 4,096-token output setting, the placement plan requires approximately 30,012 MiB free per card at startup. The loader checks the two UUIDs in the supplied CUDA order.
 
 Set the following shell variables before running Docker.
 
@@ -36,7 +36,7 @@ docker run -d --pull=never --name "${AXONAI_CONTAINER:?set the container name}" 
   --mount "type=bind,src=${AXONAI_SOCKET_DIR:?set the dedicated socket directory},dst=/run/axonai" \
   -e TORCH_DISABLE_NATIVE_JIT=1 --entrypoint /usr/bin/env "${AXONAI_IMAGE:?set the validated image ID}" \
   NVIDIA_VISIBLE_DEVICES="$AXONAI_GPU_UUIDS" python /opt/inference/serve.py \
-  --reserved-uuids "$AXONAI_GPU_UUIDS" --socket /run/axonai/inference.sock
+  --reserved-uuids "$AXONAI_GPU_UUIDS" --socket /run/axonai/inference.sock --max-output-tokens 4096
 ```
 
 Docker confines the container to the requested devices. On the validated host, the NVIDIA runtime passed `NVIDIA_VISIBLE_DEVICES=void` to Python despite the Docker environment setting. The `/usr/bin/env` entrypoint restores the reserved pair before the loader checks visibility. `TORCH_DISABLE_NATIVE_JIT=1` prevents an optional Triton dispatch from trying to compile a helper during the first forward pass.
@@ -57,11 +57,33 @@ curl --silent --show-error --fail --max-time 45 \
 | Request | Response |
 |---|---|
 | `GET /ready` | `200 {"status":"ready"}` once the model has loaded and passed its loading checks. Returns 503 while loading or stopping. |
-| `POST /generate` | Send JSON such as `{"prompt":"What does FP16 mean?","max_new_tokens":32}`. The 200 response contains `text`, `input_tokens` and `output_tokens`. The output count includes a generated EOS token. |
+| `POST /generate` | Returns one JSON object with the text, input and output token counts, and finish reason. Defaults to the smaller of 256 tokens and the configured ceiling. |
+| `POST /generate/stream` | Send `prompt`, a canonical UUID `request_id`, and optionally `max_new_tokens`. The server flushes newline-delimited JSON and defaults to the configured output ceiling. |
+| `POST /generations/<request_id>/stop` | Send `{}` to cancel a queued or active stream. The original stream delivers the confirmed partial text and terminal reason. Repeating the stop is safe. |
 
-Send a UTF-8 JSON object with `Content-Type: application/json` and a `Content-Length` of up to 64 KiB. The prompt must contain text. `max_new_tokens` accepts integers from 1 through 256 and defaults to 256. Invalid input returns 400, an oversized body returns 413, and an unsupported media type returns 415.
+Send a UTF-8 JSON object with `Content-Type: application/json` and a `Content-Length` of up to 64 KiB. The prompt must contain text. An explicit `max_new_tokens` accepts integers from 1 through the worker ceiling set by `--max-output-tokens`. The server supports ceilings up to 4,096.
 
-One request runs at a time, with up to two more waiting in FIFO order. A full queue returns 429. Readiness stays responsive during generation. SIGTERM or SIGINT closes admission, releases waiting callers with 503, finishes the active request and removes the socket on exit. Allow shutdown time for an in-progress model load or generation. An unexpected inference failure returns 500 to the active caller and shuts down the worker with a nonzero exit.
+The stream begins with `start` on admission. A `delta` contains newly decoded text, and a `ping` keeps a quiet or queued connection open. `done` includes the canonical text, token counts and `finish_reason`. The reasons are `stop` for EOS, `length` for the token limit, and `cancelled` for an explicit stop. The output count includes a generated EOS token. A post-admission error arrives as an `error` frame. Clients should treat an EOF without a terminal frame as an interrupted reply.
+
+One request runs at a time, with up to two more waiting in FIFO order. A full queue returns 429. Readiness stays responsive during generation. The worker checks cancellation between model steps and releases prompt-specific caches before taking the next request. A disconnected streaming client also cancels its generation. The shutdown path closes admission, releases waiting callers and removes the socket on clean exit. An unexpected inference failure stops the worker with a nonzero exit.
+
+### Production streaming verification on 2026-11-27
+
+The resident FP16 worker on the two reserved Tesla V100-SXM2-32GB GPUs streamed a 4,096-token reply in 8 minutes 12.6 seconds with a full 2,048-token rendered prompt. This met the selected 8–10 minute budget for one long reply. The service used the existing checkpoint and CUDA runtime. Only the two worker source files changed in the image.
+
+| Request | Input tokens | Output tokens | Text deltas | First visible text | End-to-end | Finish reason |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| Stop after three text deltas | 2,048 | 4 | 4 | 3.037 s | 3.743 s | `cancelled` |
+| Full input and output | 2,048 | 4,096 | 4,096 | 2.219 s | 492.595 s | `length` |
+| Short follow-up | 257 | 2 | 1 | 0.766 s | 0.885 s | `stop` |
+
+Stop was confirmed in 0.121 seconds. For every request, the concatenated live text matched the final text byte for byte. During the run, 459 host board-memory samples on GPU 1 and GPU 2 peaked at 27,854 MiB on each 32,768 MiB card. The test used only the production V100 socket. The limit reflects this measured workload and queue-time budget. [Machine-readable run record](stream-4096-20261127.json)
+
+To repeat the check, export the service image ID, checkpoint directory and socket directory from the launch configuration above. From `deployment/v100-inference`, run the command below while the reserved worker is ready. The Compose client reads the checked-out validator, prompt template and checkpoint tokenizer through read-only mounts. It receives no GPU and uses the Unix socket for inference. A full run occupies the worker for about eight minutes.
+
+```sh
+docker compose -f compose.validate-stream.yml run --rm --no-deps -T probe
+```
 
 ### Production verification on 2026-11-25
 

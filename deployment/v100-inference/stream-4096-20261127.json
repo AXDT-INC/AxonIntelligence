@@ -1,0 +1,49 @@
+{
+  "start_utc": "2026-11-27T07:38:53.979324+00:00",
+  "end_utc": "2026-11-27T07:47:19.837413+00:00",
+  "cap": 4096,
+  "sample_count": 459,
+  "sample_interval_seconds": 1,
+  "sampled_peak_mib": {
+    "1": 27854,
+    "2": 27854
+  },
+  "sampled_initial_mib": {
+    "1": 26048,
+    "2": 26048
+  },
+  "sampled_final_mib": {
+    "1": 27854,
+    "2": 27854
+  },
+  "cancel": {
+    "input_tokens": 2048,
+    "output_tokens": 4,
+    "finish_reason": "cancelled",
+    "text_deltas": 4,
+    "first_text_s": 3.037,
+    "elapsed_s": 3.743,
+    "stop_to_done_s": 0.121,
+    "text_sha256": "ba65df3b4c154a9909b52eb2956e1bc2f17a98652bb022d958c9a9f74df88dae"
+  },
+  "full": {
+    "input_tokens": 2048,
+    "output_tokens": 4096,
+    "finish_reason": "length",
+    "text_deltas": 4096,
+    "first_text_s": 2.219,
+    "elapsed_s": 492.595,
+    "stop_to_done_s": null,
+    "text_sha256": "eb1d3ef4e6e5e0b32f22f118ca5b21021c7089eaa833c93ec94fe1533ab1ae04"
+  },
+  "recovery": {
+    "input_tokens": 257,
+    "output_tokens": 2,
+    "finish_reason": "stop",
+    "text_deltas": 1,
+    "first_text_s": 0.766,
+    "elapsed_s": 0.885,
+    "stop_to_done_s": null,
+    "text_sha256": "565339bc4d33d72817b583024112eb7f5cdf3e5eef0252d6ec1b9c9a94e12bb3"
+  }
+}

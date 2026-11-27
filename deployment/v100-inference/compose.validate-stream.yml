@@ -1,0 +1,26 @@
+name: axon-v100-stream-check
+services:
+  probe:
+    image: ${AXONAI_IMAGE:?set the validated inference image ID}
+    pull_policy: never
+    runtime: runc
+    network_mode: none
+    user: "1000:1000"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    cpus: 1.5
+    mem_limit: 2g
+    environment:
+      CUDA_VISIBLE_DEVICES: ""
+      NVIDIA_VISIBLE_DEVICES: void
+      HF_HUB_OFFLINE: "1"
+      TOKENIZERS_PARALLELISM: "false"
+    tmpfs: ["/tmp:size=128m"]
+    volumes:
+      - .:/src:ro
+      - ${AXONAI_MODEL_DIR:?set the checkpoint path}:/model:ro
+      - ${AXONAI_SOCKET_DIR:?set the socket directory}:/sockets:ro
+    working_dir: /src
+    entrypoint: [python, -B, /src/validate_stream.py]
+    command: [--socket, /sockets/inference.sock, --cap, "4096"]
