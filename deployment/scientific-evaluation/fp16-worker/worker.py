@@ -24,6 +24,16 @@ PINS = {"axonai": ANCHOR, "qwen": "644bca802d87721db6656d3ef4f7bf8e8c79bfdbe2761
 SYSTEM = "You are a scientific research assistant. Follow the requested answer format."
 INPUT = 2048
 OUTPUT = 256
+PROFILES = {
+    "v100": {"name": "V100", "capability": (7, 0), "torch": "2.13.0+cu126", "cuda": "12.6", "arch": "sm_70"},
+    "l40s": {"name": "NVIDIA L40S", "capability": (8, 9), "torch": "2.13.0+cu132", "cuda": "13.2", "arch": "sm_86"},
+}
+
+
+def hardware_profile():
+    name = os.environ.get("BENCH_GPU_PROFILE", "v100")
+    require(name in PROFILES, "Unknown hardware profile")
+    return name, PROFILES[name]
 
 
 def emit(**fields):
@@ -34,12 +44,45 @@ def digest(value):
     return hashlib.sha256(json.dumps(value, separators=(",", ":")).encode()).hexdigest()
 
 
+
+def network_isolated():
+    names = {name for _, name in socket.if_nameindex()}
+    if "lo" not in names or not names <= {"lo", "tunl0"}:
+        return False
+    # Some host kernels create a dormant IPIP fallback device in every new netns.
+    # It is acceptable only while administratively down, unaddressed, and unrouted.
+    if "tunl0" in names and int(Path("/sys/class/net/tunl0/flags").read_text().strip(), 16) & 1:
+        return False
+    for filename in ("/proc/net/route", "/proc/net/ipv6_route"):
+        path = Path(filename)
+        if path.exists():
+            lines = path.read_text().splitlines()
+            if any("tunl0" in line.split() for line in lines):
+                return False
+    addresses = Path("/proc/net/if_inet6")
+    if addresses.exists() and any(line.split()[-1] != "lo" for line in addresses.read_text().splitlines()):
+        return False
+    if "tunl0" in names:
+        import errno
+        import fcntl
+        import struct
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as control:
+            try:
+                fcntl.ioctl(control.fileno(), 0x8915, struct.pack("256s", b"tunl0"))
+            except OSError as error:
+                if error.errno != errno.EADDRNOTAVAIL:
+                    return False
+            else:
+                return False
+    return True
+
+
 def isolation(device):
     require(os.getuid() != 0 and os.statvfs("/").f_flag & os.ST_RDONLY and
             os.statvfs(MODEL).f_flag & os.ST_RDONLY, "Expected unprivileged read-only mounts")
     status = dict(line.split(":", 1) for line in Path("/proc/self/status").read_text().splitlines() if ":" in line)
     require(int(status["CapBnd"], 16) == 0 and int(status["NoNewPrivs"]) == 1, "Worker privileges")
-    require({name for _, name in socket.if_nameindex()} == {"lo"} and
+    require(network_isolated() and
             not Path("/var/run/docker.sock").exists(), "Worker isolation")
     if device == "cpu":
         require(not list(Path("/dev").glob("nvidia*")) and torch.cuda.device_count() == 0,
@@ -85,9 +128,10 @@ def gpu_pair(rows):
     exposed = subprocess.check_output(["nvidia-smi", "--query-gpu=uuid", "--format=csv,noheader"], text=True)
     require(set(exposed.splitlines()) == set(reserved) and torch.cuda.device_count() == 2,
             "GPU visibility differs from reservation")
+    _, profile = hardware_profile()
     for i, uuid in enumerate(reserved):
         props = torch.cuda.get_device_properties(i)
-        require("V100" in props.name and (props.major, props.minor) == (7, 0)
+        require(profile["name"] in props.name and (props.major, props.minor) == profile["capability"]
                 and str(props.uuid).lower().removeprefix("gpu-") == uuid[4:].lower(), "GPU identity or order")
         require(torch.cuda.mem_get_info(i)[0] >= rows[i]["budget"], "Insufficient free VRAM")
         torch.cuda.reset_peak_memory_stats(i)
@@ -105,10 +149,14 @@ def load(arm, device):
     cfg, sizes = checkpoint(arm)
     mapping, rows = plan(cfg, sizes, 2, INPUT, OUTPUT)
     ids = gpu_pair(rows) if device == "cuda" else []
-    require(torch.__version__ == "2.13.0+cu126" and torch.version.cuda == "12.6"
-            and "sm_70" in torch._C._cuda_getArchFlags().split(), "Expected pinned Volta-capable wheel")
+    profile_name, profile = hardware_profile()
+    require(torch.__version__ == profile["torch"] and torch.version.cuda == profile["cuda"]
+            and profile["arch"] in torch._C._cuda_getArchFlags().split(), "Expected profile-pinned CUDA wheel")
     emit(event="verified", arm=arm, manifest=PINS[arm], tensors=len(sizes), weight_bytes=sum(sizes.values()),
-         planned_v100=rows, gpu_uuids=ids, device=device)
+         placement=rows, device_map=mapping, gpu_uuids=ids, device=device, hardware_profile=profile_name,
+         runtime={"torch": torch.__version__, "cuda": torch.version.cuda,
+                  "transformers": __import__("transformers").__version__,
+                  "safetensors": __import__("safetensors").__version__})
     tokenizer = AutoTokenizer.from_pretrained(MODEL, local_files_only=True, trust_remote_code=False)
 
     def pread(filename, *args, **kwargs):

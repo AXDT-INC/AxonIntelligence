@@ -62,3 +62,88 @@ For a future handover, first establish either a scheduler-managed isolated worke
 ## Jobs and receipts
 
 The `stream` argument opens the JSON Lines interface after model verification. Each line is one JSON object with a unique string `id`, plain user `prompt` and integer `max_new_tokens` from 1 through 256. Each `outcome` binds the arm and manifest to the item ID, status, rendered-input digest and token count. Generated answers include visible text, output IDs, stop reason, first-token and total time, and GPU memory statistics when applicable. Invalid chat delimiters and context overflow produce item-level outcomes. Invalid job schemas, duplicate IDs or runtime failures terminate the worker with a nonzero status. A caller must retain the roster and reconcile missing outcomes. The outer job scheduler owns attempt persistence and resumption. The default container timeout is 30 minutes. Size future blocks to include verification, model load and decoding. Set `BENCH_TIMEOUT` to the approved block duration when needed, leaving time for cleanup before the reservation expires.
+
+## L40S FP16 public-suite execution
+
+The L40S adaptation uses the same two pinned FP16 inference manifests and the same
+2,048-input/256-output, batch-one, greedy, seed-42, neutral-prompt contract. The
+explicit `l40s` profile requires NVIDIA L40S SM 8.9 and Torch 2.13.0+cu132 / CUDA
+13.2; the original `v100` default is retained. The SM 8.6 CUDA binary is compatible
+with this SM 8.9 device under the [NVIDIA Ada compatibility rules](https://docs.nvidia.com/cuda/ada-compatibility-guide/index.html#application-compatibility-on-the-nvidia-ada-gpu-architecture) and must pass the actual full-envelope qualification.
+
+`prepare_local.py OUTPUT` derives both inference checkpoints from the original
+local BF16 files without overwriting them. AxonAI conversion independently checks
+every binary16 value and matches all 14 published shard hashes. Its runtime copy
+contains the six inference support files and the pinned release manifest; it does
+not fabricate the historical conversion timing/log files referenced by that
+manifest. A separate preparation receipt records this scope. The bare Qwen export
+reproduces its full pinned manifest through `prepare_base.py`.
+
+Build `Dockerfile.l40s` with the existing venv as its context after checking the
+base image ID in the recipe. Record the resulting immutable image ID. Apply
+`compose.l40s.yaml` after both `compose.yaml` and `compose.gpu.yaml`; set
+`BENCH_IMAGE` to that ID. No dependencies are fetched by inference containers.
+The model and code mounts are read-only, the container has no network or
+capabilities, and keys, datasets, answers and the host ledger are not mounted.
+A kernel-created `tunl0` is accepted only when down, without addresses or routes.
+
+The qualified local environment has Python 3.12.3, Torch 2.13.0+cu132,
+Transformers 5.16.1, Accelerate 1.14.0, Safetensors 0.8.0, Tokenizers 0.23.2,
+NumPy 2.5.2, PyArrow 25.0.1 and huggingface-hub 1.30.0. Host-side lexical screening
+uses SciPy 1.18.1 from the private `screen-tools` directory; it is not installed
+into the inference image. This recipe copies the audited existing environment;
+it does not claim a portable, independently rebuilt image from a public lockfile.
+Qualify any newly built image before collecting with it.
+
+The host controller `benchmark_run.py` takes `qualify RUN_ROOT` or
+`collect RUN_ROOT`. `run-config.json` binds the image, ordered GPU UUIDs, absolute
+model paths, manifest hashes and profile. Qualification checks both arms on the
+same pair and saves `qualification.json`; collection refuses code, input, image,
+model or device-map drift. The host holds cooperative GPU locks and checks for
+other GPU compute processes. These checks do not reserve a shared external
+allocator; use devices assigned to this benchmark for its full lifetime.
+
+`public_suite.py prepare RUN_ROOT --axonai MODEL --qwen MODEL` freezes the pinned
+PubMedQA test, MedMCQA validation and GSM8K test splits, matching rendered input
+IDs and recording context exclusions before inference. It retains source-file
+hashes, original IDs, the private gold key, and a seed-42 interleaved roster.
+GPQA is appended by the separate [private extension controller](../public-extensions/README.md)
+after authorized access became available. `screen_public.py`
+checks the available frozen SFT and staging records using the existing lexical
+thresholds. The resulting incomplete-corpus flags prevent a clean-subset claim;
+sealed historical cases are never read.
+
+Four blocks use Qwen/AxonAI, AxonAI/Qwen, Qwen/AxonAI, AxonAI/Qwen order. Only one
+model is resident at a time. The SQLite ledger uses full synchronous commits,
+records a signed claim before dispatch, and retains every outcome. Restarting
+`collect` marks unfinished claims missing and runs only untouched slots. It never
+rerolls a claimed item. Logs and raw outputs stay in the private run directory.
+The controller writes paired `results.json` and `completion.json` after collection;
+`public_suite.py analyze RUN_ROOT` can reproduce the analysis from retained records.
+The report includes eligible/returned/parsed/correct counts, operational accuracy,
+paired bootstrap intervals, the primary PubMedQA exact McNemar test, missing-data
+bounds, PubMedQA macro-F1/confusion, MedMCQA subject counts, latency and cap hits.
+No provider APIs are involved in this two-local-arm run.
+
+### Qualification result on this host
+
+On 27 November 2026 both arms passed on L40S indices 1 and 2 under immutable image
+`sha256:fc59b0393cfe0bd799836fd69862b8943c761da508923cf450c1472711359181`.
+The Qwen 2,048-input/256-output stress request took 25.939 seconds; AxonAI took
+28.392 seconds. Both peaked at 26.85 GiB reserved per device. Synthetic greedy
+replay, overlength rejection, finite logits and FP32 recurrent-state checks passed.
+The latest isolated CPU runs passed six worker tests and five scorer/ledger tests.
+
+The 6,002-question / 12,004-response collection was launched after qualification.
+Its private progress log is `receipts/l40s-benchmark-20261127/collection-driver.log`;
+`execution.json` identifies the durable host process. Final scores must be read
+from `results.json` together with `completion.json`; qualification timings are not
+benchmark accuracy results. The synthetic planning estimate was 17.3 pair-hours,
+including fixed and variable allowances and assumed per-suite response lengths.
+
+GPQA Diamond is queued behind this collection on the same GPU pair. Its separate
+roster has 198 planned questions, 197 eligible questions and 394 response slots;
+one question exceeds the frozen 2,048-token input limit. The original roster,
+ledger and frozen worker code remain unchanged. Combined aggregate results will
+be written to `combined-results.json` after both phases finish. GPQA examples,
+answer keys and raw records remain in the private, Git-ignored run directory.

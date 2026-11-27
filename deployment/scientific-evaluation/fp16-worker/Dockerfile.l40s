@@ -1,0 +1,8 @@
+# Build with the pre-existing, audited venv directory as the build context.
+FROM lp-jupyter-notebook:24.04
+# Required pre-build image ID: sha256:95cb412d5121fed92a006ceeffe5cbf3edef75c98ff399b4c1d477a7593ebe56
+USER root
+COPY . /opt/axon-venv/
+ENV PATH=/opt/axon-venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin PYTHONDONTWRITEBYTECODE=1
+USER 1000:1000
+ENTRYPOINT ["/opt/axon-venv/bin/python", "-B"]

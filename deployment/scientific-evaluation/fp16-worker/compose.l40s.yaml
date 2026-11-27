@@ -1,0 +1,6 @@
+# Apply after compose.yaml and compose.gpu.yaml. Pin the newly qualified local image.
+services:
+  worker:
+    image: ${BENCH_IMAGE:?Set immutable L40S image ID}
+    environment:
+      BENCH_GPU_PROFILE: l40s

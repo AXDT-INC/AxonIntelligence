@@ -134,13 +134,13 @@ def save_metadata(path, data):
     path.chmod(0o400)
 
 
-def build():
+def build(provenance_path=Path('/job/PROVENANCE.json')):
     stage = OUT/'.text-fp16.partial'
     target = OUT/'Qwen3.8-27B-text-FP16'
     require(not target.exists(), 'Target already published')
     stage.mkdir(exist_ok=True)
     stage.chmod(0o700)
-    prov = Path('/job/PROVENANCE.json')
+    prov = Path(provenance_path)
     require(digest(prov) == PROVENANCE_SHA, 'Source inventory identity')
     recorded = json.loads(prov.read_bytes())
     require(recorded['base_revision'] == REVISION, 'Source revision')

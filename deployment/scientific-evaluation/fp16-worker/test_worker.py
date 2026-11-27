@@ -1,4 +1,4 @@
-"""Device-free checks for benchmark job handling and V100 admission."""
+"""Device-free checks for benchmark job handling and explicit GPU profiles."""
 import inspect
 import os
 import unittest
@@ -54,6 +54,7 @@ class QualificationTest(unittest.TestCase):
         props = [SimpleNamespace(uuid=u, name="Tesla V100", major=7, minor=0) for u in ordered]
         env = {name: ",".join(ordered) for name in (
             "BENCH_RESERVED_UUIDS", "CUDA_VISIBLE_DEVICES", "NVIDIA_VISIBLE_DEVICES")}
+        env["BENCH_GPU_PROFILE"] = "v100"
         rows = [{"budget": 100}, {"budget": 100}]
         with patch.dict(os.environ, env), patch.object(worker.subprocess, "check_output",
                 return_value="\n".join(ordered)), patch.object(worker.torch, "cuda") as cuda:
@@ -67,6 +68,32 @@ class QualificationTest(unittest.TestCase):
             props.reverse()
             with self.assertRaisesRegex(RuntimeError, "order"):
                 worker.gpu_pair(rows)
+
+
+    def test_network_admission(self):
+        with patch.object(worker.socket, "if_nameindex", return_value=[(1,"lo"),(2,"eth0")]):
+            self.assertFalse(worker.network_isolated())
+        with patch.object(worker.socket, "if_nameindex", return_value=[(1,"lo"),(2,"tunl0")]), patch.object(worker.Path,"read_text",return_value="0x1"):
+            self.assertFalse(worker.network_isolated())
+
+    def test_l40s_profile_rejects_other_architectures(self):
+        ordered = [FIRST, SECOND]
+        env = {name: ",".join(ordered) for name in (
+            "BENCH_RESERVED_UUIDS", "CUDA_VISIBLE_DEVICES", "NVIDIA_VISIBLE_DEVICES")}
+        env["BENCH_GPU_PROFILE"] = "l40s"
+        props = [SimpleNamespace(uuid=u, name="NVIDIA L40S", major=8, minor=9) for u in ordered]
+        with patch.dict(os.environ, env), patch.object(worker.subprocess, "check_output",
+                return_value="\n".join(ordered)), patch.object(worker.torch, "cuda") as cuda:
+            cuda.device_count.return_value = 2
+            cuda.get_device_properties.side_effect = props.__getitem__
+            cuda.mem_get_info.return_value = (101, 200)
+            self.assertEqual(worker.gpu_pair([{"budget": 100}]*2), ordered)
+            props[0].minor = 6
+            with self.assertRaisesRegex(RuntimeError, "identity"):
+                worker.gpu_pair([{"budget": 100}]*2)
+        with patch.dict(os.environ, {"BENCH_GPU_PROFILE": "unknown"}):
+            with self.assertRaisesRegex(RuntimeError, "Unknown"):
+                worker.hardware_profile()
 
 
 if __name__ == "__main__":

@@ -85,3 +85,41 @@ For the two local arms together, estimate pair wall hours as `2 + 1.2 × (2 × 2
 API cost equals `(input tokens × input rate + billed output tokens × output rate) / 1,000,000` per provider. Use standard synchronous pricing, with no cache or batch discounts assumed. Reprice at freeze and record the rate sheet. With expected API lengths, total model compute is **$228–$321**, central **$250**. If every API call reaches its cap, hosted cost alone is **$1,536** at the assumed input lengths. Monitor provider usage by suite and set separate spend limits before dispatch. A clipped or incomplete run retains its original roster. Provider quotas and latency determine API wall time independently of GPU hours. At an assumed effective 10 completed requests/minute per provider in parallel, API collection takes about 10.3 hours. [OpenAI standard model pricing](https://developers.openai.com/api/docs/models/gpt-6.2-astra) · [Anthropic pricing](https://platform.claude.com/docs/en/about-claude/pricing)
 
 The estimate covers one collection per arm. Add development-fixture API usage, storage, transfer, taxes, staff time and any replication separately. The original estimate allowed two to four engineer-days for checkpoint preparation, harness integration and verification, plus half to one analyst-day for the report. Checkpoint preparation is complete on this host. The remaining work before collection includes a dedicated two-V100 qualification of the local worker, suite and API integration, data permissions and an agreed compute budget.
+
+## L40S local execution adaptation, 27 November 2026
+
+The requested local comparison passed qualification on two L40S GPUs with the same
+FP16 manifests and prompt/token limits, using copies derived from the existing
+local BF16 checkpoints. This is a distinct hardware/runtime condition from the
+V100 proposal above. The L40S worker uses Torch 2.13.0+cu132, CUDA 13.2 and the
+existing Transformers 5.16.1 environment in a newly pinned offline image.
+
+The authorized roster is PubMedQA test (500), MedMCQA validation (4,183), and
+GSM8K test (1,319): 6,002 questions and 12,004 local-arm slots. All questions fit
+the common input budget, and original-Qwen and release tokenizers produced
+identical rendered input IDs throughout. After Hugging Face access was configured,
+GPQA Diamond was added as a separate phase queued on the same GPU pair, preserving
+the original roster and all existing progress. Of its 198 questions, 197 fit the
+frozen input limit; one has 2,803 input tokens and is excluded without truncation.
+The total plan is now 6,200 questions, with 6,199 eligible and 12,398 local-arm
+slots. Hosted model comparisons are outside this execution.
+
+The private root is `receipts/l40s-benchmark-20261127/`. Source hashes, the roster,
+checkpoint conversion receipts, screening, hardware qualification, attempt ledger
+and raw responses remain there. Frozen SFT and staging text were screened before
+inference; coverage of candidate branches, variants, prior evaluation exposure and
+source-family aliases remains incomplete. Report full public-set scores and mark
+the clean-sensitivity analysis unavailable. Do not describe these as independent
+holdout results. The original historical 51 remain closed.
+
+The runner counterbalances four sequential blocks on one GPU pair, records claims
+before dispatch, and does not repeat interrupted or completed slots. Results are
+written automatically when collection ends. See the [L40S worker runbook](fp16-worker/README.md#l40s-fp16-public-suite-execution).
+
+Both arms passed full-budget synthetic qualification before collection. The three-suite local run is in progress; no completed comparative accuracy result is claimed here.
+
+The [GPQA extension](public-extensions/README.md) uses the same pinned runtime,
+checkpoints, parser and token budgets. Individual examples, private option mappings,
+gold keys and raw evaluation records remain local under the excluded private run
+root. It produces a separate result and then an additive combined aggregate report;
+the original three-suite result is retained unchanged.
