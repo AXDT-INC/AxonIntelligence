@@ -92,8 +92,8 @@ def prepare(tree, model):
         src=model/name
         require(not src.is_symlink() and src.stat().st_size==frozen[name]["bytes"], "Unexpected original "+name)
         (tree/name).symlink_to(src)
-    for name in ("README.md","NOTICE.txt"):
-        shutil.copyfile(TOOL/"bf16"/name,tree/name)
+    shutil.copyfile(TOOL/"bf16"/"README.release.md",tree/"README.md")
+    shutil.copyfile(TOOL/"bf16"/"NOTICE.txt",tree/"NOTICE.txt")
     shutil.copyfile(attr,tree/"SOURCE_ATTRIBUTIONS.rc.json")
     shutil.copyfile("/input/SOURCE_LICENSE.txt",tree/"SOURCE_LICENSE.Apache-2.0.txt")
     write(tree/"PROVENANCE.json",dict(model=NAME, precision="BF16", upstream=prov["base_repository_recorded"],

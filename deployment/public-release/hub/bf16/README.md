@@ -51,6 +51,8 @@ Use this model for experimental text generation with independent review of scien
 
 Qwen's Apache-2.0 license, copyright notice and original model card accompany its contribution. AxonDAO licenses its first-party code and documentation under Apache-2.0. The training dataset remains private. The corrected register contains bibliographic credits, counts and article-level permission evidence. [Upstream license](BASE_LICENSE.Apache-2.0.txt) · [Original Qwen card](BASE_MODEL_CARD.original.md) · [Modification notice](NOTICE.txt) · [First-party source license](SOURCE_LICENSE.Apache-2.0.txt) · [Corrected register](SOURCE_ATTRIBUTIONS.rc.json)
 
+**AxonAI-v1 was fine-tuned on 10,684 curated scientific learning examples derived from 4,230 publications, rather than on complete scientific articles.** The articles served as upstream sources for example generation and verification. Neither the original articles nor the training dataset is distributed with the model. The licensing uncertainties documented below concern source-material permissions and do not constitute established copyright infringement by the released model weights.
+
 **19 articles affecting 42 of the 10,684 training examples have unresolved article terms or license versions.**
 
 | Article group | Articles | Examples | Open question |

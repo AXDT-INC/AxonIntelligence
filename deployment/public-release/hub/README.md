@@ -32,7 +32,9 @@ The current candidate is in `deployment/public-release/outputs/bf16-final/AxonAI
 | `README.md`, `PROVENANCE.json`, `VALIDATION_SUMMARY.json`, `SOURCE_ATTRIBUTIONS.rc.json`, `RELEASE_MANIFEST.json` | 5 |
 | `standalone_inference.py`, `requirements-inference.txt` | 2 |
 
-Final BF16 candidate manifest SHA-256 is `0c82ab39585ad6cd4b31474ff603d23f4591d04c85be749a3c730d92de9a1837`. The fixed allowlist excludes training examples, caches, adapter files and the local FP16 derivative. [Exact file inventory with hashes](bf16/RELEASE_MANIFEST.json) · [BF16 card template](bf16/README.md) · [Package builder](package.py)
+Final BF16 candidate manifest SHA-256 is `0c82ab39585ad6cd4b31474ff603d23f4591d04c85be749a3c730d92de9a1837`. The fixed allowlist excludes training examples, caches, adapter files and the local FP16 derivative. The package builder copies the original release card as `README.md` to reproduce the reviewed manifest. [Exact file inventory with hashes](bf16/RELEASE_MANIFEST.json) · [Original release card](bf16/README.release.md) · [Package builder](package.py)
+
+The current BF16 model card includes the licensing clarification published on Hugging Face. [Current GitHub card](bf16/README.md#rights) · [Hugging Face revision](https://huggingface.co/AxonDAO/AxonAI-v1-27B/blob/4c27294aa4b00f0765ca361acd43b330a979e32a/README.md)
 
 ## Proposed upload after weight release approval
 
