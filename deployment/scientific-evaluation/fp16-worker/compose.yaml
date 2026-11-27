@@ -1,0 +1,36 @@
+name: axonai-benchmark-worker
+services:
+  worker:
+    image: sha256:4d21bd834057bb3877072ae4653aa10ab5d1697c3b4fa17b41f01f791f9a8382
+    pull_policy: never
+    runtime: runc
+    network_mode: none
+    read_only: true
+    user: "1000:1000"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    cpus: 4
+    cpu_shares: 128
+    mem_limit: 72g
+    memswap_limit: 72g
+    pids_limit: 256
+    tmpfs: ["/tmp:rw,noexec,nosuid,nodev,size=512m,mode=1777"]
+    environment:
+      NVIDIA_VISIBLE_DEVICES: void
+      CUDA_VISIBLE_DEVICES: ""
+      HF_HUB_OFFLINE: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      TORCH_DISABLE_NATIVE_JIT: "1"
+      CUBLAS_WORKSPACE_CONFIG: ":4096:8"
+      PYTHONPATH: /worker
+    entrypoint: ["timeout", "--kill-after=15s", "${BENCH_TIMEOUT:-30m}", "nice", "-n", "15", "ionice", "-c", "3", "python", "-Bu", "/worker/worker.py"]
+    volumes:
+      - type: bind
+        source: ${BENCH_MODEL:?Set BENCH_MODEL to the verified checkpoint directory}
+        target: /model
+        read_only: true
+        bind: {create_host_path: false}
+      - ./worker.py:/worker/worker.py:ro
+      - ../../v100-inference/infer.py:/worker/infer.py:ro
+      - ../../v100-inference/placement.py:/worker/placement.py:ro
+      - ../../v100-inference/score_cases.py:/worker/score_cases.py:ro

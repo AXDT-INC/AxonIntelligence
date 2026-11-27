@@ -1,0 +1,17 @@
+services:
+  worker:
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["${BENCH_GPU_FIRST:?Reserved first UUID}", "${BENCH_GPU_SECOND:?Reserved second UUID}"]
+              capabilities: [gpu]
+    environment:
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
+      BENCH_RESERVED_UUIDS: "${BENCH_GPU_FIRST},${BENCH_GPU_SECOND}"
+      CUDA_VISIBLE_DEVICES: "${BENCH_GPU_FIRST},${BENCH_GPU_SECOND}"
+      NVIDIA_VISIBLE_DEVICES: "${BENCH_GPU_FIRST},${BENCH_GPU_SECOND}"
+    # Restore ordered visibility inside the process on hosts whose runtime resets NV_VISIBLE to void.
+    entrypoint: ["env", "NVIDIA_VISIBLE_DEVICES=${BENCH_GPU_FIRST},${BENCH_GPU_SECOND}", "timeout", "--kill-after=15s", "${BENCH_TIMEOUT:-30m}", "nice", "-n", "15", "ionice", "-c", "3", "python", "-Bu", "/worker/worker.py"]

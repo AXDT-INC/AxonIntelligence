@@ -1,0 +1,40 @@
+name: qwen-offline-checkpoint-preparation
+services:
+  prepare:
+    image: sha256:d1aacade2c58b95f125a49e3ac05f7e8aec52097c95442b27b3260773ad37fd5
+    pull_policy: never
+    runtime: runc
+    network_mode: none
+    read_only: true
+    user: "1000:1000"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    cpus: 2
+    cpu_shares: 128
+    mem_limit: 16g
+    memswap_limit: 16g
+    pids_limit: 64
+    tmpfs: ["/tmp:rw,noexec,nosuid,nodev,size=128m,mode=1777"]
+    environment:
+      NVIDIA_VISIBLE_DEVICES: void
+      CUDA_VISIBLE_DEVICES: ""
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONPATH: /opt/convert
+    entrypoint: ["sh", "-ec", 'python /opt/convert/check_cpu.py runtime && exec nice -n 15 ionice -c 3 python -B /job/export.py "$$@"', "--"]
+    volumes:
+      - type: bind
+        source: ${BENCH_SOURCE:?Verified original Qwen directory}
+        target: /source
+        read_only: true
+        bind: {create_host_path: false}
+      - type: bind
+        source: ${BENCH_LAYOUT:?Verified AxonAI FP16 release directory}
+        target: /layout
+        read_only: true
+        bind: {create_host_path: false}
+      - ./prepare_base.py:/job/export.py:ro
+      - ../../../models/merged/AxonAI-v1-27B/PROVENANCE.json:/job/PROVENANCE.json:ro
+      - type: bind
+        source: ${BENCH_OUTPUT:?Private writable output directory}
+        target: /output
+        bind: {create_host_path: false}
